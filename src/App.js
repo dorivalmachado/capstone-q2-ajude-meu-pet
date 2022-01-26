@@ -1,9 +1,9 @@
-import { Register } from "./Components/Register";
+import Routes from "./Routes";
 
 function App() {
   return (
     <>
-      <Register />
+      <Routes/>
     </>
   );
 }
