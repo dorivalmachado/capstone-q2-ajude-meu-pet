@@ -1,10 +1,12 @@
 import { Switch } from "react-router-dom";
+
+import {useAuth} from "../Providers/Auth"
 import Route from "./Route";
 
 
 const Routes = () => {
     
-    const accessToken = 'precisa pegar do useAuth';
+    const {token} = useAuth();
     
     return(
         <Switch>
@@ -13,7 +15,7 @@ const Routes = () => {
             <Route exact path='/signup' component={}/>
             <Route exact path='/services' isPrivate component={}/>
             <Route exact path='/pets' isPrivate component={}/>
-            <Route component={} isPrivate={!!accessToken} />
+            <Route component={} isPrivate={!!token} />
         </Switch>
     )
 }
