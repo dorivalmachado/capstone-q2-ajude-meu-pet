@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import Providers from './Providers';
 import { Toaster } from 'react-hot-toast';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Providers>
-      <Toaster/>
-      <App />
-    </Providers>
+    <BrowserRouter>
+      <Providers>
+        <Toaster/>
+        <App />
+      </Providers>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
