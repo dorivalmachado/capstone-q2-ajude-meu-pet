@@ -6,11 +6,10 @@ import { useAuth } from "../auth";
 export const ServicesContext = createContext();
 
 export const ServicesProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, user: {id} } = useAuth();
   const [services, setServices] = useState([]);
 
   const getServices = () => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
     token !== '' &&
       api.get('/services/', {
         headers: {
@@ -30,9 +29,7 @@ export const ServicesProvider = ({ children }) => {
   }, [token])
 
   const serviceCreate = (obj) => {
-    const { id } = JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {};
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
-    api.post('/services/', { ...obj, "user": id }, {
+    api.post('/services/', { ...obj, "userId": id }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -46,7 +43,6 @@ export const ServicesProvider = ({ children }) => {
       })
   }
   const serviceUpdate = (obj, serviceId) => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
     api.patch(`/services/${serviceId}/`, obj, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -61,7 +57,6 @@ export const ServicesProvider = ({ children }) => {
       })
   }
   const serviceDelete = (serviceId) => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
     api.delete(`/services/${serviceId}/`, {
       headers: {
         Authorization: `Bearer ${token}`

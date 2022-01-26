@@ -6,11 +6,10 @@ import { useAuth } from "../auth";
 export const PetsContext = createContext();
 
 export const PetsProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, user: {id} } = useAuth();
   const [pets, setPets] = useState([]);
 
   const getPets = () => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
     token !== '' &&
       api.get('/pets/', {
         headers: {
@@ -21,7 +20,7 @@ export const PetsProvider = ({ children }) => {
           setPets(response.data);
         })
         .catch(_ => {
-          setPets([]);
+          toast.error('Erro na busca dos pets!');
         })
   }
 
@@ -30,9 +29,7 @@ export const PetsProvider = ({ children }) => {
   }, [token])
 
   const petCreate = (obj) => {
-    const { id } = JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {};
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
-    api.post('/pets/', { ...obj, "user": id }, {
+    api.post('/pets/', { ...obj, "userId": id }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -42,7 +39,7 @@ export const PetsProvider = ({ children }) => {
         toast.success('Pet registrado!');
       })
       .catch(_ => {
-        toast.error('Erro ao registrar o pet!')
+        toast.error('Erro ao registrar o pet!');
       })
   }
   const petUpdate = (obj, petId) => {
@@ -52,7 +49,7 @@ export const PetsProvider = ({ children }) => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(response => {
+      .then(_ => {
         getPets();
         toast.success('Pet atualizado!');
       })
@@ -61,7 +58,6 @@ export const PetsProvider = ({ children }) => {
       })
   }
   const petDelete = (petId) => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || '';
     api.delete(`/pets/${petId}/`, {
       headers: {
         Authorization: `Bearer ${token}`
