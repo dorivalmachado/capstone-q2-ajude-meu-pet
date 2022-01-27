@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../../Services/api";
 import toast from 'react-hot-toast';
-import { useAuth } from "../auth";
+import { useAuth } from "../Auth";
 
 export const PetsContext = createContext();
 
 export const PetsProvider = ({ children }) => {
-  const { token, user: {id} } = useAuth();
+  const { token, user } = useAuth();
   const [pets, setPets] = useState([]);
 
   const getPets = () => {
@@ -29,7 +29,7 @@ export const PetsProvider = ({ children }) => {
   }, [token])
 
   const petCreate = (obj) => {
-    api.post('/pets/', { ...obj, "userId": id }, {
+    api.post('/pets/', { ...obj, "userId": user.id }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

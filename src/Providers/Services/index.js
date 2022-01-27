@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../../Services/api";
 import toast from 'react-hot-toast';
-import { useAuth } from "../auth";
+import { useAuth } from "../Auth";
 
 export const ServicesContext = createContext();
 
 export const ServicesProvider = ({ children }) => {
-  const { token, user: {id} } = useAuth();
+  const { token, user } = useAuth();
   const [services, setServices] = useState([]);
 
   const getServices = () => {
@@ -29,7 +29,7 @@ export const ServicesProvider = ({ children }) => {
   }, [token])
 
   const serviceCreate = (obj) => {
-    api.post('/services/', { ...obj, "userId": id }, {
+    api.post('/services/', { ...obj, "userId": user.id }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

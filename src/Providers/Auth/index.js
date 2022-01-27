@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
     api
       .post("/login/", userData)
       .then((response) => {
-        setUserId(jwt_decode(response.data.accessToken).user_id);
         const { accessToken } = response.data;
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
         api
@@ -60,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   const updateUser = (userData) => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     api
-      .patch(`/users/${user.id}/`, userData, {
+      .patch(`/users/${data.user.id}/`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,7 +67,6 @@ export const AuthProvider = ({ children }) => {
       .then((response) => {
         toast.success("Usuário atualizado");
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(response.data));
-        setUser(JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {});
       })
       .catch(_ => {
         toast.error("Nome de usuário já existente");
