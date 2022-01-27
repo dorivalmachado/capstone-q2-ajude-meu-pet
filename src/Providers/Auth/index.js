@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState("");
+  const [userId, setUserId] = useState("");
+
   const [data, setData] = useState(() => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     const user = localStorage.getItem("@ajude-meu-pet:user") || {};
@@ -23,11 +26,11 @@ export const AuthProvider = ({ children }) => {
   const register = (userData) => {
     api
       .post("/register/", userData)
-      .then(_ => {
+      .then((_) => {
         toast.success("Cadastro realizado");
         history.push("/login");
       })
-      .catch(_ => {
+      .catch((_) => {
         toast.error("Usuário existente");
       });
   };
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }) => {
           });
         history.push("/dashboard");
       })
-      .catch(_ => {
+      .catch((_) => {
         toast.error("Usuário ou senha inválidos!");
       });
   };
@@ -68,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         toast.success("Usuário atualizado");
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(response.data));
       })
-      .catch(_ => {
+      .catch((_) => {
         toast.error("Nome de usuário já existente");
       });
   };
