@@ -1,10 +1,11 @@
+import CardsServices from "./Components/CardsServices";
 import Routes from "./Routes";
 
 function App() {
   return (
     <>
       <Routes/>
-      <h1>teste</h1>
+      <CardsServices/>
     </>
   );
 }
