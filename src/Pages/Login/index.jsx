@@ -1,16 +1,9 @@
-import { Container, FormContainer, Bar, Teste } from "./styles";
-import {
-  TextField,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Button,
-} from "@mui/material";
+import { Container, FormContainer } from "./styles";
+import { TextField, Button } from "@mui/material";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../../Providers/Auth";
 import { Link } from "react-router-dom";
 
@@ -18,7 +11,7 @@ export const Login = () => {
   const { login } = useAuth();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Nome obrigatório"),
+    email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup
       .string()
       .required("Senha obrigatória")
@@ -33,9 +26,9 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleSignIp = (data) => {
+  const handleSignIn = (data) => {
     console.log(data);
-    // login(data);
+    login(data);
   };
 
   const textFieldStyle = {
@@ -63,7 +56,7 @@ export const Login = () => {
     <Container>
       <FormContainer>
         <h1>LOGIN</h1>
-        <form onSubmit={handleSubmit(handleSignIp)}>
+        <form onSubmit={handleSubmit(handleSignIn)}>
           <TextField
             label="Email"
             variant="outlined"
