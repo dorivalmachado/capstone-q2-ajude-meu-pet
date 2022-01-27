@@ -1,3 +1,5 @@
+import Routes from "./Routes";
+
 function App() {
   // Para abrir e fechar o modal, colocar aonde ele for aberto
   // const [open, setOpen] = useState(false);
@@ -9,7 +11,7 @@ function App() {
 
   return (
     <>
-     
+      <Routes/>
     </>
   );
 }
