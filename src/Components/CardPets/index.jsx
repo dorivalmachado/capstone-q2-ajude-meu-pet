@@ -43,12 +43,9 @@ const CardPets = ({
     let year = todayDate[2] - arrayPetDate[2];
     let month = todayDate[1] - arrayPetDate[1];
     let day = todayDate[0] - arrayPetDate[0];
-
-    if (month < 0) {
-      return year - 1;
-    } else if (day < 0) {
-      return year - 1;
-    }
+    
+    if (month < 0) return year - 1;
+    if (month === 0 && day < 0) return year - 1;
 
     return year;
   };
