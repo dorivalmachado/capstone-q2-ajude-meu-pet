@@ -1,9 +1,12 @@
+import "./Styles/Reset.css";
+import GlobalStyle from "./Styles/GlobalStyle";
 import Routes from "./Routes";
 
 function App() {
   return (
     <>
-      <Routes/>
+      <GlobalStyle />
+      <Routes />
     </>
   );
 }
