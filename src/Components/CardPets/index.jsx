@@ -6,7 +6,15 @@ import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 
-const CardPets = ({ name, breed, size, animalType, petBirthDate, sex, deleteCart }) => {
+const CardPets = ({
+  name,
+  breed,
+  size,
+  animalType,
+  petBirthDate,
+  sex,
+  deleteCart,
+}) => {
   const handleImage = () => {
     return animalType === "cat"
       ? CatImage
@@ -36,8 +44,11 @@ const CardPets = ({ name, breed, size, animalType, petBirthDate, sex, deleteCart
     let month = todayDate[1] - arrayPetDate[1];
     let day = todayDate[0] - arrayPetDate[0];
 
-    if (month < 0) return year - 1;
-    if (day < 0) return year - 1;
+    if (month < 0) {
+      return year - 1;
+    } else if (day < 0) {
+      return year - 1;
+    }
 
     return year;
   };
@@ -45,25 +56,25 @@ const CardPets = ({ name, breed, size, animalType, petBirthDate, sex, deleteCart
   return (
     <Container>
       <div className="trashIconBox" onClick={deleteCart}>
-      <FaTrash/>
+        <FaTrash />
       </div>
       <ContentBox>
-      <div className="firstBox">
-        <img src={handleImage()} alt={animalType} />
-        <div className="secondBox">
-          <h3>
-            {name} {sex === "female" ? <BsGenderFemale /> : <BsGenderMale />}
-          </h3>
+        <div className="firstBox">
+          <img src={handleImage()} alt={animalType} />
+          <div className="secondBox">
+            <h3>
+              {name} {sex === "female" ? <BsGenderFemale /> : <BsGenderMale />}
+            </h3>
 
-          <p>{handleBreed()}</p>
+            <p>{handleBreed()}</p>
+          </div>
         </div>
-      </div>
 
-      <p>
-        {handleAnimalType()} de porte {size}
-      </p>
+        <p>
+          {handleAnimalType()} de porte {size}
+        </p>
 
-      <p>Idade: {handleBirthDate()} anos</p>
+        <p>Idade: {handleBirthDate()} anos</p>
       </ContentBox>
     </Container>
   );
