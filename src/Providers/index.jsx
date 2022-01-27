@@ -6,12 +6,10 @@ const Providers = ({ children }) => {
   return (
     <AuthProvider>
       <PetsProvider>
-        <ServicesProvider>
-          {children}
-        </ServicesProvider>
+        <ServicesProvider>{children}</ServicesProvider>
       </PetsProvider>
     </AuthProvider>
-  )
-}
+  );
+};
 
-export default Providers
+export default Providers;
