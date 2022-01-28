@@ -10,7 +10,7 @@ export const ServicesProvider = ({ children }) => {
   const [services, setServices] = useState([]);
 
   const getServices = () => {
-    token !== "" &&
+    token !== undefined &&
       api
         .get("/services/", {
           headers: {
