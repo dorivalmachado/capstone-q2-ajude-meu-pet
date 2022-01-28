@@ -9,12 +9,12 @@ const Routes = () => {
 
   return (
     <Switch>
-      {/* <Route exact path="/" component={LandingPage} />
+      <Route exact path="/" component={LandingPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={() => {}} />
       <Route exact path="/services" isPrivate component={() => {}} />
       <Route exact path="/pets" isPrivate component={() => {}} />
-      <Route component={() => {}} isPrivate={!!token} /> */}
+      <Route component={() => {}} isPrivate={!!token} />
     </Switch>
   );
 };

@@ -27,6 +27,20 @@ export const Menu = styled.div`
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  margin-top: 10px;
   height: calc(100vh - 110px);
+  justify-content: space-between;
+
+  .menuTop {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    margin-top: 100px;
+  }
+
+  .menuBottom {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* margin-top:100px; */
+  }
 `;
