@@ -9,22 +9,26 @@ export const HeaderLogged = () => {
     <Container>
       <Logo />
       <Menu>
-        <div>
-          <Link to="/pets">
-            <p>Meus pets</p>
-          </Link>
+        <div className="menuTop">
+          <div>
+            <Link to="/pets">
+              <p>Meus pets</p>
+            </Link>
+          </div>
+          <div>
+            <Link to="">
+              <p>Serviços</p>
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link to="">
-            <p>Serviços</p>
-          </Link>
+        <div className="menuBottom">
+          <div>
+            <Link to="">
+              <p>Perfil</p>
+            </Link>
+          </div>
+          <GoSignOut size={40} cursor="pointer" onClick={() => logout} />
         </div>
-        <div>
-          <Link to="">
-            <p>Perfil</p>
-          </Link>
-        </div>
-        <GoSignOut size={40} cursor="pointer" onClick={() => logout} />
       </Menu>
     </Container>
   );

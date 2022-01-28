@@ -13,9 +13,9 @@ const Routes = () => {
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      {/* <Route exact path="/services" isPrivate component={() => {}} />
-      {/* <Route exact path="/pets" isPrivate component={() => {}} /> */}
-      {/* <Route component={() => {}} isPrivate={!!token} /> */}
+      <Route exact path="/services" isPrivate component={() => {}} />
+      <Route exact path="/pets" isPrivate component={() => {}} />
+      <Route component={() => {}} isPrivate={!!token} />
     </Switch>
   );
 };
