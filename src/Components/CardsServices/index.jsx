@@ -1,4 +1,4 @@
-import { Card, CardBack, CardFront, CardInner, Container } from "./styles"
+import { ButtonBox, ButtonStyled, ButtonYellow, Card, CardBack, CardFront, CardInner, Container } from "./styles"
 
 
 const CardsServices = () => {
@@ -20,7 +20,10 @@ const CardsServices = () => {
                                     Nossos adestradores certificados irão educar e ensinar comandos e brincadeiras para o seu pet aprender enquanto se diverte.
                                 </p>
                             </div>
-                            
+                            <ButtonBox>
+                                <ButtonStyled>Tabela de preços</ButtonStyled>
+                                <ButtonYellow>Solicitar</ButtonYellow>
+                            </ButtonBox>
                         </CardBack>
                     </div>
                 </Card>
@@ -39,7 +42,10 @@ const CardsServices = () => {
                                     Gaste a energia de seu cachorro com um passeio educativo e saudável, feito por um dos profissionais parceiros.
                                 </p>
                             </div>
-                            
+                            <ButtonBox>
+                                <ButtonStyled>Tabela de preços</ButtonStyled>
+                                <ButtonYellow>Solicitar</ButtonYellow>
+                            </ButtonBox>
                         </CardBack>
                     </div>
                 </Card>
@@ -58,7 +64,10 @@ const CardsServices = () => {
                                     Pode conta com a gente!
                                 </p>
                             </div>
-                            
+                            <ButtonBox>
+                                <ButtonStyled>Tabela de preços</ButtonStyled>
+                                <ButtonYellow>Solicitar</ButtonYellow>
+                            </ButtonBox>
                         </CardBack>
                     </div>
                 </Card>
