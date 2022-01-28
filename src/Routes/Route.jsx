@@ -1,20 +1,22 @@
 import { Redirect, Route as AppRoute } from "react-router-dom";
+import {useAuth} from '../Providers/Auth'
 
 const Route = ({ isPrivate = false, component: Component, ...rest }) => {
-  const accessToken = "precisa pegar do useAuth";
 
-  return (
-    <AppRoute
-      {...rest}
-      render={() =>
-        isPrivate === !!accessToken ? (
-          <Component />
-        ) : (
-          <Redirect to={isPrivate ? "/" : "/services"} />
-        )
-      }
-    />
-  );
-};
+    const {token} = useAuth();
 
-export default Route;
+    return(
+        <AppRoute
+            {...rest}
+            render={() => (
+                isPrivate === !!token ? (
+                    <Component/>
+                ) : (
+                    <Redirect to={isPrivate ? '/' : '/services'} />
+                )
+            )}
+        />
+    )
+}
+
+export default Route

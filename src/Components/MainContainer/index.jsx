@@ -1,12 +1,10 @@
 import { Container, ContentBox } from "./styles"
 
 
-const MainContainer = ({children, containerHeight='auto', containerBgColor='white', contentMaxW='1170px'}) => {
+const MainContainer = ({children}) => {
     return(
-        <Container containerHeight={containerHeight} containerBgColor={containerBgColor}>
-            <ContentBox contentMaxW={contentMaxW}>
-                {children}
-            </ContentBox>
+        <Container >
+            {children}
         </Container>
     )
 }
