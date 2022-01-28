@@ -44,7 +44,6 @@ const RadioButtonPets = ({
         <img src={handleImage()} alt={animalType} />
         <p>{petName}</p>
       </label>
-      <label htmlFor={id}>{label}</label>
     </>
   );
 };
