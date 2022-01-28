@@ -1,34 +1,39 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  minWidth: "300px",
-  minHeight: "300px",
-  width: "auto",
-  height: "auto",
-  bgcolor: "#ffffff",
-  border: "2px solid #EFEFEF",
-  boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
-  p: 4,
-  borderRadius: "10px",
-};
+import Dialog from "@mui/material/Dialog";
+import { ButtonsContainer } from "./styles";
+import {
+  // Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import Button from "../Button";
 
 const ModalBase = ({ open, handleClose, children }) => {
   return (
     <div>
-      <Modal
-        open={open}
+      <Dialog
+        open={open === 'training'}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        sx={{
+          "& .MuiDialog-paper": {
+            width: "800px",
+            maxWidth: "800px",
+          },
+        }}
       >
-        <Box sx={style}>{children}</Box>
-      </Modal>
+        <DialogContent>{children}</DialogContent>
+        <ButtonsContainer>
+          <Button buttonColor="darkBrown" onClick={() => {}}>
+            Agendar!
+          </Button>
+          <Button buttonColor="blue " onClick={() => {}}>
+            Tabela de preços
+          </Button>
+        </ButtonsContainer>
+      </Dialog>
     </div>
   );
 };

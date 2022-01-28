@@ -1,7 +1,7 @@
 import "./Styles/Reset.css";
 import GlobalStyle from "./Styles/GlobalStyle";
 import Routes from "./Routes";
-import TopModal from "./Components/TopModal";
+import CardsServices from "./Components/CardsServices"
 
 function App() {
   // Para abrir e fechar o modal, colocar aonde ele for aberto
@@ -15,10 +15,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Routes />
-      <div style={{maxWidth: '1050px'}}>
-        <TopModal category='adestramento' />
-      </div>
+      {/* <Routes /> */}
+      <CardsServices/>
     </>
   );
 }
