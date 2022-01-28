@@ -17,7 +17,7 @@ function App() {
       <GlobalStyle />
       <Routes />
       <div style={{maxWidth: '1050px'}}>
-        <TopModal category='taxi' />
+        <TopModal category='adestramento' />
       </div>
     </>
   );

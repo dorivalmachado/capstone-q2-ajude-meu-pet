@@ -15,6 +15,12 @@ import Button from "../Button";
 
 const TopModal = ({category}) => {
 
+    const trainingDescription = {
+        basico: "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",
+        avancado: "Treinamento oferecido para cães de trabalho e para esportes. Dentro do adestramento no pet shop, há algumas atividades, como saltar e buscar objetos, por exemplo.",
+        grupal: "Para os donos que veem a necessidade de seu animal ter contato com outros pets, essa é a opção ideal. Nele, são ensinados comandos de obediência que podem ser usados fora de casa, assim como adequar o comportamento em passeios e em momentos de socialização com pessoas ou outros animais."
+    }
+
     const [training, setTraining] = useState('');
 
     return(
@@ -24,7 +30,7 @@ const TopModal = ({category}) => {
                     <TrainingDescription>
                         <h3>Descrição</h3>
                         <p>
-                        O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.
+                            {trainingDescription[training] !== undefined && trainingDescription[training]}
                         </p>
                     </TrainingDescription>
                     <TrainingType>
