@@ -23,7 +23,7 @@ export const RadioPet = styled.input`
   }
 
   + img {
-    width: 71px;
-    height: 71px;
+    width: 65px;
+    height: 65px;
   }
 `;
