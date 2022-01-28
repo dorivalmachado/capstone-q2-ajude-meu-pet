@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  margin-top: 20px;
+
   .darkBrown {
     background: #6f4635;
     color: white;
