@@ -9,10 +9,7 @@ import {
 import { 
   ButtonsContainer, 
   ContainerBottom, 
-  ContainerTraining, 
-  TrainingDescription, 
-  TrainingOptions, 
-  TrainingType 
+  WalkDescription
 } from "./styles";
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
@@ -35,12 +32,18 @@ const ModalWalk = ({ open, handleClose }) => {
     setOpenPopover('');
   };
 
+  const pet = [
+    { petName: "Tobias", animalType: "dog", id: 1 },
+    { petName: "Shailow", animalType: "cat", id: 2 },
+    { petName: "Dogo", animalType: "other", id: 3 },
+  ];
+
   
 
   return (
     <div>
       <Dialog
-        open={open === 'training'}
+        open={open === 'walk'}
         onClose={handleClose}
         sx={{
           "& .MuiDialog-paper": {
@@ -52,24 +55,9 @@ const ModalWalk = ({ open, handleClose }) => {
         <DialogContent>
 
           <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
-          <ContainerTraining>
-            <TrainingDescription>
-              <h3>Descrição</h3>
-              <p>
-                  {trainingDescription[training] !== undefined && trainingDescription[training]}
-              </p>
-            </TrainingDescription>
-            <TrainingType>
-              <h3 className="desktop">Selecione o tipo de adestramento</h3>
-              <h3 className="mobile">Adestramento</h3>
-              <TrainingOptions value={training} onChange={(e) => setTraining(e.target.value)}>
-                <option disabled defaultValue value=''> -- Escolha uma opção -- </option>
-                <option value='basico'>Básico</option>
-                <option value='avancado'>Avançado</option>
-                <option value='grupal'>Grupal</option>
-              </TrainingOptions>
-            </TrainingType>
-          </ContainerTraining> 
+          <WalkDescription>
+            Passeios educativos com duração de 1 hora.
+          </WalkDescription> 
 
           <ContainerBottom>
             <div className="dateTimeContainer">
@@ -131,4 +119,4 @@ const ModalWalk = ({ open, handleClose }) => {
   );
 };
 
-export default ModalTraining;
+export default ModalWalk;

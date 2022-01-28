@@ -17,71 +17,11 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-export const ContainerTraining = styled.div`
-  display: flex;
-  flex-direction: column;
+export const WalkDescription = styled.h3`
+  font-size: 24px;
+  font-weight: 400;
   margin-bottom: 20px;
-  max-width: 910px;
-
-  .desktop{
-    display: none;
-  }
-
-  h3{
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 15px;
-  }
-
-  p{
-    font-size: 18px;
-  }
-
-  @media screen and (min-width: 768px){
-    flex-direction: row-reverse;
-    .mobile{
-      display: none;
-    }
-
-    .desktop{
-      display: block;
-    }
-  }
 `
-
-export const TrainingDescription = styled.div`
-  width: 100%;
-  max-width: 535px;
-  margin-bottom: 20px;
-
-  @media screen and (min-width: 768px){
-    margin-bottom: 0;
-  }
-`
-
-
-export const TrainingType = styled.div`
-  width: 100%;
-  max-width: 375px;
-  margin-right: 15px;
-`
-
-export const TrainingOptions = styled.select`
-  width: 100%;
-  max-width: 250px;
-  height: 35px;
-  font-size: 16px;
-
-  :focus{
-    outline-color: var(--blue);
-  }
-
-  option{
-    background-color: var(--blue);
-    color: white;
-  }
-`
-
 
 export const ContainerBottom = styled.div`
   height: auto;

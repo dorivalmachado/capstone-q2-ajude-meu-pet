@@ -57,7 +57,7 @@ const CardsServices = () => {
 
             <ModalTraining open={openModal} handleClose={handleCloseModal}/>
             <ModalWalk open={openModal} handleClose={handleCloseModal}/>
-            
+
             <Container>
                 <div>
                     <Card>
@@ -99,7 +99,7 @@ const CardsServices = () => {
                                 </div>
                                 <ButtonBox>
                                     <ButtonStyled id='walkPrice' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
-                                    <ButtonYellow onClick={handleOpenWalk} >Solicitar</ButtonYellow>
+                                    <ButtonYellow id='walk' onClick={handleOpenModal} >Solicitar</ButtonYellow>
                                 </ButtonBox>
                             </CardBack>
                         </div>
@@ -121,7 +121,7 @@ const CardsServices = () => {
                                 </div>
                                 <ButtonBox>
                                     <ButtonStyled id='taxiPrice' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
-                                    <ButtonYellow onClick={handleOpenTaxi} >Solicitar</ButtonYellow>
+                                    <ButtonYellow id='taxi' onClick={handleOpenModal} >Solicitar</ButtonYellow>
                                 </ButtonBox>
                             </CardBack>
                         </div>
