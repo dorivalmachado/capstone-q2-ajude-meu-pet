@@ -1,7 +1,28 @@
-import { ButtonBox, ButtonStyled, ButtonYellow, Card, CardBack, CardFront, CardInner, Container } from "./styles"
+import { 
+    ButtonBox, 
+    ButtonStyled, 
+    ButtonYellow, 
+    Card, 
+    CardBack, 
+    CardFront, 
+    Container 
+} from "./styles"
 
 
 const CardsServices = () => {
+
+    // const [openTraining, setOpenTraining] = useState(false);
+    // const handleOpenTraining = () => setOpenTraining(true);
+    // const handleCloseTraining = () => setOpenTraining(false);
+
+    // const [openWalk, setOpenWalk] = useState(false);
+    // const handleOpenWalk = () => setOpenWalk(true);
+    // const handleCloseWalk = () => setOpenWalk(false);
+
+    // const [openTaxi, setOpenTaxi] = useState(false);
+    // const handleOpenTaxi = () => setOpenTaxi(true);
+    // const handleCloseTaxi = () => setOpenTaxi(false);
+    
     return(
         <Container>
             <div>
