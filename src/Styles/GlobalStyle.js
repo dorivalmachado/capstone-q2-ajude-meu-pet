@@ -13,7 +13,7 @@ export default createGlobalStyle`
   --caramel75: #845D4E;
   --cream: #FFF6ED;
   --grey100: #939393 ;
-  --grey20: ##999999;
+  --grey20: #999999;
   --grey40: ##F5F5F5;
   --grey60: #EFEFEF;
   --grey80: rgba(197, 197, 197, 0.5);

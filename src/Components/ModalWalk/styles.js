@@ -17,6 +17,17 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
+export const Form = styled.form`
+  position: relative;
+  padding-top: 30px;
+
+  svg{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+`
+
 export const WalkDescription = styled.h3`
   font-size: 24px;
   font-weight: 400;

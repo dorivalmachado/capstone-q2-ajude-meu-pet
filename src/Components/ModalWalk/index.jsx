@@ -9,11 +9,13 @@ import {
 import { 
   ButtonsContainer, 
   ContainerBottom, 
+  Form, 
   WalkDescription
 } from "./styles";
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableWalk from "../PriceTableWalk";
+import { FaRegWindowClose } from "react-icons/fa";
 
 const ModalWalk = ({ open, handleClose }) => {
 
@@ -52,68 +54,74 @@ const ModalWalk = ({ open, handleClose }) => {
           },
         }}
       >
-        <DialogContent>
+        <Form>
 
-          <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
-          <WalkDescription>
-            Passeios educativos com duração de 1 hora.
-          </WalkDescription> 
+          <FaRegWindowClose size={25} color='#999999' onClick={handleClose}/>
+          <DialogContent>
 
-          <ContainerBottom>
-            <div className="dateTimeContainer">
-              <div className="dateTimeContainer_box">
-                <p>Em qual dia?</p>
-                <TextField type="date" onChange={(e) => setDate(e.target.value)} />
-              </div>
-              <div className="dateTimeContainer_box">
-                <p>Em qual horário?</p>
-                <TextField type="time" onChange={(e) => setTime(e.target.value)} />
-              </div>
-            </div>
-            <div className="changeToRow">
-              <div className="petContainer">
-                <p>Qual o seu pet?</p>
-                <div className="petContainer_box">
-                  {pet.map((e, i) => (
-                    <RadioButtonPets
-                      key={i}
-                      name="teste"
-                      register={() => {}}
-                      animalType={e.animalType}
-                      value=""
-                      id={e.id}
-                      petName={e.petName}
-                    />
-                  ))}
+            <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <WalkDescription>
+              Passeios educativos com duração de 1 hora.
+            </WalkDescription> 
+
+            <ContainerBottom>
+              <div className="dateTimeContainer">
+                <div className="dateTimeContainer_box">
+                  <p>Em qual dia?</p>
+                  <TextField type="date" onChange={(e) => setDate(e.target.value)} />
+                </div>
+                <div className="dateTimeContainer_box">
+                  <p>Em qual horário?</p>
+                  <TextField type="time" onChange={(e) => setTime(e.target.value)} />
                 </div>
               </div>
-              <div className="obsContainer">
-                <p>Alguma observação?</p>
-                <TextareaAutosize
-                  maxRows={4}
-                  aria-label="maximum height"
-                  style={{
-                    minWidth: "200px",
-                    width: "100%",
-                    height: "180px",
-                    backgroundColor: "var(--cream)",
-                    borderRadius: "5px",
-                    padding: "10px",
-                  }}
-                />
+              <div className="changeToRow">
+                <div className="petContainer">
+                  <p>Qual o seu pet?</p>
+                  <div className="petContainer_box">
+                    {pet.map((e, i) => (
+                      <RadioButtonPets
+                        key={i}
+                        name="teste"
+                        register={() => {}}
+                        animalType={e.animalType}
+                        value=""
+                        id={e.id}
+                        petName={e.petName}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="obsContainer">
+                  <p>Alguma observação?</p>
+                  <TextareaAutosize
+                    maxRows={4}
+                    aria-label="maximum height"
+                    style={{
+                      minWidth: "200px",
+                      width: "100%",
+                      height: "180px",
+                      backgroundColor: "var(--cream)",
+                      borderRadius: "5px",
+                      padding: "10px",
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          </ContainerBottom>
+            </ContainerBottom>
 
-        </DialogContent>
-        <ButtonsContainer>
-          <Button buttonColor="darkBrown" onClick={() => {}}>
-            Agendar!
-          </Button>
-          <Button buttonColor="blue " onClick={handleOpenPopover}>
-            Tabela de preços
-          </Button>
-        </ButtonsContainer>
+          </DialogContent>
+          <ButtonsContainer>
+            <Button buttonColor="darkBrown" onClick={() => {}}>
+              Agendar!
+            </Button>
+            <Button buttonColor="blue " onClick={handleOpenPopover}>
+              Tabela de preços
+            </Button>
+          </ButtonsContainer>
+        
+        </Form>
+
       </Dialog>
     </div>
   );
