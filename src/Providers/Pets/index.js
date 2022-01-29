@@ -10,7 +10,7 @@ export const PetsProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
 
   const getPets = () => {
-    token !== "" &&
+    token !== undefined &&
       api
         .get("/pets/", {
           headers: {
