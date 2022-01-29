@@ -40,7 +40,7 @@ const Training = () => {
   const { height, width } = useWindowDimensions();
 
   return (
-    <Container>
+    <Container id='adestramento'>
       <Subtitle>Adestramento</Subtitle>
       <Content>
         {width > 767 && (
