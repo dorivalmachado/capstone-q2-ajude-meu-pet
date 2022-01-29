@@ -1,14 +1,14 @@
-import { Container, ContainerContent, PetsBox } from "./styles";
+import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
 import { FaPlus } from "react-icons/fa";
 import { HeaderLogged } from "../../Components/HeaderLogged";
 import { styled } from "@mui/material/styles";
 import { usePets } from "../../Providers/Pets";
 import CardPets from "../../Components/CardPets";
+import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
 import React from "react";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import Button from "../../Components/Button";
 
 const LightTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -22,90 +22,7 @@ const LightTooltip = styled(({ className, ...props }) => (
 }));
 
 const PetsPage = () => {
-  // const { pets, petDelete } = usePets();
-
-  let pets = [
-    {
-      userId: 1,
-      id: 1,
-      petName: "Melina",
-      petBreed: "labrador",
-      petType: "sheep",
-      petBirthDate: "20/01/2008",
-      petSize: "médio",
-      petGender: "female",
-    },
-    {
-      userId: 1,
-      id: 2,
-      petName: "Mala",
-      petBreed: "sda",
-      petType: "horse",
-      petBirthDate: "05/10/2010",
-      petSize: "grande",
-      petGender: "female",
-    },
-    {
-      userId: 1,
-      id: 3,
-      petName: "Leo",
-      petBreed: "labrador",
-      petType: "cat",
-      petBirthDate: "20/01/2018",
-      petSize: "pequeno",
-      petGender: "male",
-    },
-    {
-      userId: 1,
-      id: 4,
-      petName: "Tito",
-      petBreed: "siames",
-      petType: "cat",
-      petBirthDate: "20/01/2018",
-      petSize: "grande",
-      petGender: "male",
-    },
-    {
-      userId: 1,
-      id: 5,
-      petName: "Jujuba",
-      petBreed: "labrador",
-      petType: "dog",
-      petBirthDate: "20/01/2019",
-      petSize: "grande",
-      petGender: "female",
-    },
-    {
-      userId: 1,
-      id: 6,
-      petName: "Mila",
-      petBreed: "labrador",
-      petType: "dog",
-      petBirthDate: "20/01/2020",
-      petSize: "grande",
-      petGender: "female",
-    },
-    {
-      userId: 1,
-      id: 7,
-      petName: "Mala",
-      petBreed: "sda",
-      petType: "horse",
-      petBirthDate: "05/10/2010",
-      petSize: "grande",
-      petGender: "female",
-    },
-    {
-      userId: 1,
-      id: 8,
-      petName: "Leo",
-      petBreed: "labrador",
-      petType: "cat",
-      petBirthDate: "20/01/2018",
-      petSize: "pequeno",
-      petGender: "male",
-    },
-  ];
+  const { pets, petDelete } = usePets();
 
   return (
     <MainContainer>
@@ -129,9 +46,9 @@ const PetsPage = () => {
             </LightTooltip>
           </div>
 
-          <PetsBox>
-            {pets.length > 0 ? (
-              pets.map((pet) => (
+          {pets.length > 0 ? (
+            <PetsBox>
+              {pets.map((pet) => (
                 <CardPets
                   key={pet.id}
                   name={pet.petName}
@@ -140,13 +57,16 @@ const PetsPage = () => {
                   animalType={pet.petType}
                   petBirthDate={pet.petBirthDate}
                   gender={pet.petGender}
-                  // deleteCard={() => petDelete(pet.id)}
+                  deleteCard={() => petDelete(pet.id)}
                 />
-              ))
-            ) : (
+              ))}
+            </PetsBox>
+          ) : (
+            <NoCards>
               <h2>Nenhum pet cadastrado ainda.</h2>
-            )}
-          </PetsBox>
+              <img src={CatBox} alt="Cat inside box" />
+            </NoCards>
+          )}
         </ContainerContent>
       </Container>
     </MainContainer>

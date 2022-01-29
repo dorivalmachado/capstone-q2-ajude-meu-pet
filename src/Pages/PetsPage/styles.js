@@ -4,12 +4,11 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 85vh;
+  width: 100%;
 
   .headerMobile {
     display: flex;
-    height: 10vh;
   }
 
   .headerDesktop {
@@ -26,22 +25,22 @@ export const Container = styled.div`
 
     .headerDesktop {
       display: flex;
-      width: 15%;
       height: 100%;
       max-height: 100vh;
+      width: 15%;
     }
   }
 `;
 
 export const ContainerContent = styled.div`
-  display: flex;
-  width: 90%;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.39);
   border-radius: 10px;
-  padding: 15px;
-  margin: 15px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.39);
+  display: flex;
   flex-direction: column;
   height: 100%;
+  margin: 15px;
+  padding: 15px;
+  width: 90%;
 
   .titleBox {
     align-items: center;
@@ -50,22 +49,22 @@ export const ContainerContent = styled.div`
     margin-bottom: 20px;
 
     h3 {
-      color: var(--black50);
-      border: 2px dashed #c9c9c9;
-      padding: 10px;
       border-radius: 4px;
+      border: 2px dashed #c9c9c9;
+      color: var(--black50);
       font-size: 24px;
       font-weight: normal;
+      padding: 10px;
     }
 
     button {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
       background-color: var(--yellow60);
-      margin-left: 10px;
+      border-radius: 50%;
       border: none;
       cursor: pointer;
+      height: 40px;
+      margin-left: 10px;
+      width: 40px;
 
       svg {
         color: white;
@@ -79,8 +78,8 @@ export const ContainerContent = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 80%;
     height: 95vh;
+    width: 80%;
   }
 `;
 
@@ -101,5 +100,25 @@ export const PetsBox = styled.div`
     justify-items: center;
     overflow: scroll;
     scroll-behavior: smooth;
+  }
+`;
+
+export const NoCards = styled.div`
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 1.25rem;
+  height: 260px;
+  justify-content: space-around;
+  margin-top: 20px;
+  text-align: center;
+
+  img {
+    max-width: 350px;
+    width: 50vw;
+  }
+
+  @media (min-width: 768px) {
+    height: 500px;
   }
 `;
