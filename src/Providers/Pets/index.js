@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import api from "../../Services/api";
+import { api } from "../../Services/api";
 import toast from "react-hot-toast";
 import { useAuth } from "../Auth";
 
@@ -10,7 +10,7 @@ export const PetsProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
 
   const getPets = () => {
-    token !== "" &&
+    token !== undefined &&
       api
         .get("/pets/", {
           headers: {

@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://json-server-ajude-meu-pet.herokuapp.com',
 })
 
-export default api
+export const cepApi = axios.create({
+  baseURL: 'https://viacep.com.br/ws/',
+})

@@ -7,7 +7,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Providers/Auth";
 import { Link } from "react-router-dom";
 
+import Input from "../../Components/Input";
+import ButtonStyled from "../../Components/Button";
+import ModalBase from "../../Components/Modal";
+import { useState } from "react";
+import { ModalServicesBottom } from "../../Components/ModalServicesBottom";
+
 export const Login = () => {
+  // Para abrir e fechar o modal, colocar aonde ele for aberto
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  // esse botão abre o modal, pode ser substituido tranquilamente
+  //
+
   const { login } = useAuth();
 
   const schema = yup.object().shape({
@@ -27,7 +41,7 @@ export const Login = () => {
   });
 
   const handleSignIn = (data) => {
-    console.log(data);
+    // console.log(data);
     login(data);
   };
 
@@ -75,11 +89,17 @@ export const Login = () => {
             helperText={errors.password?.message}
             sx={textFieldStyle}
           />
+          <ModalBase open={open} onClose={handleClose}>
+            <ButtonStyled onClick={handleClose}>X</ButtonStyled>
 
+            <ModalServicesBottom handleClose={handleClose} />
+          </ModalBase>
+
+          {/* <ButtonStyled onClick={handleOpen}>Abre o modal</ButtonStyled> */}
           <Button type="submit">Entrar</Button>
         </form>
         <p>
-          Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>{" "}
+          Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
         </p>
       </FormContainer>
     </Container>
