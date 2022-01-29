@@ -95,7 +95,8 @@ const ModalTaxi = ({ open, handleClose }) => {
   });  
 
   const handleBooking = (data) => {
-    console.log(data)
+    console.log(data);
+    closeModal();
   }
 
   const closeModal = () => {
@@ -184,12 +185,13 @@ const ModalTaxi = ({ open, handleClose }) => {
             <ContainerTaxi>
               <DepartureAddress>
                 <h3>Qual o endereço de origem? </h3>
-                <DepartureAddressButtons isVisible={buttonsVisibility}>
+                {/* <DepartureAddressButtons isVisible={buttonsVisibility}>
                   <Button buttonColor='blue' onClick={useMyAddress}>Usar meu endereço</Button>
                   <Button buttonColor='blue' onClick={() => setButtonsVisibility(false)}>Outro endereço</Button>
-                </DepartureAddressButtons>
-                <DepartureAddressForm isVisible={buttonsVisibility}>
-                  <CepContainer>
+                </DepartureAddressButtons> */}
+                {/* <DepartureAddressForm isVisible={buttonsVisibility}> */}
+                <DepartureAddressForm>
+                  {/* <CepContainer>
                     <CssTextField 
                       label='CEP' 
                       onChange={(e) => setDepartureCep(e.target.value)} 
@@ -197,7 +199,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                         style: { color: "grey" },
                       }}
                     />
-                  </CepContainer>
+                  </CepContainer> */}
                   <Input label='Rua' register={register} name='departureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
                   <Input label='Número' register={register} name='departureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
                   <Input label='Complemento' register={register} name='departureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
@@ -207,7 +209,7 @@ const ModalTaxi = ({ open, handleClose }) => {
               <ArrivalAddress>
                 <h3>Qual o endereço de destino? </h3>
                 <div>
-                  <CepContainer>
+                  {/* <CepContainer>
                     <CssTextField 
                       label='CEP' 
                       onChange={(e) => setArrivalCep(e.target.value)} 
@@ -215,7 +217,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                         style: { color: "grey" },
                       }}
                     />
-                  </CepContainer>
+                  </CepContainer> */}
                   <Input label='Rua' register={register} name='arrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
                   <Input label='Número' register={register} name='arrivalNumber'/>
                   <Input label='Complemento' register={register} name='arrivalComplement'/>
@@ -273,7 +275,7 @@ const ModalTaxi = ({ open, handleClose }) => {
 
           </DialogContent>
           <ButtonsContainer>
-            <Button type='submit' buttonColor="darkBrown" onClick={() => {}}>
+            <Button type='submit' buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>

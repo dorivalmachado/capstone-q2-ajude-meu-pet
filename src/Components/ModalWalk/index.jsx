@@ -5,6 +5,10 @@ import {
   TextareaAutosize,
   TextField,
 } from "@mui/material";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 
 import { 
   ButtonsContainer, 
@@ -19,8 +23,6 @@ import { FaRegWindowClose } from "react-icons/fa";
 
 const ModalWalk = ({ open, handleClose }) => {
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
   
@@ -40,13 +42,38 @@ const ModalWalk = ({ open, handleClose }) => {
     { petName: "Dogo", animalType: "other", id: 3 },
   ];
 
+  const schema = yup.object().shape({
+    date: yup.string().required("Selecione a data"),
+    time: yup.string().required("Selecione o horário"),
+    pet: yup.string().required("Selecione um pet"),
+    obs: yup.string(),
+  });
+
+  const {
+    formState: { errors },
+    reset,
+    handleSubmit,
+    register,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });  
+
+  const handleBooking = (data) => {
+    console.log(data)
+    closeModal();
+  }
+
+  const closeModal = () => {
+    handleClose();
+    reset();
+  }
   
 
   return (
     <div>
       <Dialog
         open={open === 'walk'}
-        onClose={handleClose}
+        onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
             width: "800px",
@@ -54,9 +81,9 @@ const ModalWalk = ({ open, handleClose }) => {
           },
         }}
       >
-        <Form>
+        <Form onSubmit={handleSubmit(handleBooking)}>
 
-          <FaRegWindowClose size={25} color='#999999' onClick={handleClose}/>
+          <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
           <DialogContent>
 
             <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
@@ -68,11 +95,11 @@ const ModalWalk = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField type="date" onChange={(e) => setDate(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="date"  {...register('date')}/>
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField type="time" onChange={(e) => setTime(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="time"  {...register('time')}/>
                 </div>
               </div>
               <div className="changeToRow">
@@ -82,10 +109,10 @@ const ModalWalk = ({ open, handleClose }) => {
                     {pet.map((e, i) => (
                       <RadioButtonPets
                         key={i}
-                        name="teste"
-                        register={() => {}}
+                        name="pet"
+                        register={register}
                         animalType={e.animalType}
-                        value=""
+                        value={e.id}
                         id={e.id}
                         petName={e.petName}
                       />
@@ -105,6 +132,7 @@ const ModalWalk = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
+                    {...register('obs')}
                   />
                 </div>
               </div>
@@ -112,7 +140,7 @@ const ModalWalk = ({ open, handleClose }) => {
 
           </DialogContent>
           <ButtonsContainer>
-            <Button buttonColor="darkBrown" onClick={() => {}}>
+            <Button type='submit' buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>
