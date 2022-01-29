@@ -5,6 +5,7 @@ import {
   TextareaAutosize,
   TextField,
 } from "@mui/material";
+import { FaRegWindowClose } from "react-icons/fa";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,7 +20,6 @@ import {
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableWalk from "../PriceTableWalk";
-import { FaRegWindowClose } from "react-icons/fa";
 
 const ModalWalk = ({ open, handleClose }) => {
 
