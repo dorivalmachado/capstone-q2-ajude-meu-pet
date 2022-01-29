@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: #4682b4;
+  background: var(--blue);
   border-radius: 8px;
-  box-shadow: 1px 2px 6px #b5b5b5;
+  box-shadow: 1px 2px 6px var(--grey70);
   color: white;
   display: flex;
   flex-direction: column;
@@ -16,19 +16,22 @@ export const Container = styled.div`
     align-self: flex-end;
   }
 
-  .trashIconBox:hover{
-    color: #b5b5b5;
+  .trashIconBox:hover {
+    color: var(--grey90);
   }
 
   &:nth-child(1n) {
-    background-color: #74A8BD;
+    background-color: var(--blue);
   }
+
   &:nth-child(2n) {
-    background-color: #4682B4;
+    background-color: var(--blue50);
   }
+
   &:nth-child(3n) {
-    background-color: #AD6D53;
+    background-color: var(--caramel25);
   }
+
   &:nth-child(4n) {
     background-color: #cd920d;
   }
@@ -52,6 +55,10 @@ export const ContentBox = styled.div`
     justify-content: space-evenly;
     margin-left: 15px;
     width: 100%;
+
+    p {
+      text-transform: capitalize;
+    }
   }
 
   img {
