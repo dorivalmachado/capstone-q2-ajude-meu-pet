@@ -14,9 +14,13 @@ import toast from "react-hot-toast";
 import { 
   ArrivalAddress,
   ButtonsContainer, 
+  CepContainer, 
   ContainerBottom, 
   ContainerTaxi, 
+  CssTextField,
   DepartureAddress, 
+  DepartureAddressButtons, 
+  DepartureAddressForm, 
   Form, 
 } from "./styles";
 import {cepApi} from "../../Services/api"
@@ -24,15 +28,31 @@ import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableTaxi from "../PriceTableTaxi";
 import Input from "../Input";
+import {useAuth} from "../../Providers/Auth"
 
 
 const ModalTaxi = ({ open, handleClose }) => {
 
-  // const [date, setDate] = useState("");
+  const [buttonsVisibility, setButtonsVisibility] = useState(true);
   const [arrivalCep, setArrivalCep] = useState("");
-  const [arrivalStreet, setArrivalStreet] = useState("");
+  const [arrivalCityName, setArrivalCityName] = useState("");
+  const [arrivalStreetName, setArrivalStreetName] = useState("");
+  const [departureCep, setDepartureCep] = useState("");
+  const [departureCityName, setDepartureCityName] = useState("");
+  const [departureStreetName, setDepartureStreetName] = useState("");
+  const [departureNumberValue, setDepartureNumberValue] = useState("");
+  const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
+
+  // const {user} = useAuth();
+  const user = {
+    street: "Rua dos bobos",
+    addressNumber: "0",
+    addressComplement: "",
+    city: "Lugar Nenhum"
+  }
+
   
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,13 +75,19 @@ const ModalTaxi = ({ open, handleClose }) => {
     time: yup.string().required("Selecione o horário"),
     pet: yup.string().required("Selecione um pet"),
     obs: yup.string(),
-    arrivalAddress: yup.string().required("Informe a rua"),
+    arrivalStreet: yup.string().required("Informe a rua"),
     arrivalNumber: yup.string().required("Informe o número"),
     arrivalComplement: yup.string(),
+    arrivalCity: yup.string().required("Informe a cidade"),
+    departureStreet: yup.string().required("Informe a rua"),
+    departureNumber: yup.string().required("Informe o número"),
+    departureComplement: yup.string(),
+    departureCity: yup.string().required("Informe a cidade"),
   });
 
   const {
     formState: { errors },
+    reset,
     handleSubmit,
     register,
   } = useForm({
@@ -69,43 +95,80 @@ const ModalTaxi = ({ open, handleClose }) => {
   });  
 
   const handleBooking = (data) => {
-    console.log(data)
+    console.log(data);
+    closeModal();
   }
 
-  // const handleArrivalAddress = () => {
-  //   const formattedCep = arrivalCep.split('').filter(elem => !isNaN(Number(elem))).join('');
-  //   cepApi.get(`${formattedCep}/json/`)
-  //     .then(res => setArrivalStreet(res.data.logradouro))
-  //     .catch(err => {
-  //       setArrivalStreet('');
-  //       toast.error("CEP inválido");
-  //     });
-  // }
+  const closeModal = () => {
+    handleClose();
+    reset();
+    setDepartureCityName('');
+    setDepartureNumberValue('');
+    setDepartureStreetName('');
+    setDepartureComplementValue('');
+    setArrivalStreetName('');
+    setArrivalCityName('');
+    setButtonsVisibility(true);
+  }
+  
 
   useEffect(() => {
     const formattedCep = arrivalCep.split('').filter(elem => !isNaN(Number(elem))).join('');
     if(formattedCep.length >= 8){
       cepApi.get(`${formattedCep}/json/`)
         .then(res => {
-          setArrivalStreet(res.data.logradouro)
+          setArrivalStreetName(res.data.logradouro);
+          setArrivalCityName(res.data.localidade);
           if(res.data.erro){
-            setArrivalStreet('');
+            setArrivalStreetName('');
+            setArrivalCityName('');
             toast.error("CEP inválido");
           }
         })
         .catch(err => {
-          setArrivalStreet('');
+          setArrivalStreetName('');
+          setArrivalCityName('');
           toast.error("CEP inválido");
         });
 
     }
-  }, [arrivalCep])
+  }, [arrivalCep]);
+
+  useEffect(() => {
+    const formattedCep = departureCep.split('').filter(elem => !isNaN(Number(elem))).join('');
+    if(formattedCep.length >= 8){
+      cepApi.get(`${formattedCep}/json/`)
+        .then(res => {
+          setDepartureStreetName(res.data.logradouro)
+          setDepartureCityName(res.data.localidade)
+          if(res.data.erro){
+            setDepartureStreetName('');
+            setDepartureCityName('');
+            toast.error("CEP inválido");
+          }
+        })
+        .catch(err => {
+          setDepartureStreetName('');
+          setDepartureCityName('');
+          toast.error("CEP inválido");
+        });
+
+    }
+  }, [departureCep]);
+
+  const useMyAddress = () => {
+    setDepartureCityName(user.city);
+    setDepartureNumberValue(user.addressNumber);
+    setDepartureStreetName(user.street);
+    setDepartureComplementValue(user.addressComplement);
+    setButtonsVisibility(false);
+  }
 
   return (
     <div>
       <Dialog
         open={open === 'taxi'}
-        onClose={handleClose}
+        onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
             width: "800px",
@@ -115,26 +178,50 @@ const ModalTaxi = ({ open, handleClose }) => {
       >
         <Form onSubmit={handleSubmit(handleBooking)}>
 
-          <FaRegWindowClose size={25} color='#999999' onClick={handleClose}/>
+          <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
           <DialogContent>
 
             <PriceTableTaxi open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
             <ContainerTaxi>
               <DepartureAddress>
                 <h3>Qual o endereço de origem? </h3>
-                <div>
-                  <Button buttonColor='blue'>Usar meu endereço</Button>
-                  <Button buttonColor='blue'>Outro endereço</Button>
-                </div>
+                {/* <DepartureAddressButtons isVisible={buttonsVisibility}>
+                  <Button buttonColor='blue' onClick={useMyAddress}>Usar meu endereço</Button>
+                  <Button buttonColor='blue' onClick={() => setButtonsVisibility(false)}>Outro endereço</Button>
+                </DepartureAddressButtons> */}
+                {/* <DepartureAddressForm isVisible={buttonsVisibility}> */}
+                <DepartureAddressForm>
+                  {/* <CepContainer>
+                    <CssTextField 
+                      label='CEP' 
+                      onChange={(e) => setDepartureCep(e.target.value)} 
+                      InputLabelProps={{
+                        style: { color: "grey" },
+                      }}
+                    />
+                  </CepContainer> */}
+                  <Input label='Rua' register={register} name='departureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
+                  <Input label='Número' register={register} name='departureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
+                  <Input label='Complemento' register={register} name='departureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
+                  <Input label='Cidade' register={register} name='departureCity' value={departureCityName} onChange={ (e) => setDepartureCityName(e.target.value)}/>
+                </DepartureAddressForm>
               </DepartureAddress>
               <ArrivalAddress>
                 <h3>Qual o endereço de destino? </h3>
                 <div>
-                  <TextField label='CEP' onChange={(e) => setArrivalCep(e.target.value)} />
-                  <Input label='Rua' register={register} name='arrivalAddress' value={arrivalStreet}/>
+                  {/* <CepContainer>
+                    <CssTextField 
+                      label='CEP' 
+                      onChange={(e) => setArrivalCep(e.target.value)} 
+                      InputLabelProps={{
+                        style: { color: "grey" },
+                      }}
+                    />
+                  </CepContainer> */}
+                  <Input label='Rua' register={register} name='arrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
                   <Input label='Número' register={register} name='arrivalNumber'/>
                   <Input label='Complemento' register={register} name='arrivalComplement'/>
-                  {/* <Button buttonColor='blue' onClick={handleArrivalAddress}>Buscar</Button> */}
+                  <Input label='Cidade' register={register} name='arrivalCity' value={arrivalCityName} onChange={ (e) => setArrivalCityName(e.target.value)}/>
                 </div>
               </ArrivalAddress>
             </ContainerTaxi>
@@ -188,7 +275,7 @@ const ModalTaxi = ({ open, handleClose }) => {
 
           </DialogContent>
           <ButtonsContainer>
-            <Button type='submit' buttonColor="darkBrown" onClick={() => {}}>
+            <Button type='submit' buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>

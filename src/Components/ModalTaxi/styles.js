@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import styled from "styled-components";
 
 export const ButtonsContainer = styled.div`
@@ -49,17 +50,21 @@ export const DepartureAddress = styled.div`
   width: 100%;
   max-width: 375px;
   margin-bottom: 20px;
-
-  div{
-    height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
+  
   @media screen and (min-width: 768px){
     margin-bottom: 0;
   }
+`
+
+export const DepartureAddressButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  display: ${props => props.isVisible ? 'block' : 'none'};
+`
+
+export const DepartureAddressForm = styled.div`
+  display: ${props => props.isVisible ? 'none' : 'block'};
 `
 
 export const ArrivalAddress = styled.div`
@@ -67,6 +72,34 @@ export const ArrivalAddress = styled.div`
   max-width: 535px;
   
 `
+
+export const CepContainer = styled.div`
+  margin-bottom: 20px;
+
+  input:placeholder-shown {
+    font-style: italic;
+    font-family: inherit;
+  }
+
+  input:-webkit-autofill {
+    border: 1px solid white;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    font-family: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  }
+`;
+
+export const CssTextField = styled(TextField)({
+  fieldset: {
+    borderColor: "#F5F5F5",
+  },
+  "& input:valid:focus + fieldset": {
+    borderColor: "black",
+    borderLeftWidth: 2,
+  },
+});
 
 export const ContainerBottom = styled.div`
   height: auto;
