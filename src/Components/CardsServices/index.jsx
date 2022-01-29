@@ -14,21 +14,11 @@ import PriceTableWalk from "../PriceTableWalk";
 import PriceTableTaxi from "../PriceTableTaxi";
 import ModalTraining from "../ModalTraining";
 import ModalWalk from "../ModalWalk";
+import ModalTaxi from "../ModalTaxi";
 
 const CardsServices = () => {
 
-    const [openTraining, setOpenTraining] = useState(false);
-    const handleOpenTraining = () => setOpenTraining(true);
-    const handleCloseTraining = () => setOpenTraining(false);
-
-    const [openWalk, setOpenWalk] = useState(false);
-    const handleOpenWalk = () => setOpenWalk(true);
-    const handleCloseWalk = () => setOpenWalk(false);
-
-    const [openTaxi, setOpenTaxi] = useState(false);
-    const handleOpenTaxi = () => setOpenTaxi(true);
-    const handleCloseTaxi = () => setOpenTaxi(false);
-
+    
     const [anchorEl, setAnchorEl] = useState(null);
     const [openPopover, setOpenPopover] = useState('');
     const [openModal, setOpenModal] = useState('');
@@ -47,7 +37,6 @@ const CardsServices = () => {
         setOpenPopover('');
     };
 
-    console.log(openModal)
     
     return(
         <>
@@ -57,6 +46,7 @@ const CardsServices = () => {
 
             <ModalTraining open={openModal} handleClose={handleCloseModal}/>
             <ModalWalk open={openModal} handleClose={handleCloseModal}/>
+            <ModalTaxi open={openModal} handleClose={handleCloseModal}/>
 
             <Container>
                 <div>

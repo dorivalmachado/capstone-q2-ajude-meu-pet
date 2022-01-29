@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../Services/api";
+import { api } from "../../Services/api";
 import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
