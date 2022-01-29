@@ -14,6 +14,7 @@ import Adestramento2 from "../../Assets/Adestramento2.jpg";
 import Adestramento3 from "../../Assets/Adestramento3.jpg";
 import Caminhada1 from "../../Assets/Caminhada1.jpg";
 import Caminhada2 from "../../Assets/Caminhada2.jpg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   function getWindowDimensions() {
@@ -77,7 +78,7 @@ const Home = () => {
           </Carousel>
           <Assign>
             <p>
-              Não é cadastrado ainda? <strong>Cadastre-se</strong>
+              Não é cadastrado ainda? <Link to='/register'>Cadastre-se</Link>
             </p>
           </Assign>
         </>
