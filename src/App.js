@@ -1,7 +1,6 @@
 import "./Styles/Reset.css";
 import GlobalStyle from "./Styles/GlobalStyle";
 import Routes from "./Routes";
-import CardsServices from "./Components/CardsServices"
 
 function App() {
   // Para abrir e fechar o modal, colocar aonde ele for aberto
@@ -15,8 +14,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <Routes /> */}
-      <CardsServices/>
+      <Routes />
     </>
   );
 }
