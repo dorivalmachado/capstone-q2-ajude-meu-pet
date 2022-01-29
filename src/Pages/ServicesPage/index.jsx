@@ -1,10 +1,10 @@
 import { Container, Box } from "./styles";
-import CardServices from "../CardsServices";
-import Header from "../Header";
-import { HeaderLogged } from "../HeaderLogged";
-import { HiredServices } from "../HiredServices";
+import CardServices from "../../Components/CardsServices";
+import Header from "../../Components/Header";
+import { HeaderLogged } from "../../Components/HeaderLogged";
+import { HiredServices } from "../../Components/HiredServices";
 
-export const DashboardLogged = () => {
+export const ServicesPage = () => {
   return (
     <Container>
       <div className="headerMobile">
