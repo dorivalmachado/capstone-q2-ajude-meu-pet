@@ -4,16 +4,28 @@ import CatImage from "../../Assets/Img/cat.png";
 import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { FaTrash } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 0.87)",
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}));
 
 const CardPets = ({
   name,
-  breed,
   size,
   animalType,
   petBirthDate,
-  sex,
-  deleteCart,
+  gender,
+  editPet,
 }) => {
   const handleImage = () => {
     return animalType === "cat"
@@ -25,14 +37,10 @@ const CardPets = ({
 
   const handleAnimalType = () => {
     return animalType === "cat"
-      ? "Gato"
+      ? `Gato`
       : animalType === "dog"
-      ? "Cachorro"
-      : "Outro";
-  };
-
-  const handleBreed = () => {
-    return animalType === "cat" || animalType === "dog" ? breed : "Outro";
+      ? `Cachorro`
+      : animalType;
   };
 
   const handleBirthDate = () => {
@@ -43,7 +51,7 @@ const CardPets = ({
     let year = todayDate[2] - arrayPetDate[2];
     let month = todayDate[1] - arrayPetDate[1];
     let day = todayDate[0] - arrayPetDate[0];
-    
+
     if (month < 0) return year - 1;
     if (month === 0 && day < 0) return year - 1;
 
@@ -52,24 +60,28 @@ const CardPets = ({
 
   return (
     <Container>
-      <div className="trashIconBox" onClick={deleteCart}>
-        <FaTrash />
-      </div>
+      <LightTooltip title="Editar cadastro do pet">
+        <div className="iconBox" onClick={editPet}>
+          <FiEdit />
+        </div>
+      </LightTooltip>
+
       <ContentBox>
         <div className="firstBox">
-          <img src={handleImage()} alt={animalType} />
+          <div className="imageBox">
+            <img src={handleImage()} alt={animalType} />
+          </div>
           <div className="secondBox">
             <h3>
-              {name} {sex === "female" ? <BsGenderFemale /> : <BsGenderMale />}
+              {name}{" "}
+              {gender === "female" ? <BsGenderFemale /> : <BsGenderMale />}
             </h3>
 
-            <p>{handleBreed()}</p>
+            <p>{handleAnimalType()}</p>
           </div>
         </div>
 
-        <p>
-          {handleAnimalType()} de porte {size}
-        </p>
+        <p>Animal de porte {size}</p>
 
         <p>Idade: {handleBirthDate()} anos</p>
       </ContentBox>
