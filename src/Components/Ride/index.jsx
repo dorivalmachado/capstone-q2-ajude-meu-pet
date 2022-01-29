@@ -32,7 +32,7 @@ const Ride = () => {
   const { height, width } = useWindowDimensions();
 
   return (
-    <Container>
+    <Container id='passeio'>
       <Subtitle>Passeios</Subtitle>
       <Text>
         <Paragraph>

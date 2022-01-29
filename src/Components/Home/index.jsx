@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <>
       {width < 768 ? (
-        <Container>
+        <Container id='home'>
           <Subtitle>Cuide do seu melhor amigo</Subtitle>
           <Text>
             <Paragraph>

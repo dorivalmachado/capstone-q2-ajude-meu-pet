@@ -2,6 +2,7 @@ import { Container, Imagem, Title } from "./styles";
 import Logo from "../../Assets/Logo.webp";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   function getWindowDimensions() {
@@ -43,10 +44,11 @@ const Header = () => {
         <Container>
           <Title>AJUDE MEU PET</Title>
           <Imagem src={Logo} alt="Logo" />
-          <a href="#tips">HOME</a>
-          <div>PASSEIOS</div>
-          <div>ADESTRAMENTO</div>
-          <div>LOGIN</div>
+          <a href="#home">HOME</a>
+          <a href='#passeio'>PASSEIOS</a>
+          <a href='#adestramento'>ADESTRAMENTO</a>
+          <a href='#taxi'>TAXI-PET</a>
+          <Link to='/login'>LOGIN</Link>
         </Container>
       )}
     </>
