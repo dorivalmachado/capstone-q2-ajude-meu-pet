@@ -2,6 +2,7 @@ import { Container, Box } from "./styles";
 import CardServices from "../CardsServices";
 import Header from "../Header";
 import { HeaderLogged } from "../HeaderLogged";
+import { HiredServices } from "../HiredServices";
 
 export const DashboardLogged = () => {
   return (
@@ -20,6 +21,7 @@ export const DashboardLogged = () => {
         <div className="title">
           <p>Serviços em andamento</p>
         </div>
+        <HiredServices />
       </Box>
     </Container>
   );
