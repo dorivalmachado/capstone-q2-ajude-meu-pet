@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLayoutEffect, useState } from "react";
+import { useAuth } from "../../Providers/Auth";
 
 export const Register = () => {
   const schema = yup.object().shape({
@@ -40,9 +41,13 @@ export const Register = () => {
     setIsClient(e.target.value);
   };
 
+  const { signup } = useAuth();
+
   const handleSignUp = (data) => {
+    delete data.confirmPass;
     const newData = { ...data, isClient: isClient };
-    console.log(newData);
+    // console.log(newData);
+    signup(newData);
   };
 
   const textFieldStyle = {

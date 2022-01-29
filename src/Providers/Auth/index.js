@@ -1,14 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../Services/api";
-import jwt_decode from "jwt-decode";
+import { createContext, useContext, useState } from "react";
+import {api} from "../../Services/api";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("");
-  const [userId, setUserId] = useState("");
 
   const [data, setData] = useState(() => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
@@ -23,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const history = useHistory();
 
-  const register = (userData) => {
+  const signup = (userData) => {
     api
       .post("/register/", userData)
       .then((_) => {
@@ -39,19 +36,13 @@ export const AuthProvider = ({ children }) => {
     api
       .post("/login/", userData)
       .then((response) => {
+        console.log('response.data:', response.data);
         const { accessToken } = response.data;
+        const { user } = response.data;
+        console.log('user state from response.data:', user);
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
-        api
-          .get(`/users/${jwt_decode(response.data.accessToken).user_id}/`)
-          .then((response) => {
-            const user = response.data;
-            localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
-            setData({ token: accessToken, user });
-          })
-          .catch((err) => {
-            toast.error("Erro ao recuperar detalhes do usuário!");
-            console.log(err);
-          });
+        localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
+        setData(user);
         history.push("/dashboard");
       })
       .catch((_) => {
@@ -84,7 +75,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        register,
+        signup,
         login,
         updateUser,
         logout,

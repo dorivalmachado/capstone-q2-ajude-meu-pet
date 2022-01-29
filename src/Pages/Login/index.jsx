@@ -41,7 +41,7 @@ export const Login = () => {
   });
 
   const handleSignIn = (data) => {
-    console.log(data);
+    // console.log(data);
     login(data);
   };
 
@@ -95,8 +95,8 @@ export const Login = () => {
             <ModalServicesBottom handleClose={handleClose} />
           </ModalBase>
 
-          <ButtonStyled onClick={handleOpen}>Abre o modal</ButtonStyled>
-          {/* <Button type="submit">Entrar</Button> */}
+          {/* <ButtonStyled onClick={handleOpen}>Abre o modal</ButtonStyled> */}
+          <Button type="submit">Entrar</Button>
         </form>
         <p>
           Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
