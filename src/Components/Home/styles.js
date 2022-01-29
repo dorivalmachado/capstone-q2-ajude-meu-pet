@@ -41,6 +41,10 @@ export const Assign = styled.div`
   justify-content: center;
   margin: 20px 0;
 
+  a{
+    font-weight: 700;
+  }
+
   @media (min-width: 1024px) {
     font-size: 22px;
   }

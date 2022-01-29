@@ -2,7 +2,7 @@ import { Switch } from "react-router-dom";
 import { useAuth } from "../Providers/Auth";
 
 import { Login } from "../Pages/Login";
-import { Register } from "../Components/Register";
+import { Register } from "../Pages/Register";
 import LandingPage from "../Pages/LandingPage";
 import NotFound from "../Pages/NotFound";
 import PetsPage from "../Pages/PetsPage";
