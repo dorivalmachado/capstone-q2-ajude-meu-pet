@@ -12,17 +12,18 @@ export default createGlobalStyle`
   --caramel50: #945339;
   --caramel75: #845D4E;
   --cream: #FFF6ED;
-  --grey100: #939393 ;
+  --grey100: #939393;
   --grey20: #999999;
-  --grey40: ##F5F5F5;
+  --grey40: #F5F5F5;
   --grey60: #EFEFEF;
+  --grey70: #b5b5b5;
   --grey80: rgba(197, 197, 197, 0.5);
-  --grey90: #D2D2D2 ;
+  --grey90: #D2D2D2;
   --main-font: 'Roboto', sans-serif;
-  --red: #FF0000 ;
+  --red: #FF0000;
   --white: #FFFFFF;
   --yellow50: #FEB546;
-  --yellow60: ##F4A640;
+  --yellow60: #F4A640;
   --yellow80: #FF9B02;
 }
 

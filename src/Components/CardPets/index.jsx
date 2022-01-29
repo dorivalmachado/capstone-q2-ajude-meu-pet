@@ -5,6 +5,19 @@ import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 0.87)",
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}));
 
 const CardPets = ({
   name,
@@ -12,8 +25,8 @@ const CardPets = ({
   size,
   animalType,
   petBirthDate,
-  sex,
-  deleteCart,
+  gender,
+  deleteCard,
 }) => {
   const handleImage = () => {
     return animalType === "cat"
@@ -28,11 +41,15 @@ const CardPets = ({
       ? "Gato"
       : animalType === "dog"
       ? "Cachorro"
-      : "Outro";
+      : "Animal";
   };
 
   const handleBreed = () => {
-    return animalType === "cat" || animalType === "dog" ? breed : "Outro";
+    return animalType === "cat"
+      ? `Gato - ${breed}`
+      : animalType === "dog"
+      ? `Cachorro - ${breed}`
+      : animalType;
   };
 
   const handleBirthDate = () => {
@@ -43,7 +60,7 @@ const CardPets = ({
     let year = todayDate[2] - arrayPetDate[2];
     let month = todayDate[1] - arrayPetDate[1];
     let day = todayDate[0] - arrayPetDate[0];
-    
+
     if (month < 0) return year - 1;
     if (month === 0 && day < 0) return year - 1;
 
@@ -52,15 +69,19 @@ const CardPets = ({
 
   return (
     <Container>
-      <div className="trashIconBox" onClick={deleteCart}>
-        <FaTrash />
-      </div>
+      <LightTooltip title="Excluir Pet">
+        <div className="trashIconBox" onClick={deleteCard}>
+          <FaTrash />
+        </div>
+      </LightTooltip>
+
       <ContentBox>
         <div className="firstBox">
           <img src={handleImage()} alt={animalType} />
           <div className="secondBox">
             <h3>
-              {name} {sex === "female" ? <BsGenderFemale /> : <BsGenderMale />}
+              {name}{" "}
+              {gender === "female" ? <BsGenderFemale /> : <BsGenderMale />}
             </h3>
 
             <p>{handleBreed()}</p>
