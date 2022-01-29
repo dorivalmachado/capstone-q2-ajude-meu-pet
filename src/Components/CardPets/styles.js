@@ -11,12 +11,13 @@ export const Container = styled.div`
   padding: 20px;
   width: 220px;
 
-  .trashIconBox {
-    cursor: pointer;
+  .iconBox {
     align-self: flex-end;
+    cursor: pointer;
   }
 
-  .trashIconBox:hover {
+  .iconBox:hover {
+
     color: var(--grey90);
   }
 
@@ -48,6 +49,21 @@ export const ContentBox = styled.div`
     flex-direction: row;
   }
 
+  .imageBox{
+    align-items: center;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    width: 130px;
+  }
+  
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
   .secondBox {
     align-items: flex-start;
     display: flex;
@@ -61,10 +77,6 @@ export const ContentBox = styled.div`
     }
   }
 
-  img {
-    width: 70px;
-    height: 70px;
-  }
 
   svg {
     margin-left: 2px;

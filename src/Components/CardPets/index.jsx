@@ -4,7 +4,7 @@ import CatImage from "../../Assets/Img/cat.png";
 import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { FaTrash } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 
@@ -21,12 +21,11 @@ const LightTooltip = styled(({ className, ...props }) => (
 
 const CardPets = ({
   name,
-  breed,
   size,
   animalType,
   petBirthDate,
   gender,
-  deleteCard,
+  editPet,
 }) => {
   const handleImage = () => {
     return animalType === "cat"
@@ -38,17 +37,9 @@ const CardPets = ({
 
   const handleAnimalType = () => {
     return animalType === "cat"
-      ? "Gato"
+      ? `Gato`
       : animalType === "dog"
-      ? "Cachorro"
-      : "Animal";
-  };
-
-  const handleBreed = () => {
-    return animalType === "cat"
-      ? `Gato - ${breed}`
-      : animalType === "dog"
-      ? `Cachorro - ${breed}`
+      ? `Cachorro`
       : animalType;
   };
 
@@ -69,28 +60,28 @@ const CardPets = ({
 
   return (
     <Container>
-      <LightTooltip title="Excluir Pet">
-        <div className="trashIconBox" onClick={deleteCard}>
-          <FaTrash />
+      <LightTooltip title="Editar cadastro do pet">
+        <div className="iconBox" onClick={editPet}>
+          <FiEdit />
         </div>
       </LightTooltip>
 
       <ContentBox>
         <div className="firstBox">
-          <img src={handleImage()} alt={animalType} />
+          <div className="imageBox">
+            <img src={handleImage()} alt={animalType} />
+          </div>
           <div className="secondBox">
             <h3>
               {name}{" "}
               {gender === "female" ? <BsGenderFemale /> : <BsGenderMale />}
             </h3>
 
-            <p>{handleBreed()}</p>
+            <p>{handleAnimalType()}</p>
           </div>
         </div>
 
-        <p>
-          {handleAnimalType()} de porte {size}
-        </p>
+        <p>Animal de porte {size}</p>
 
         <p>Idade: {handleBirthDate()} anos</p>
       </ContentBox>
