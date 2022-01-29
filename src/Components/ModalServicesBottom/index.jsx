@@ -1,12 +1,11 @@
-import { Container, Card } from "./styles";
+import { Container } from "./styles";
 import { TextareaAutosize, TextField } from "@mui/material";
-import { DatePicker } from "@material-ui/pickers";
 import RadioButtonPets from "../RadioButtonPets";
 
 import { useState } from "react";
-export const ModalServicesBottom = ({ handleClose }) => {
+export const ModalServicesBottom = () => {
   const [date, setDate] = useState("");
-  console.log(date.split("-").reverse().join("-"));
+  const [time, setTime] = useState("");
 
   const pet = [
     { petName: "Tobias", animalType: "dog", id: 1 },
@@ -23,7 +22,7 @@ export const ModalServicesBottom = ({ handleClose }) => {
         </div>
         <div className="dateTimeContainer_box">
           <p>Em qual horário?</p>
-          <TextField type="time" onChange={(e) => setDate(e.target.value)} />
+          <TextField type="time" onChange={(e) => setTime(e.target.value)} />
         </div>
       </div>
       <div className="changeToRow">

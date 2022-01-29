@@ -12,23 +12,20 @@ import {
 import PriceTableTraining from "../PriceTableTraining";
 import PriceTableWalk from "../PriceTableWalk";
 import PriceTableTaxi from "../PriceTableTaxi";
+import ModalTraining from "../ModalTraining";
+import ModalWalk from "../ModalWalk";
+import ModalTaxi from "../ModalTaxi";
 
 const CardsServices = () => {
 
-    const [openTraining, setOpenTraining] = useState(false);
-    const handleOpenTraining = () => setOpenTraining(true);
-    const handleCloseTraining = () => setOpenTraining(false);
-
-    const [openWalk, setOpenWalk] = useState(false);
-    const handleOpenWalk = () => setOpenWalk(true);
-    const handleCloseWalk = () => setOpenWalk(false);
-
-    const [openTaxi, setOpenTaxi] = useState(false);
-    const handleOpenTaxi = () => setOpenTaxi(true);
-    const handleCloseTaxi = () => setOpenTaxi(false);
-
+    
     const [anchorEl, setAnchorEl] = useState(null);
     const [openPopover, setOpenPopover] = useState('');
+    const [openModal, setOpenModal] = useState('');
+    
+    const handleOpenModal = (event) => setOpenModal(event.target.id);
+    
+    const handleCloseModal = () => setOpenModal('');
 
     const handleOpenPopover = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,13 +37,17 @@ const CardsServices = () => {
         setOpenPopover('');
     };
 
-    // console.log('training' === openPopover);
     
     return(
         <>
             <PriceTableTraining open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
             <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
             <PriceTableTaxi open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+
+            <ModalTraining open={openModal} handleClose={handleCloseModal}/>
+            <ModalWalk open={openModal} handleClose={handleCloseModal}/>
+            <ModalTaxi open={openModal} handleClose={handleCloseModal}/>
+
             <Container>
                 <div>
                     <Card>
@@ -65,8 +66,8 @@ const CardsServices = () => {
                                     </p>
                                 </div>
                                 <ButtonBox>
-                                    <ButtonStyled id='training' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
-                                    <ButtonYellow onClick={handleOpenTraining}>Solicitar</ButtonYellow>
+                                    <ButtonStyled id='trainingPrice' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
+                                    <ButtonYellow id='training' onClick={handleOpenModal}>Solicitar</ButtonYellow>
                                 </ButtonBox>
                             </CardBack>
                         </div>
@@ -87,8 +88,8 @@ const CardsServices = () => {
                                     </p>
                                 </div>
                                 <ButtonBox>
-                                    <ButtonStyled id='walk' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
-                                    <ButtonYellow onClick={handleOpenWalk} >Solicitar</ButtonYellow>
+                                    <ButtonStyled id='walkPrice' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
+                                    <ButtonYellow id='walk' onClick={handleOpenModal} >Solicitar</ButtonYellow>
                                 </ButtonBox>
                             </CardBack>
                         </div>
@@ -109,8 +110,8 @@ const CardsServices = () => {
                                     </p>
                                 </div>
                                 <ButtonBox>
-                                    <ButtonStyled id='taxi' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
-                                    <ButtonYellow onClick={handleOpenTaxi} >Solicitar</ButtonYellow>
+                                    <ButtonStyled id='taxiPrice' onClick={handleOpenPopover}>Tabela de preços</ButtonStyled>
+                                    <ButtonYellow id='taxi' onClick={handleOpenModal} >Solicitar</ButtonYellow>
                                 </ButtonBox>
                             </CardBack>
                         </div>
