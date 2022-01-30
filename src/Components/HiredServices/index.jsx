@@ -8,80 +8,49 @@ import { BsCheck2Square } from "react-icons/bs";
 import { useServices } from "../../Providers/Services";
 import { usePets } from "../../Providers/Pets";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../Providers/Auth";
 
 export const HiredServices = () => {
-  const petsMocked = [
-    {
-      petName: "Tobias",
-      animalType: "dog",
-      id: 1,
-      date: "20/01/2022",
-      category: "treinamento",
-      status: true,
-    },
-    {
-      petName: "Shailow",
-      animalType: "cat",
-      id: 2,
-      date: "10/02/2022",
-      category: "passeio",
-      status: false,
-    },
-    {
-      petName: "Dogo",
-      animalType: "other",
-      id: 3,
-      date: "02/04/2022",
-      category: "transporte",
-      status: false,
-    },
-    {
-      petName: "Dogo",
-      animalType: "other",
-      id: 4,
-      date: "02/04/2022",
-      category: "transporte",
-      status: false,
-    },
-    {
-      petName: "Dogo",
-      animalType: "other",
-      id: 5,
-      date: "02/04/2022",
-      category: "transporte",
-      status: false,
-    },
-  ];
-
+  
   const {services} = useServices();
   const {pets} = usePets();
-  const {user} = useAuth(); 
 
   const [myServices, setMyServices] = useState([]);
 
   useEffect(() => {
-    const filteredServices = services.filter(service => service.clientId === user.id)
-    const {} = filteredServices;
+    if(pets.length > 0 && services.length > 0){
+      const formattedService = services.map(service => {
+        const pet = pets.find(elem => elem.id === service.petId);
+        const {petType, petName} = pet;
+        const {serviceDesiredDate, serviceCategory, serviceConclusion, id} = service;
+        return {
+          petType, 
+          petName,
+          serviceDesiredDate, 
+          serviceCategory, 
+          serviceConclusion, 
+          id
+        }
+      });
+      setMyServices(formattedService)
+    }
   }, [pets, services])
 
-  console.log(services, pets, user.id)
   return (
     <Container>
-      {petsMocked.map((pet) => (
-        <Card key={pet.id}>
+      {myServices.map((service) => (
+        <Card key={service.id}>
           <div className="head">
             <img
               src={
-                pet.animalType === "dog"
+                RegExp('cachorro', 'gi').test(service.petType)
                   ? dog
-                  : pet.animalType === "cat"
+                  : RegExp('gato', 'gi').test(service.petType)
                   ? cat
                   : other
               }
-              alt={pet.animalType}
+              alt={service.petType}
             />
-            <div>{pet.petName}</div>
+            <div>{service.petName}</div>
           </div>
           <hr />
           <div className="body">
@@ -91,7 +60,7 @@ export const HiredServices = () => {
                 <span>Data</span>
               </div>
               <div>
-                <p>{pet.date}</p>
+                <p>{service.serviceDesiredDate}</p>
               </div>
             </div>
             <div className="line">
@@ -100,7 +69,7 @@ export const HiredServices = () => {
                 <span>Categoria</span>
               </div>
               <div>
-                <p>{pet.category}</p>
+                <p>{service.serviceCategory}</p>
               </div>
             </div>
             <div className="line">
@@ -109,7 +78,7 @@ export const HiredServices = () => {
                 <span>Status</span>
               </div>
               <div>
-                <p>{pet.status === true ? "Concluído" : "Não concluído "}</p>
+                <p>{service.serviceConclusion === true ? "Concluído" : "Não concluído "}</p>
               </div>
             </div>
           </div>
