@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: var(--cream);
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +40,7 @@ export const Box = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 20px;
   margin: 20px;
+  background-color: var(--grey60);
 
   .title {
     margin: 20px;
