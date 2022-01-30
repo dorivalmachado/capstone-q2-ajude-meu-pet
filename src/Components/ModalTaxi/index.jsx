@@ -28,7 +28,9 @@ import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableTaxi from "../PriceTableTaxi";
 import Input from "../Input";
-import {useAuth} from "../../Providers/Auth"
+import { usePets } from "../../Providers/Pets";
+import { useServices } from "../../Providers/Services";
+// import {useAuth} from "../../Providers/Auth"
 
 
 const ModalTaxi = ({ open, handleClose }) => {
@@ -46,13 +48,7 @@ const ModalTaxi = ({ open, handleClose }) => {
   const [openPopover, setOpenPopover] = useState('');
 
   // const {user} = useAuth();
-  const user = {
-    street: "Rua dos bobos",
-    addressNumber: "0",
-    addressComplement: "",
-    city: "Lugar Nenhum"
-  }
-
+  
   
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,25 +60,22 @@ const ModalTaxi = ({ open, handleClose }) => {
     setOpenPopover('');
   };
 
-  const pet = [
-    { petName: "Tobias", animalType: "dog", id: 1 },
-    { petName: "Shailow", animalType: "cat", id: 2 },
-    { petName: "Dogo", animalType: "other", id: 3 },
-  ];
+  const {pets} = usePets();
+  const {serviceCreate} = useServices();
 
   const schema = yup.object().shape({
-    date: yup.string().required("Selecione a data"),
-    time: yup.string().required("Selecione o horário"),
-    pet: yup.string().required("Selecione um pet"),
-    obs: yup.string(),
-    arrivalStreet: yup.string().required("Informe a rua"),
-    arrivalNumber: yup.string().required("Informe o número"),
-    arrivalComplement: yup.string(),
-    arrivalCity: yup.string().required("Informe a cidade"),
-    departureStreet: yup.string().required("Informe a rua"),
-    departureNumber: yup.string().required("Informe o número"),
-    departureComplement: yup.string(),
-    departureCity: yup.string().required("Informe a cidade"),
+    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredTime: yup.string().required("Selecione o horário"),
+    petId: yup.string().required("Selecione um pet"),
+    serviceObs: yup.string(),
+    serviceArrivalStreet: yup.string().required("Informe a rua"),
+    serviceArrivalNumber: yup.string().required("Informe o número"),
+    serviceArrivalComplement: yup.string(),
+    serviceArrivalCity: yup.string().required("Informe a cidade"),
+    serviceDepartureStreet: yup.string().required("Informe a rua"),
+    serviceDepartureNumber: yup.string().required("Informe o número"),
+    serviceDepartureComplement: yup.string(),
+    serviceDepartureCity: yup.string().required("Informe a cidade"),
   });
 
   const {
@@ -95,8 +88,17 @@ const ModalTaxi = ({ open, handleClose }) => {
   });  
 
   const handleBooking = (data) => {
-    console.log(data);
     closeModal();
+    data.petId = Number(data.petId);
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
+    const requisitionBody = {
+      ...data,
+      serviceCategory: "taxi",
+      serviceDescription: "",
+      serviceConclusion: false,
+      workerId: null,
+    };
+    serviceCreate(requisitionBody);
   }
 
   const closeModal = () => {
@@ -112,57 +114,57 @@ const ModalTaxi = ({ open, handleClose }) => {
   }
   
 
-  useEffect(() => {
-    const formattedCep = arrivalCep.split('').filter(elem => !isNaN(Number(elem))).join('');
-    if(formattedCep.length >= 8){
-      cepApi.get(`${formattedCep}/json/`)
-        .then(res => {
-          setArrivalStreetName(res.data.logradouro);
-          setArrivalCityName(res.data.localidade);
-          if(res.data.erro){
-            setArrivalStreetName('');
-            setArrivalCityName('');
-            toast.error("CEP inválido");
-          }
-        })
-        .catch(err => {
-          setArrivalStreetName('');
-          setArrivalCityName('');
-          toast.error("CEP inválido");
-        });
+  // useEffect(() => {
+  //   const formattedCep = arrivalCep.split('').filter(elem => !isNaN(Number(elem))).join('');
+  //   if(formattedCep.length >= 8){
+  //     cepApi.get(`${formattedCep}/json/`)
+  //       .then(res => {
+  //         setArrivalStreetName(res.data.logradouro);
+  //         setArrivalCityName(res.data.localidade);
+  //         if(res.data.erro){
+  //           setArrivalStreetName('');
+  //           setArrivalCityName('');
+  //           toast.error("CEP inválido");
+  //         }
+  //       })
+  //       .catch(err => {
+  //         setArrivalStreetName('');
+  //         setArrivalCityName('');
+  //         toast.error("CEP inválido");
+  //       });
 
-    }
-  }, [arrivalCep]);
+  //   }
+  // }, [arrivalCep]);
 
-  useEffect(() => {
-    const formattedCep = departureCep.split('').filter(elem => !isNaN(Number(elem))).join('');
-    if(formattedCep.length >= 8){
-      cepApi.get(`${formattedCep}/json/`)
-        .then(res => {
-          setDepartureStreetName(res.data.logradouro)
-          setDepartureCityName(res.data.localidade)
-          if(res.data.erro){
-            setDepartureStreetName('');
-            setDepartureCityName('');
-            toast.error("CEP inválido");
-          }
-        })
-        .catch(err => {
-          setDepartureStreetName('');
-          setDepartureCityName('');
-          toast.error("CEP inválido");
-        });
+  // useEffect(() => {
+  //   const formattedCep = departureCep.split('').filter(elem => !isNaN(Number(elem))).join('');
+  //   if(formattedCep.length >= 8){
+  //     cepApi.get(`${formattedCep}/json/`)
+  //       .then(res => {
+  //         setDepartureStreetName(res.data.logradouro)
+  //         setDepartureCityName(res.data.localidade)
+  //         if(res.data.erro){
+  //           setDepartureStreetName('');
+  //           setDepartureCityName('');
+  //           toast.error("CEP inválido");
+  //         }
+  //       })
+  //       .catch(err => {
+  //         setDepartureStreetName('');
+  //         setDepartureCityName('');
+  //         toast.error("CEP inválido");
+  //       });
 
-    }
-  }, [departureCep]);
+  //   }
+  // }, [departureCep]);
 
-  const useMyAddress = () => {
-    setDepartureCityName(user.city);
-    setDepartureNumberValue(user.addressNumber);
-    setDepartureStreetName(user.street);
-    setDepartureComplementValue(user.addressComplement);
-    setButtonsVisibility(false);
-  }
+  // const useMyAddress = () => {
+  //   setDepartureCityName(user.city);
+  //   setDepartureNumberValue(user.addressNumber);
+  //   setDepartureStreetName(user.street);
+  //   setDepartureComplementValue(user.addressComplement);
+  //   setButtonsVisibility(false);
+  // }
 
   return (
     <div>
@@ -200,10 +202,10 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='departureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
-                  <Input label='Número' register={register} name='departureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
-                  <Input label='Complemento' register={register} name='departureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
-                  <Input label='Cidade' register={register} name='departureCity' value={departureCityName} onChange={ (e) => setDepartureCityName(e.target.value)}/>
+                  <Input label='Rua' register={register} name='serviceDepartureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
+                  <Input label='Número' register={register} name='serviceDepartureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
+                  <Input label='Complemento' register={register} name='serviceDepartureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
+                  <Input label='Cidade' register={register} name='serviceDepartureCity' value={departureCityName} onChange={ (e) => setDepartureCityName(e.target.value)}/>
                 </DepartureAddressForm>
               </DepartureAddress>
               <ArrivalAddress>
@@ -218,10 +220,10 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='arrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
-                  <Input label='Número' register={register} name='arrivalNumber'/>
-                  <Input label='Complemento' register={register} name='arrivalComplement'/>
-                  <Input label='Cidade' register={register} name='arrivalCity' value={arrivalCityName} onChange={ (e) => setArrivalCityName(e.target.value)}/>
+                  <Input label='Rua' register={register} name='serviceArrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
+                  <Input label='Número' register={register} name='serviceArrivalNumber'/>
+                  <Input label='Complemento' register={register} name='serviceArrivalComplement'/>
+                  <Input label='Cidade' register={register} name='serviceArrivalCity' value={arrivalCityName} onChange={ (e) => setArrivalCityName(e.target.value)}/>
                 </div>
               </ArrivalAddress>
             </ContainerTaxi>
@@ -230,26 +232,26 @@ const ModalTaxi = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField sx={{width: '200px'}} type="date"  {...register('date')}/>
+                  <TextField sx={{width: '200px'}} type="date"  {...register('serviceDesiredDate')}/>
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField sx={{width: '200px'}} type="time"  {...register('time')}/>
+                  <TextField sx={{width: '200px'}} type="time"  {...register('serviceDesiredTime')}/>
                 </div>
               </div>
               <div className="changeToRow">
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pet.map((e, i) => (
+                    {pets.map((pet) => (
                       <RadioButtonPets
-                        key={i}
-                        name="pet"
+                        key={pet.id}
+                        name="petId"
                         register={register}
-                        animalType={e.animalType}
-                        value={e.id}
-                        id={e.id}
-                        petName={e.petName}
+                        animalType={pet.petType}
+                        value={pet.id}
+                        id={pet.id}
+                        petName={pet.petName}
                       />
                     ))}
                   </div>
@@ -267,7 +269,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
-                    {...register('obs')}
+                    {...register('serviceObs')}
                   />
                 </div>
               </div>

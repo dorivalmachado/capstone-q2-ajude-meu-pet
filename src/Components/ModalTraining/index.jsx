@@ -72,7 +72,7 @@ const ModalTraining = ({ open, handleClose }) => {
   const handleBooking = (data) => {
     closeModal();
     data.petId = Number(data.petId);
-    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')))
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
     const requisitionBody = {
       serviceCategory: 'adestramento',
       serviceDepartureStreet: user.street,
