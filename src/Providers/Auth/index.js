@@ -42,18 +42,9 @@ export const AuthProvider = ({ children }) => {
         setUserId(jwt_decode(response.data.accessToken).user_id);
         const { accessToken } = response.data;
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
-        api
-          .get(`/users/${jwt_decode(response.data.accessToken).user_id}/`)
-          .then((response) => {
-            const user = response.data;
-            localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
-            setData({ token: accessToken, user });
-          })
-          .catch((err) => {
-            toast.error("Erro ao recuperar detalhes do usuário!");
-            console.log(err);
-          });
-        history.push("/dashboard");
+        localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
+        setData({token: accessToken, user});
+        history.push("/services");
       })
       .catch((_) => {
         toast.error("Usuário ou senha inválidos!");

@@ -7,7 +7,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Providers/Auth";
 import { Link } from "react-router-dom";
 
+// import Input from "../../Components/Input";
+// import ButtonStyled from "../../Components/Button";
+
 export const Login = () => {
+  
   const { login } = useAuth();
 
   const schema = yup.object().shape({
@@ -15,7 +19,7 @@ export const Login = () => {
     password: yup
       .string()
       .required("Senha obrigatória")
-      .min(8, "Mínimo de 8 dígitos"),
+      .min(6, "Mínimo de 6 dígitos"),
   });
 
   const {
@@ -75,7 +79,6 @@ export const Login = () => {
             helperText={errors.password?.message}
             sx={textFieldStyle}
           />
-
           <Button type="submit">Entrar</Button>
         </form>
         <p>
