@@ -5,9 +5,13 @@ import other from "../../Assets/Img/pawprints.png";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { BsCheck2Square } from "react-icons/bs";
+import { useServices } from "../../Providers/Services";
+import { usePets } from "../../Providers/Pets";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../Providers/Auth";
 
 export const HiredServices = () => {
-  const pets = [
+  const petsMocked = [
     {
       petName: "Tobias",
       animalType: "dog",
@@ -35,7 +39,7 @@ export const HiredServices = () => {
     {
       petName: "Dogo",
       animalType: "other",
-      id: 3,
+      id: 4,
       date: "02/04/2022",
       category: "transporte",
       status: false,
@@ -43,17 +47,29 @@ export const HiredServices = () => {
     {
       petName: "Dogo",
       animalType: "other",
-      id: 3,
+      id: 5,
       date: "02/04/2022",
       category: "transporte",
       status: false,
     },
   ];
 
+  const {services} = useServices();
+  const {pets} = usePets();
+  const {user} = useAuth(); 
+
+  const [myServices, setMyServices] = useState([]);
+
+  useEffect(() => {
+    const filteredServices = services.filter(service => service.clientId === user.id)
+    const {} = filteredServices;
+  }, [pets, services])
+
+  console.log(services, pets, user.id)
   return (
     <Container>
-      {pets.map((pet) => (
-        <Card>
+      {petsMocked.map((pet) => (
+        <Card key={pet.id}>
           <div className="head">
             <img
               src={

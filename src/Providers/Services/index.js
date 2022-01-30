@@ -12,7 +12,7 @@ export const ServicesProvider = ({ children }) => {
   const getServices = () => {
     token !== undefined &&
       api
-        .get("/services/", {
+        .get(`/services?clientId=${user.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
