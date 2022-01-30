@@ -1,14 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import api from "../../Services/api";
-import jwt_decode from "jwt-decode";
+import { createContext, useContext, useState } from "react";
+import {api} from "../../Services/api";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("");
-  const [userId, setUserId] = useState("");
 
   const [data, setData] = useState(() => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
@@ -23,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const history = useHistory();
 
-  const register = (userData) => {
+  const signup = (userData) => {
     api
       .post("/register/", userData)
       .then((_) => {
@@ -39,8 +36,10 @@ export const AuthProvider = ({ children }) => {
     api
       .post("/login/", userData)
       .then((response) => {
-        setUserId(jwt_decode(response.data.accessToken).user_id);
+        console.log('response.data:', response.data);
         const { accessToken } = response.data;
+        const { user } = response.data;
+        console.log('user state from response.data:', user);
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
         setData({token: accessToken, user});
@@ -54,18 +53,14 @@ export const AuthProvider = ({ children }) => {
   const updateUser = (userData) => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     api
-      .patch(`/users/${user.id}/`, userData, {
+      .patch(`/users/${data.user.id}/`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         toast.success("Usuário atualizado");
-        localStorage.setItem(
-          "@ajude-meu-pet:user",
-          JSON.stringify(response.data)
-        );
-        setUser(JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {});
+        localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(response.data));
       })
       .catch((_) => {
         toast.error("Nome de usuário já existente");
@@ -80,7 +75,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        register,
+        signup,
         login,
         updateUser,
         logout,

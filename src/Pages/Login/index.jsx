@@ -31,7 +31,7 @@ export const Login = () => {
   });
 
   const handleSignIn = (data) => {
-    console.log(data);
+    // console.log(data);
     login(data);
   };
 
@@ -82,7 +82,7 @@ export const Login = () => {
           <Button type="submit">Entrar</Button>
         </form>
         <p>
-          Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>{" "}
+          Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
         </p>
       </FormContainer>
     </Container>
