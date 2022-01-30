@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }) => {
         console.log('user state from response.data:', user);
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
-        setData(user);
-        history.push("/dashboard");
+        setData({token: accessToken, user});
+        history.push("/services");
       })
       .catch((_) => {
         toast.error("Usuário ou senha inválidos!");
