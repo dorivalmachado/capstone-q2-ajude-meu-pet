@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -41,8 +41,19 @@ export const Assign = styled.div`
   justify-content: center;
   margin: 20px 0;
 
-  a{
+  p {
+    color: var(--black50);
+    margin-top: 25px;
+    font-size: 20px;
+  }
+
+  a {
+    color: var(--black50);
     font-weight: 700;
+  }
+
+  a:hover {
+    color: var(--yellow80);
   }
 
   @media (min-width: 1024px) {
