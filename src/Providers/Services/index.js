@@ -33,7 +33,7 @@ export const ServicesProvider = ({ children }) => {
     api
       .post(
         "/services/",
-        { ...obj, userId: user.id },
+        { ...obj, clientId: user.id },
         {
           headers: {
             Authorization: `Bearer ${token}`,
