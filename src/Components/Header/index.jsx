@@ -1,9 +1,54 @@
-import { Container, Imagem, Title } from "./styles";
-import Logo from "../../Assets/Logo.webp";
+import { Container, Imagem, Title, DrawerContent } from "./styles";
+import { Drawer } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { GoSignIn, GoSignOut, GoPencil } from "react-icons/go";
+import { Link, useHistory } from "react-router-dom";
+import { MdPets, MdPerson } from "react-icons/md";
+import { SiDatadog } from "react-icons/si";
+import { styled } from "@mui/material/styles";
+import { useAuth } from "../../Providers/Auth";
 import { useEffect, useState } from "react";
+import Logo from "../../Assets/Logo.webp";
+import toast from "react-hot-toast";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
-const Header = () => {
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 0.87)",
+    boxShadow: theme.shadows[1],
+    fontSize: 12,
+  },
+}));
+
+const Header = ({ isLogged = false }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const { logout } = useAuth();
+
+  const history = useHistory();
+
+  const toggleDrawer = (event, status) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setDrawerOpen(status);
+  };
+
+  const handleLogOut = () => {
+    logout();
+    toast("Até a próxima!", {
+      icon: "👋",
+    });
+    history.push("/");
+  };
+
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -37,16 +82,60 @@ const Header = () => {
         <Container>
           <Title>AJUDE MEU PET</Title>
           <Imagem src={Logo} alt="Logo" />
-          <GiHamburgerMenu />
+          <LightTooltip title="Menu">
+            <button onClick={(event) => toggleDrawer(event, true)}>
+              <GiHamburgerMenu />
+            </button>
+          </LightTooltip>
+          <Drawer
+            anchor="top"
+            open={drawerOpen}
+            onClose={(event) => toggleDrawer(event, false)}
+          >
+            <DrawerContent isLogged={isLogged}>
+              {isLogged ? (
+                <ul>
+                  <li>
+                    <MdPets />
+                    <Link to="/pets">Meus Pets</Link>
+                  </li>
+                  <li>
+                    <SiDatadog />
+                    <Link to="/services">Serviços</Link>
+                  </li>
+                  <li>
+                    <MdPerson />
+                    <Link to="/profile">Perfil</Link>
+                  </li>
+                  <li onClick={() => handleLogOut()}>
+                    <GoSignOut />
+                    Sair
+                  </li>
+                </ul>
+              ) : (
+                <ul>
+                  <li>
+                    <GoSignIn />
+                    <Link to="/login">Logar</Link>
+                  </li>
+                  <li>
+                    <GoPencil />
+                    <Link to="/register">Cadastrar</Link>
+                  </li>
+                </ul>
+              )}
+            </DrawerContent>
+          </Drawer>
         </Container>
       ) : (
         <Container>
           <Title>AJUDE MEU PET</Title>
           <Imagem src={Logo} alt="Logo" />
-          <a href="#tips">HOME</a>
-          <div>PASSEIOS</div>
-          <div>ADESTRAMENTO</div>
-          <div>LOGIN</div>
+          <a href="#home">HOME</a>
+          <a href="#passeio">PASSEIOS</a>
+          <a href="#adestramento">ADESTRAMENTO</a>
+          <a href="#taxi">TAXI-PET</a>
+          <Link to="/login">LOGIN</Link>
         </Container>
       )}
     </>

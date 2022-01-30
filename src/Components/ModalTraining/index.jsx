@@ -6,6 +6,9 @@ import {
   TextField,
 } from "@mui/material";
 import {FaRegWindowClose} from "react-icons/fa"
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { 
   ButtonsContainer, 
@@ -19,6 +22,9 @@ import {
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableTraining from "../PriceTableTraining";
+import {usePets} from "../../Providers/Pets"
+import { useAuth } from "../../Providers/Auth";
+import { useServices } from "../../Providers/Services";
 
 const ModalTraining = ({ open, handleClose }) => {
 
@@ -29,8 +35,6 @@ const ModalTraining = ({ open, handleClose }) => {
   }
 
   const [training, setTraining] = useState('');
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
   
@@ -44,17 +48,59 @@ const ModalTraining = ({ open, handleClose }) => {
     setOpenPopover('');
   };
 
-  const pet = [
-    { petName: "Tobias", animalType: "dog", id: 1 },
-    { petName: "Shailow", animalType: "cat", id: 2 },
-    { petName: "Dogo", animalType: "other", id: 3 },
-  ];
+  const {pets} = usePets();
+  const {user} = useAuth();
+  const {serviceCreate} = useServices();
 
+  const schema = yup.object().shape({
+    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredTime: yup.string().required("Selecione o horário"),
+    petId: yup.string().required("Selecione um pet"),
+    serviceObs: yup.string(),
+    serviceDescription: yup.string().required('Selecione um tipo')
+  });
+
+  const {
+    formState: { errors },
+    reset,
+    handleSubmit,
+    register,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });  
+
+  const handleBooking = (data) => {
+    closeModal();
+    data.petId = Number(data.petId);
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
+    const requisitionBody = {
+      serviceCategory: 'adestramento',
+      serviceDepartureStreet: user.street,
+      serviceDepartureNumber: user.addressNumber,
+      serviceDepartureComplement: user.addressComplement,
+      serviceDepartureCity: user.city,
+      serviceArrivalStreet: "",
+      serviceArrivalNumber: "",
+      serviceArrivalComplement: "",
+      serviceArrivalCity: "",
+      serviceConclusion: false,
+      workerId: null,
+      ...data
+    }
+    serviceCreate(requisitionBody);
+  }
+
+  const closeModal = () => {
+    handleClose();
+    setTraining('');
+    reset();
+  }
+  
   return (
     <div>
       <Dialog
         open={open === 'training'}
-        onClose={handleClose}
+        onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
             width: "800px",
@@ -62,8 +108,8 @@ const ModalTraining = ({ open, handleClose }) => {
           },
         }}
       >
-        <Form>
-          <FaRegWindowClose size={25} color='#999999' onClick={handleClose}/>
+        <Form onSubmit={handleSubmit(handleBooking)}>
+          <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
           <DialogContent>
 
             <PriceTableTraining open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
@@ -77,7 +123,7 @@ const ModalTraining = ({ open, handleClose }) => {
               <TrainingType>
                 <h3 className="desktop">Selecione o tipo de adestramento</h3>
                 <h3 className="mobile">Adestramento</h3>
-                <TrainingOptions value={training} onChange={(e) => setTraining(e.target.value)}>
+                <TrainingOptions {...register('serviceDescription')} value={training} onChange={(e) => setTraining(e.target.value)}>
                   <option disabled defaultValue value=''> -- Escolha uma opção -- </option>
                   <option value='basico'>Básico</option>
                   <option value='avancado'>Avançado</option>
@@ -90,26 +136,26 @@ const ModalTraining = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField type="date" onChange={(e) => setDate(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="date"  {...register('serviceDesiredDate')}/>
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField type="time" onChange={(e) => setTime(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="time"  {...register('serviceDesiredTime')}/>
                 </div>
               </div>
               <div className="changeToRow">
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pet.map((e, i) => (
+                    {pets.map((pet) => (
                       <RadioButtonPets
-                        key={i}
-                        name="teste"
-                        register={() => {}}
-                        animalType={e.animalType}
-                        value=""
-                        id={e.id}
-                        petName={e.petName}
+                        key={pet.id}
+                        name="petId"
+                        register={register}
+                        animalType={pet.petType}
+                        value={pet.id}
+                        id={pet.id}
+                        petName={pet.petName}
                       />
                     ))}
                   </div>
@@ -127,6 +173,7 @@ const ModalTraining = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
+                    {...register('serviceObs')}
                   />
                 </div>
               </div>
@@ -135,7 +182,7 @@ const ModalTraining = ({ open, handleClose }) => {
           </DialogContent>
           
           <ButtonsContainer>
-            <Button buttonColor="darkBrown" onClick={() => {}}>
+            <Button type='submit' buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>

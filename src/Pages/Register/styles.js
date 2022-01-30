@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import dog from "../../Assets/images/flirting-dog.svg";
+import dog from "../../Assets/Img/flirting-dog.svg";
 
 export const Container = styled.div`
   background-color: #ad6d53;

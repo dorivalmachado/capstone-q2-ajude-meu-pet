@@ -5,6 +5,11 @@ import {
   TextareaAutosize,
   TextField,
 } from "@mui/material";
+import { FaRegWindowClose } from "react-icons/fa";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 
 import { 
   ButtonsContainer, 
@@ -15,12 +20,12 @@ import {
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableWalk from "../PriceTableWalk";
-import { FaRegWindowClose } from "react-icons/fa";
+import {usePets} from "../../Providers/Pets"
+import { useAuth } from "../../Providers/Auth";
+import { useServices } from "../../Providers/Services";
 
 const ModalWalk = ({ open, handleClose }) => {
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
   
@@ -34,19 +39,59 @@ const ModalWalk = ({ open, handleClose }) => {
     setOpenPopover('');
   };
 
-  const pet = [
-    { petName: "Tobias", animalType: "dog", id: 1 },
-    { petName: "Shailow", animalType: "cat", id: 2 },
-    { petName: "Dogo", animalType: "other", id: 3 },
-  ];
+  const {pets} = usePets();
+  const {user} = useAuth();
+  const {serviceCreate} = useServices();
 
+  const schema = yup.object().shape({
+    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredTime: yup.string().required("Selecione o horário"),
+    petId: yup.string().required("Selecione um pet"),
+    serviceObs: yup.string(),
+  });
+
+  const {
+    formState: { errors },
+    reset,
+    handleSubmit,
+    register,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });  
+
+  const handleBooking = (data) => {
+    closeModal();
+    data.petId = Number(data.petId);
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
+    const requisitionBody = {
+      serviceCategory: 'adestramento',
+      serviceDescription: '1 hora de passeio',
+      serviceDepartureStreet: user.street,
+      serviceDepartureNumber: user.addressNumber,
+      serviceDepartureComplement: user.addressComplement,
+      serviceDepartureCity: user.city,
+      serviceArrivalStreet: "",
+      serviceArrivalNumber: "",
+      serviceArrivalComplement: "",
+      serviceArrivalCity: "",
+      serviceConclusion: false,
+      workerId: null,
+      ...data
+    }
+    serviceCreate(requisitionBody);
+  }
+
+  const closeModal = () => {
+    handleClose();
+    reset();
+  }
   
 
   return (
     <div>
       <Dialog
         open={open === 'walk'}
-        onClose={handleClose}
+        onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
             width: "800px",
@@ -54,9 +99,9 @@ const ModalWalk = ({ open, handleClose }) => {
           },
         }}
       >
-        <Form>
+        <Form onSubmit={handleSubmit(handleBooking)}>
 
-          <FaRegWindowClose size={25} color='#999999' onClick={handleClose}/>
+          <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
           <DialogContent>
 
             <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
@@ -68,26 +113,26 @@ const ModalWalk = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField type="date" onChange={(e) => setDate(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="date"  {...register('serviceDesiredDate')}/>
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField type="time" onChange={(e) => setTime(e.target.value)} />
+                  <TextField sx={{width: '200px'}} type="time"  {...register('serviceDesiredTime')}/>
                 </div>
               </div>
               <div className="changeToRow">
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pet.map((e, i) => (
+                    {pets.map((pet) => (
                       <RadioButtonPets
-                        key={i}
-                        name="teste"
-                        register={() => {}}
-                        animalType={e.animalType}
-                        value=""
-                        id={e.id}
-                        petName={e.petName}
+                        key={pet.id}
+                        name="petId"
+                        register={register}
+                        animalType={pet.petType}
+                        value={pet.id}
+                        id={pet.id}
+                        petName={pet.petName}
                       />
                     ))}
                   </div>
@@ -105,6 +150,7 @@ const ModalWalk = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
+                    {...register('serviceObs')}
                   />
                 </div>
               </div>
@@ -112,7 +158,7 @@ const ModalWalk = ({ open, handleClose }) => {
 
           </DialogContent>
           <ButtonsContainer>
-            <Button buttonColor="darkBrown" onClick={() => {}}>
+            <Button type='submit' buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>
