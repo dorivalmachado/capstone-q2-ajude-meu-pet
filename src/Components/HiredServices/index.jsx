@@ -37,7 +37,7 @@ export const HiredServices = () => {
 
   return (
     <Container>
-      {pets.length === 0 ? (
+      {myServices.length === 0 ? (
         <p>
           Nenhum serviço contratado ainda, clique nos cards acima e contrate
           hoje mesmo!
