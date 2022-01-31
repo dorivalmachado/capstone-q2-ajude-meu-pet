@@ -1,33 +1,53 @@
 import React from "react";
 import { Container } from "./styles";
-import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
 
-const CssTextField = styled(TextField)({
-  fieldset: {
-    borderColor: "#F5F5F5",
-  },
-  "& input:valid:focus + fieldset": {
-    borderColor: "black",
-    borderLeftWidth: 2,
-  },
-});
+const Input = ({
+  type = "text",
+  label,
+  name,
+  register,
+  value,
+  error,
+  inputProps,
+  helperText,
+  ...rest
+}) => {
+  const textFieldStyle = {
+    "& label.Mui-focused": {
+      color: "var(--yellow80)",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "var(--yellow80)",
+    },
+    "& .MuiOutlinedInput-root": {
+      background: "white",
+      "& fieldset": {
+        //   borderColor: "black",
+      },
+      "&:hover fieldset": {
+        borderColor: "var(--yellow80)",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "var(--yellow80)",
+      },
+    },
+  };
 
-const Input = ({ type = "text", label, name, register, value, ...rest }) => {
   return (
     <Container>
-      <CssTextField
+      <TextField
         label={label}
         type={type}
-        id="outlined-basic"
         variant="outlined"
         name={name}
         value={value}
+        helperText={helperText}
         {...register(name)}
+        sx={textFieldStyle}
+        InputProps={inputProps}
+        error={error}
         {...rest}
-        InputLabelProps={{
-          style: { color: "grey" },
-        }}
       />
     </Container>
   );

@@ -24,7 +24,7 @@ export const Register = () => {
     password: yup
       .string()
       .required("Senha obrigatória")
-      .min(8, "Mínimo de 8 dígitos"),
+      .min(6, "Mínimo de 6 dígitos"),
     confirmPass: yup
       .string()
       .required("Campo obrigatório")

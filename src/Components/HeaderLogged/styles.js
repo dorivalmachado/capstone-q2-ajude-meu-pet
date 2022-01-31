@@ -5,9 +5,15 @@ export const Container = styled.aside`
   width: 150px;
   height: 100vh;
   border-right: 2px solid var(--blue);
+
   a {
     text-decoration: none;
     color: black;
+    font-weight: 500;
+  }
+
+  a:hover {
+    color: var(--yellow80);
   }
 `;
 
@@ -43,4 +49,9 @@ export const Menu = styled.div`
     gap: 30px;
     /* margin-top:100px; */
   }
+`;
+
+export const LogoutBox = styled.div`
+  height: fit-content;
+  width: fit-content;
 `;

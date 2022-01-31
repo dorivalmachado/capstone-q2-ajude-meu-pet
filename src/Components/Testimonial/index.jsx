@@ -1,7 +1,7 @@
 import { Card, Container, Content, Imagem, Subtitle, Text } from "./styles";
-import Depo1 from "../../Assets/Depo1.webp";
-import Depo2 from "../../Assets/Depo2.jpg";
-import Depo3 from "../../Assets/Depo3.jpg";
+import Depo1 from "../../Assets/Img/Depo1.webp";
+import Depo2 from "../../Assets/Img/Depo2.jpg";
+import Depo3 from "../../Assets/Img/Depo3.jpg";
 
 const Testimonial = () => {
   return (

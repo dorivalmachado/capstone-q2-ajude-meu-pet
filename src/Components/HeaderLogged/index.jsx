@@ -1,7 +1,8 @@
-import { Container, MainPage, Logo, Menu } from "./styles";
+import { Container, Logo, Menu, LogoutBox } from "./styles";
 import { GoSignOut } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Providers/Auth";
+import { LightTip } from "../../Helpers/Tooltip";
 
 export const HeaderLogged = () => {
   const { logout } = useAuth();
@@ -16,18 +17,22 @@ export const HeaderLogged = () => {
             </Link>
           </div>
           <div>
-            <Link to="">
+            <Link to="/services">
               <p>Serviços</p>
             </Link>
           </div>
         </div>
         <div className="menuBottom">
           <div>
-            <Link to="">
+            <Link to="/profile">
               <p>Perfil</p>
             </Link>
           </div>
-          <GoSignOut size={40} cursor="pointer" onClick={() => logout} />
+          <LightTip title="Sair">
+            <LogoutBox onClick={() => logout}>
+              <GoSignOut size={40} cursor="pointer" />
+            </LogoutBox>
+          </LightTip>
         </div>
       </Menu>
     </Container>

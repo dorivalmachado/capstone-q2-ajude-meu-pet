@@ -8,8 +8,8 @@ import {
   Subtitle,
   Text,
 } from "./styles";
-import LogoAdestramento1 from "../../Assets/LogoAdestramento1.jpeg";
-import LogoAdestramento2 from "../../Assets/LogoAdestramento2.jpeg";
+import LogoAdestramento1 from "../../Assets/Img/LogoAdestramento1.jpeg";
+import LogoAdestramento2 from "../../Assets/Img/LogoAdestramento2.jpeg";
 
 const Training = () => {
   function getWindowDimensions() {
