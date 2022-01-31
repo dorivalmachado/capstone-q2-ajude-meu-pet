@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-bottom: 20px;
 
+  span {
+    color: var(--red);
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
   input:placeholder-shown {
-    font-style: italic;
     font-family: inherit;
+    font-style: italic;
   }
 
   input:-webkit-autofill {

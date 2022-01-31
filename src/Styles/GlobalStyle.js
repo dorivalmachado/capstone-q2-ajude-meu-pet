@@ -20,6 +20,7 @@ export default createGlobalStyle`
   --grey80: rgba(197, 197, 197, 0.5);
   --grey90: #D2D2D2;
   --main-font: 'Roboto', sans-serif;
+  --title-font: 'Peralta', cursive;
   --red: #FF0000;
   --white: #FFFFFF;
   --yellow50: #FEB546;

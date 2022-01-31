@@ -1,17 +1,19 @@
-import { Container, FormContainer } from "./styles";
-import { TextField, Button } from "@mui/material";
+import { Container, FormContainer, ContentContainer } from "./styles";
+import { InputAdornment } from "@mui/material";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Providers/Auth";
 import { Link } from "react-router-dom";
-
-// import Input from "../../Components/Input";
-// import ButtonStyled from "../../Components/Button";
+import { FiEyeOff, FiEye, FiLock, FiUser } from "react-icons/fi";
+import React, { useState } from "react";
+import Button from "../../Components/Button";
+import MainContainer from "../../Components/MainContainer";
+import Input from "../../Components/Input";
 
 export const Login = () => {
-  
+  const [showPass, setShowPass] = useState(false);
   const { login } = useAuth();
 
   const schema = yup.object().shape({
@@ -35,56 +37,62 @@ export const Login = () => {
     login(data);
   };
 
-  const textFieldStyle = {
-    "& label.Mui-focused": {
-      color: "#FFC04A",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#FFC04A",
-    },
-    "& .MuiOutlinedInput-root": {
-      background: "white",
-      "& fieldset": {
-        //   borderColor: "black",
-      },
-      "&:hover fieldset": {
-        borderColor: "#FFC04A",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#FFC04A",
-      },
-    },
-  };
-
   return (
-    <Container>
-      <FormContainer>
-        <h1>LOGIN</h1>
-        <form onSubmit={handleSubmit(handleSignIn)}>
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            {...register("email")}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-            sx={textFieldStyle}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            fullWidth
-            {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-            sx={textFieldStyle}
-          />
-          <Button type="submit">Entrar</Button>
-        </form>
-        <p>
-          Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
-        </p>
-      </FormContainer>
-    </Container>
+    <MainContainer>
+      <Container>
+        <ContentContainer>
+          <FormContainer>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit(handleSignIn)}>
+              <Input
+                label="Email"
+                name="email"
+                fullWidth
+                register={register}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiUser />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Input
+                type={showPass ? "text" : "password"}
+                label="Senha"
+                fullWidth
+                register={register}
+                name="password"
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiLock />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? <FiEye /> : <FiEyeOff />}
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Button type="submit" buttonColor="lightBrown">
+                Entrar
+              </Button>
+            </form>
+            <p>
+              Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
+            </p>
+          </FormContainer>
+        </ContentContainer>
+      </Container>
+    </MainContainer>
   );
 };
