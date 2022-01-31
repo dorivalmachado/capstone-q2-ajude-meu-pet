@@ -15,7 +15,10 @@ const PriceTableTraining = ({ open, anchorEl, handleClose }) => {
         horizontal: "center",
       }}
     >
-      <Typography sx={{ p: 3 }} style={{ backgroundColor: "var(--yellow50)" }}>
+      <Typography
+        sx={{ p: 3 }}
+        style={{ backgroundColor: "var(--yellow50)", maxWidth: "320px" }}
+      >
         <strong>ADESTRAMENTO</strong> <br />
         <br />
         Adestramentos do tipo <strong>básico</strong> e <strong>grupal</strong>
