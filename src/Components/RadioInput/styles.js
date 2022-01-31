@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const RadioStyle = styled.input`
-  visibility: hidden;
+  display: none;
+  
 
   &:checked + label {
     background: #ff9b02;
@@ -15,5 +16,10 @@ export const RadioStyle = styled.input`
     cursor: pointer;
     font-size: 20px;
     padding: 10px;
+    display: inline-block;
+    width: 110px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 5px;
   }
 `;
