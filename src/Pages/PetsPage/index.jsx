@@ -6,13 +6,21 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
+import React, { useState } from "react";
+import ModalAddPet from "../../Components/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
+
+
 
 const PetsPage = () => {
   const { pets } = usePets();
 
+  const [openModal, setOpenModal] = useState('');
+
+  console.log(openModal)
   return (
     <MainContainer>
+      <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
       <Container>
         <aside className="headerMobile">
           <Header isLogged={true} />
@@ -26,7 +34,8 @@ const PetsPage = () => {
             <h3>Meus Pets</h3>
             <LightTip title="Adicionar Pet">
               <button
-                onClick={() => console.log("Abrir modal do formulário aqui")}
+                id='add'
+                onClick={(e) => setOpenModal(e.target.id)}
               >
                 <FaPlus />
               </button>
