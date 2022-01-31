@@ -23,8 +23,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 768px) {
-    /* background: white; */
-    background: url(${Image}) center no-repeat;
+    background: url(${Image}) center no-repeat;;
   }
 `;
 

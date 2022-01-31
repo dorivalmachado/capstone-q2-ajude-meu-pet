@@ -3,7 +3,7 @@ import { useAuth } from "../Providers/Auth";
 
 import { Login } from "../Pages/Login";
 import { ServicesPage } from "../Pages/ServicesPage";
-import { Register } from "../Pages/Register";
+import RegisterPage from "../Pages/RegisterPage";
 import LandingPage from "../Pages/LandingPage";
 import NotFound from "../Pages/NotFound";
 import PetsPage from "../Pages/PetsPage";
@@ -18,7 +18,7 @@ const Routes = () => {
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
+      <Route exact path="/register" component={RegisterPage} />
       <Route exact path="/services" isPrivate component={ServicesPage} />
       <Route exact path="/pets" isPrivate component={PetsPage} />
       <Route exact path="/profile" isPrivate component={ProfilePage} />

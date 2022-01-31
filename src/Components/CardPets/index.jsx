@@ -24,9 +24,9 @@ const CardPets = ({
   };
 
   const handleAnimalType = () => {
-    return animalType === "cat"
+    return animalType === "gato"
       ? `Gato`
-      : animalType === "dog"
+      : animalType === "cachorro"
       ? `Cachorro`
       : animalType;
   };

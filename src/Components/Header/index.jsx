@@ -3,20 +3,17 @@ import { Drawer } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoSignIn, GoSignOut, GoPencil } from "react-icons/go";
 import { LightTip } from "../../Helpers/Tooltip";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
 import { useAuth } from "../../Providers/Auth";
 import { useEffect, useState } from "react";
 import Logo from "../../Assets/Img/Logo.webp";
-import toast from "react-hot-toast";
 
 const Header = ({ isLogged = false }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { logout } = useAuth();
-
-  const history = useHistory();
 
   const toggleDrawer = (event, status) => {
     if (
@@ -27,14 +24,6 @@ const Header = ({ isLogged = false }) => {
     }
 
     setDrawerOpen(status);
-  };
-
-  const handleLogOut = () => {
-    logout();
-    toast("Até a próxima!", {
-      icon: "👋",
-    });
-    history.push("/");
   };
 
   function getWindowDimensions() {
@@ -97,7 +86,7 @@ const Header = ({ isLogged = false }) => {
                     <MdPerson />
                     <Link to="/profile">Perfil</Link>
                   </li>
-                  <li onClick={() => handleLogOut()}>
+                  <li onClick={() => logout()}>
                     <GoSignOut />
                     Sair
                   </li>
