@@ -42,7 +42,10 @@ export const Box = styled.div`
   height: 80%;
 
   .title {
-    margin: 20px;
-    font-size: 24px;
+    p {
+      margin: 20px;
+      font-size: 20px;
+      font-family: var(--title-font);
+    }
   }
 `;

@@ -9,6 +9,7 @@ import NotFound from "../Pages/NotFound";
 import PetsPage from "../Pages/PetsPage";
 import ProfilePage from "../Pages/ProfilePage";
 import Route from "./Route";
+import { TeamPage } from "../Pages/TeamPage";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -22,6 +23,7 @@ const Routes = () => {
       <Route exact path="/pets" isPrivate component={PetsPage} />
       <Route exact path="/profile" isPrivate component={ProfilePage} />
       <Route component={NotFound} isPrivate={!!token} />
+      <Route exact path="/team" component={TeamPage} />
     </Switch>
   );
 };

@@ -6,13 +6,38 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
+import React, { useEffect, useState } from "react";
+import ModalAddPet from "../../Components/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
+import ModalEditPet from "../../Components/ModalEditPet";
+import { useAuth } from "../../Providers/Auth";
+
+
 
 const PetsPage = () => {
   const { pets } = usePets();
+  const {user} = useAuth();
+
+  const [openModal, setOpenModal] = useState('open');
+  const [petId, setPetId] = useState(0);
+  const [myPets, setMyPets] = useState([]);
+
+  const editPet = (id) => {
+    setOpenModal('edit');
+    setPetId(id);
+  }
+
+  useEffect(() => {
+    if(pets.length > 0){
+      setMyPets(pets.filter(pet => pet.userId === user.id))
+    }
+  }, [pets])
 
   return (
     <MainContainer>
+      <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
+      <ModalEditPet open={openModal} handleClose={() => setOpenModal('')} id={petId}/>
+
       <Container>
         <aside className="headerMobile">
           <Header isLogged={true} />
@@ -26,16 +51,17 @@ const PetsPage = () => {
             <h3>Meus Pets</h3>
             <LightTip title="Adicionar Pet">
               <button
-                onClick={() => console.log("Abrir modal do formulário aqui")}
+                id='add'
+                onClick={(e) => setOpenModal(e.currentTarget.id)}
               >
                 <FaPlus />
               </button>
             </LightTip>
           </div>
 
-          {pets.length > 0 ? (
+          {myPets.length > 0 ? (
             <PetsBox>
-              {pets.map((pet) => (
+              {myPets.map((pet) => (
                 <CardPets
                   key={pet.id}
                   name={pet.petName}
@@ -44,7 +70,7 @@ const PetsPage = () => {
                   animalType={pet.petType}
                   petBirthDate={pet.petBirthDate}
                   gender={pet.petGender}
-                  editPet={() => console.log("abrir modal de editar pet aqui")}
+                  editPet={() => editPet(pet.id)}
                 />
               ))}
             </PetsBox>

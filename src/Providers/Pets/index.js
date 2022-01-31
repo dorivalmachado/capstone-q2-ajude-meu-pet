@@ -12,7 +12,7 @@ export const PetsProvider = ({ children }) => {
   const getPets = () => {
     token !== undefined &&
       api
-        .get(`/pets?userId=${user.id}`, {
+        .get(`/pets`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
