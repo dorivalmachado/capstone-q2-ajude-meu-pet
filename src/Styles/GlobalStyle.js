@@ -5,6 +5,7 @@ export default createGlobalStyle`
   --black100: #0B1E27;
   --black50: #2C373F;
   --blue: #74A8BD;
+  --blue0: #cfd7dc;
   --blue50: #4682B4;
   --blue150: #03a9f4;
   --caramel: rgba(132, 90, 73, 0.75);
@@ -21,8 +22,10 @@ export default createGlobalStyle`
   --grey90: #D2D2D2;
   --grey100: #939393;
   --main-font: 'Roboto', sans-serif;
-  --title-font: 'Peralta', cursive;
+  --orange: #ff9700;
+  --orange50: #ee6c00;
   --red: #FF0000;
+  --title-font: 'Peralta', cursive;
   --white: #FFFFFF;
   --yellow50: #FEB546;
   --yellow60: #F4A640;
