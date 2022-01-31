@@ -8,16 +8,18 @@ import { BsCheck2Square } from "react-icons/bs";
 import { useServices } from "../../Providers/Services";
 import { usePets } from "../../Providers/Pets";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../Providers/Auth";
 
 export const HiredServices = () => {
   const { services } = useServices();
   const { pets } = usePets();
+  const { user } = useAuth();
 
   const [myServices, setMyServices] = useState([]);
 
   useEffect(() => {
     if (pets.length > 0 && services.length > 0) {
-      const formattedService = services.map((service) => {
+      const formattedService = services.filter(service => service.clientId === user.id).map((service) => {
         const pet = pets.find((elem) => elem.id === service.petId);
         const { petType, petName } = pet;
         const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =

@@ -30,7 +30,7 @@ import PriceTableTaxi from "../PriceTableTaxi";
 import Input from "../Input";
 import { usePets } from "../../Providers/Pets";
 import { useServices } from "../../Providers/Services";
-// import {useAuth} from "../../Providers/Auth"
+import { useAuth } from "../../Providers/Auth";
 
 
 const ModalTaxi = ({ open, handleClose }) => {
@@ -46,8 +46,8 @@ const ModalTaxi = ({ open, handleClose }) => {
   const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
+  const [myPets, setMyPets] = useState([]);
 
-  // const {user} = useAuth();
   
   
   const handleOpenPopover = (event) => {
@@ -62,6 +62,13 @@ const ModalTaxi = ({ open, handleClose }) => {
 
   const {pets} = usePets();
   const {serviceCreate} = useServices();
+  const {user} = useAuth();
+
+  useEffect(() => {
+    if(pets.length > 0){
+      setMyPets(pets.filter(pet => pet.userId === user.id))
+    }
+  }, [pets])
 
   const schema = yup.object().shape({
     serviceDesiredDate: yup.string().required("Selecione a data"),
@@ -243,7 +250,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pets.map((pet) => (
+                    {myPets.map((pet) => (
                       <RadioButtonPets
                         key={pet.id}
                         name="petId"

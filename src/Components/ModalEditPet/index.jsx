@@ -44,7 +44,6 @@ const ModalEditPet = ({open, handleClose, id}) => {
     const handleAddition = (data) => {
         closeModal();
         const pet = pets.find(elem => elem.id === id)
-        // console.log(pets)
         for(let key in data){
             if (key === 'petBirthDate' && data[key] !== ''){
                 data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.petBirthDate.replaceAll('-','/')));
