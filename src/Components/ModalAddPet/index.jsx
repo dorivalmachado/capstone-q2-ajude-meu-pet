@@ -8,32 +8,42 @@ import Input from "../Input";
 import RadioInput from "../RadioInput";
 import { Form } from "./styles";
 import { useState } from "react";
+import { usePets } from "../../Providers/Pets";
 
 
 const ModalAddPet = ({open, handleClose}) => {
 
-    const [type, setType] = useState('');
-    const [gender, setGender] = useState('');
-    const [size, setSize] = useState('');
+    const [showOtherType, setShowOtherType] = useState(false);
+
+    const {petCreate} = usePets();
     
-    const schema = yup.object().shape({});
+    const schema = yup.object().shape({
+        petName: yup.string().required('Informe o nome'),
+        petType: yup.string().required('Informe o tipo'),
+        petGender: yup.string().required('Informe o gênero'),
+        petSize: yup.string().required('Informe o tamanho'),
+        petBirthDate: yup.string().required('Informe a data de nascimento')
+    });
 
     const {
         formState: { errors },
         reset,
         handleSubmit,
         register,
-      } = useForm({
+    } = useForm({
         resolver: yupResolver(schema),
-      }); 
+    }); 
 
     const closeModal = () => {
+        setShowOtherType(false);
         handleClose();
         reset();
     };
 
     const handleAddition = (data) => {
-        console.log(data)
+        closeModal();
+        data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.petBirthDate.replaceAll('-','/')));
+        petCreate(data);
     }
 
 
@@ -59,9 +69,9 @@ const ModalAddPet = ({open, handleClose}) => {
                     <div>
                         <RadioInput label='Cachorro' value='cachorro' name='petType' register={register} id='cachorro'/>
                         <RadioInput label='Gato' value='gato' name='petType' register={register} id='gato'/>
-                        <RadioInput label='Outro' value='outro' name='petType' register={() => {}} id='outro'/>
+                        <RadioInput label='Outro' value='outro' name='petType' register={() => {}} id='outro' onClick={() => setShowOtherType(true)}/>
                     </div>
-                    {/* <Input label='Outro' name='petType' register={register}/> */}
+                    {showOtherType && <Input label='Outro' name='petType' register={register}/>}
 
                     <h3>Gênero</h3>
                     <div>
