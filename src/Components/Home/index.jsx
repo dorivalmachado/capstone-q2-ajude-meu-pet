@@ -9,11 +9,11 @@ import {
 } from "./styles";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import Adestramento1 from "../../Assets/Adestramento1.jpg";
-import Adestramento2 from "../../Assets/Adestramento2.jpg";
-import Adestramento3 from "../../Assets/Adestramento3.jpg";
-import Caminhada1 from "../../Assets/Caminhada1.jpg";
-import Caminhada2 from "../../Assets/Caminhada2.jpg";
+import Adestramento1 from "../../Assets/Img/Adestramento1.jpg";
+import Adestramento2 from "../../Assets/Img/Adestramento2.jpg";
+import Adestramento3 from "../../Assets/Img/Adestramento3.jpg";
+import Caminhada1 from "../../Assets/Img/Caminhada1.jpg";
+import Caminhada2 from "../../Assets/Img/Caminhada2.jpg";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -42,12 +42,12 @@ const Home = () => {
     return windowDimensions;
   }
 
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
     <>
       {width < 768 ? (
-        <Container id='home'>
+        <Container id="home">
           <Subtitle>Cuide do seu melhor amigo</Subtitle>
           <Text>
             <Paragraph>
@@ -78,7 +78,7 @@ const Home = () => {
           </Carousel>
           <Assign>
             <p>
-              Não é cadastrado ainda? <Link to='/register'>Cadastre-se</Link>
+              Não é cadastrado ainda? <Link to="/register">Cadastre-se</Link>
             </p>
           </Assign>
         </>

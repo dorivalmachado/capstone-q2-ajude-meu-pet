@@ -1,29 +1,19 @@
 import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
 import { FaPlus } from "react-icons/fa";
 import { HeaderLogged } from "../../Components/HeaderLogged";
-import { styled } from "@mui/material/styles";
 import { usePets } from "../../Providers/Pets";
 import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
 import React, { useState } from "react";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import ModalAddPet from "../../Components/ModalAddPet";
+import { LightTip } from "../../Helpers/Tooltip";
 
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: "rgba(0, 0, 0, 0.87)",
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-}));
+
 
 const PetsPage = () => {
-  const { pets, petDelete } = usePets();
+  const { pets } = usePets();
 
   const [openModal, setOpenModal] = useState('');
 
@@ -33,7 +23,7 @@ const PetsPage = () => {
       <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
       <Container>
         <aside className="headerMobile">
-          <Header />
+          <Header isLogged={true} />
         </aside>
         <aside className="headerDesktop">
           <HeaderLogged />
@@ -42,14 +32,14 @@ const PetsPage = () => {
         <ContainerContent>
           <div className="titleBox">
             <h3>Meus Pets</h3>
-            <LightTooltip title="Adicionar Pet">
+            <LightTip title="Adicionar Pet">
               <button
                 id='add'
                 onClick={(e) => setOpenModal(e.target.id)}
               >
                 <FaPlus />
               </button>
-            </LightTooltip>
+            </LightTip>
           </div>
 
           {pets.length > 0 ? (
@@ -63,7 +53,7 @@ const PetsPage = () => {
                   animalType={pet.petType}
                   petBirthDate={pet.petBirthDate}
                   gender={pet.petGender}
-                  deleteCard={() => petDelete(pet.id)}
+                  editPet={() => console.log("abrir modal de editar pet aqui")}
                 />
               ))}
             </PetsBox>
