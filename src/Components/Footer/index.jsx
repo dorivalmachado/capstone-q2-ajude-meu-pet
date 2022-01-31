@@ -13,7 +13,7 @@ const Footer = () => {
 
         <div className="linkBox">
           <Link to="/companyInfo">Saiba mais</Link>
-          <Link to="/aboutUs">Sobre nós</Link>
+          <Link to="/team">Sobre nós</Link>
         </div>
       </LeftBox>
       <RightBox>
