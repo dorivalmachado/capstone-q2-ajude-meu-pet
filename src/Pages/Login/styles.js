@@ -2,18 +2,35 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   align-items: center;
-  background-color: var(--caramel25);
+  background-color: var(--white);
   display: flex;
   height: 100vh;
-  justify-content: center;
-  width: 100vw;
+  justify-content: space-between;
+  width: 100%;
+
+  img {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      display: flex;
+      width:40vw;
+    }
+  }
 `;
 
 export const ContentContainer = styled.div`
+  background-color: var(--caramel25);
+  display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: center;
-  max-width: 450px;
-  width: 85vw;
+  width: 100%;
+
+  @media (min-width: 768px){
+    width: 60%;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -23,9 +40,12 @@ export const FormContainer = styled.div`
   box-shadow: 0px 0px 6px 4px var(--caramel100);
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 100vh;
   justify-content: space-evenly;
+  margin: 0 auto;
   max-height: 500px;
+  max-width: 450px;
+  width: 80%;
 
   a {
     color: var(--yellow80);
@@ -33,7 +53,7 @@ export const FormContainer = styled.div`
     text-decoration: none;
   }
 
-  a:hover{
+  a:hover {
     color: var(--yellow50);
     font-weight: 500;
   }
