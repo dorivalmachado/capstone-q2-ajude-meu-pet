@@ -1,9 +1,12 @@
-import { Register } from "./Components/Register";
+import "./Styles/Reset.css";
+import GlobalStyle from "./Styles/GlobalStyle";
+import Routes from "./Routes";
 
 function App() {
-  return (
+   return (
     <>
-      <Register />
+      <GlobalStyle />
+      <Routes />
     </>
   );
 }

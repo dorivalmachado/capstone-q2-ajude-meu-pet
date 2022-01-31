@@ -4,13 +4,14 @@ import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import MuiPhoneNumber from "material-ui-phone-number";
 import InputMask from "react-input-mask";
 
-import Button from "./Components/Button";
+import Button from "../../Components/Button";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../Providers/Auth";
 
 export const Register = () => {
   const schema = yup.object().shape({
@@ -39,15 +40,22 @@ export const Register = () => {
   });
 
   const [isClient, setIsClient] = useState(true);
+  const [phone, setPhone] = useState("");
+
+  const history = useHistory();
 
   const handleRadioChange = (e) => {
     setIsClient(e.target.value);
   };
 
+  const { signup } = useAuth();
+
   const handleSignUp = (data) => {
     delete data.confirmPass;
     const newData = { ...data, isClient: isClient, phone: phone };
-    console.log(newData);
+    signup(newData);
+    history.push("/login");
+    // console.log(newData);
   };
 
   const textFieldStyle = {
@@ -70,7 +78,6 @@ export const Register = () => {
       },
     },
   };
-  const [phone, setPhone] = useState("");
 
   return (
     <Container>
