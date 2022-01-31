@@ -22,14 +22,41 @@ import { FaRegWindowClose } from "react-icons/fa";
 const Profile = ({ open, onClose }) => {
   const [showPass, setShowPass] = useState(false);
 
-  const { updateUser, user } = useAuth();
+  const { updateUser } = useAuth();
+
+  const user = {
+    email: "kenzinho@mail.com",
+    password: "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
+    name: "Kenzinho",
+    phone: "(22)98729-9061",
+    street: "Gen. Mário Tourinho",
+    addressNumber: "1733",
+    addressComplement: "706",
+    city: "Curitiba",
+    isClient: false,
+    id: 1,
+  };
+
+  const [phone, setPhone] = useState(() => user.phone);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome obrigatório"),
     email: yup.string().email("E-mail inválido"),
-    password: yup.string().min(8, "Mínimo de 8 dígitos"),
+    password: yup
+      .string()
+      .min(
+        8,
+        "Deve conter 8 dígitos, entre números, letras maiúsculas e caracteres especiais"
+      )
+      .required()
+      .matches(/(?=.[A-Z])(?=.{1,})/, "Sem letra maiúscula")
+      .matches(/(?=.[0-9])(?=.{1,})/, "Sem número")
+      .matches(/(?=.[!@#$%^&*])(?=.{1,})/, "Sem caractere especial (!@#$%^&)"),
     address: yup.string().required("Endereço obrigatório"),
-    phone: yup.string().required("Telefone obrigatório"),
+    phone: yup
+      .string()
+      .required("Telefone obrigatório")
+      .min(14, "Número de telefone inválido"),
   });
 
   const {
@@ -41,9 +68,18 @@ const Profile = ({ open, onClose }) => {
   });
 
   const handleChange = (data) => {
-    updateUser({ ...data, userId: user.id, isClient: true });
+    // updateUser({ ...data, userId: user.id, isClient: true });
+    console.log({ ...data, userId: user.id, isClient: true });
   };
 
+  const maskPhone = (value) => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "($1)$2")
+      .replace(/(\d{5})(\d)/, "$1-$2")
+      .replace(/(-\d{4})(\d+?)$/, "$1");
+  };
+  console.log(phone);
   return (
     <Dialog
       open={open}
@@ -66,6 +102,7 @@ const Profile = ({ open, onClose }) => {
             <Input
               label="Nome"
               name="name"
+              defaultValue={user.name}
               register={register}
               autoComplete="off"
               error={!!errors.name}
@@ -82,6 +119,7 @@ const Profile = ({ open, onClose }) => {
               label="Email"
               name="email"
               type="email"
+              defaultValue={user.email}
               register={register}
               error={!!errors.email}
               helperText={errors.email?.message}
@@ -123,6 +161,7 @@ const Profile = ({ open, onClose }) => {
               register={register}
               error={!!errors.address}
               helperText={errors.address?.message}
+              defaultValue={user.add}
               inputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -131,13 +170,15 @@ const Profile = ({ open, onClose }) => {
                 ),
               }}
             />
+
             <Input
-              type="number"
               label="Telefone"
               name="phone"
-              register={register}
               error={!!errors.phone}
               helperText={errors.phone?.message}
+              register={register}
+              value={phone}
+              onChange={(e) => setPhone(maskPhone(e.target.value))}
               inputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -146,6 +187,7 @@ const Profile = ({ open, onClose }) => {
                 ),
               }}
             />
+
             <Button type="submit" buttonColor="yellow">
               Salvar as alterações
             </Button>

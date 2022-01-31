@@ -24,7 +24,7 @@ export const Container = styled.div`
 
   @media (min-width: 768px) {
     /* background: white; */
-    background: url(${Image}) center no-repeat;;
+    background: url(${Image}) center no-repeat;
   }
 `;
 
@@ -33,8 +33,10 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
+  max-width: 275px;
+  transition: all ease 0.5s;
 
-  @media (min-width: 930px) {
+  @media (min-width: 768px) {
     margin-left: 125px;
   }
 `;
