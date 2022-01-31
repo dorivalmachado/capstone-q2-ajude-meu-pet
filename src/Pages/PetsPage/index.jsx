@@ -15,9 +15,8 @@ import { LightTip } from "../../Helpers/Tooltip";
 const PetsPage = () => {
   const { pets } = usePets();
 
-  const [openModal, setOpenModal] = useState('');
+  const [openModal, setOpenModal] = useState('open');
 
-  console.log(openModal)
   return (
     <MainContainer>
       <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
@@ -35,7 +34,7 @@ const PetsPage = () => {
             <LightTip title="Adicionar Pet">
               <button
                 id='add'
-                onClick={(e) => setOpenModal(e.target.id)}
+                onClick={(e) => setOpenModal(e.currentTarget.id)}
               >
                 <FaPlus />
               </button>
