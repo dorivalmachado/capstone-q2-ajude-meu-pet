@@ -16,9 +16,9 @@ const CardPets = ({
   editPet,
 }) => {
   const handleImage = () => {
-    return animalType === "cat"
+    return animalType === "gato"
       ? CatImage
-      : animalType === "dog"
+      : animalType === "cachorro"
       ? DogImage
       : PawImage;
   };
