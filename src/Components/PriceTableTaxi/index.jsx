@@ -15,7 +15,10 @@ const PriceTableTaxi = ({ open, anchorEl, handleClose }) => {
         horizontal: "center",
       }}
     >
-      <Typography sx={{ p: 3 }} style={{ backgroundColor: "var(--yellow50)" }}>
+      <Typography
+        sx={{ p: 3 }}
+        style={{ backgroundColor: "var(--yellow50)", maxWidth: "320px" }}
+      >
         <strong>TAXI-PET</strong> <br />
         <br />O preço médio das viagens é de R$ 10,00 a R$ 40,00, podendo variar
         pela distância do ponto de origem e chegada do pet.
