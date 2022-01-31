@@ -9,6 +9,12 @@ export const Container = styled.div`
   justify-content: space-around;
   width: 100%;
 
+  .logoBox{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+  }
+
   a {
     font-weight: 500;
     color: var(--black-50);
@@ -21,7 +27,9 @@ export const Container = styled.div`
 
   button {
     background-color: transparent;
+    color: var(--black50);
     cursor: pointer;
+    font-size: 25px;
   }
 `;
 

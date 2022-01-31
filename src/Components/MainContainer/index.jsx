@@ -1,4 +1,4 @@
-import { Container, ContentBox } from "./styles"
+import { Container } from "./styles"
 
 
 const MainContainer = ({children}) => {

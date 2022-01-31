@@ -5,19 +5,7 @@ import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
-
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: "rgba(0, 0, 0, 0.87)",
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-}));
+import { LightTip } from "../../Helpers/Tooltip";
 
 const CardPets = ({
   name,
@@ -60,11 +48,11 @@ const CardPets = ({
 
   return (
     <Container>
-      <LightTooltip title="Editar cadastro do pet">
+      <LightTip title="Editar cadastro do pet">
         <div className="iconBox" onClick={editPet}>
           <FiEdit />
         </div>
-      </LightTooltip>
+      </LightTip>
 
       <ContentBox>
         <div className="firstBox">

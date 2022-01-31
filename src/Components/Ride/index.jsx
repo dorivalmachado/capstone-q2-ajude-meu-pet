@@ -1,6 +1,6 @@
 import Imagem from "../Imagem";
 import { Container, Paragraph, Subtitle, Text } from "./styles";
-import LogoCaminhada from "../../Assets/LogoCaminhada.jpg";
+import LogoCaminhada from "../../Assets/Img/LogoCaminhada.jpg";
 import { useEffect, useState } from "react";
 
 const Ride = () => {

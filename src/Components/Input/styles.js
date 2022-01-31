@@ -13,6 +13,14 @@ export const Container = styled.div`
     font-size: 14px;
   }
 
+  .MuiOutlinedInput-root {
+    border-radius: 20px;
+  }
+
+  .css-1laqsz7-MuiInputAdornment-root {
+    cursor: pointer;
+  }
+
   input:placeholder-shown {
     font-family: inherit;
     font-style: italic;

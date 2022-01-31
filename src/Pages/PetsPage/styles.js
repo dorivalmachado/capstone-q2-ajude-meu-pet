@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   .headerMobile {
     display: flex;
+    width: 100%;
   }
 
   .headerDesktop {
@@ -34,7 +35,7 @@ export const Container = styled.div`
 
 export const ContainerContent = styled.div`
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.39);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.39);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -110,7 +111,7 @@ export const NoCards = styled.div`
   font-size: 1.25rem;
   height: 260px;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
 
   img {

@@ -69,26 +69,4 @@ export const FormContainer = styled.div`
     padding: 14px;
     width: 90%;
   }
-
-  .MuiOutlinedInput-root {
-    border-radius: 20px;
-  }
-
-  .css-1laqsz7-MuiInputAdornment-root {
-    cursor: pointer;
-  }
-
-  input:placeholder-shown {
-    font-family: inherit;
-    font-style: italic;
-  }
-
-  input:-webkit-autofill {
-    border: 1px solid white;
-    box-shadow: 0 0 0px 1000px transparent inset;
-    font-family: inherit;
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  }
 `;

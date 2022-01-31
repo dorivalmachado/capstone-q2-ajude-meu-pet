@@ -2,26 +2,14 @@ import { Container, Imagem, Title, DrawerContent } from "./styles";
 import { Drawer } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoSignIn, GoSignOut, GoPencil } from "react-icons/go";
+import { LightTip } from "../../Helpers/Tooltip";
 import { Link, useHistory } from "react-router-dom";
 import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { styled } from "@mui/material/styles";
 import { useAuth } from "../../Providers/Auth";
 import { useEffect, useState } from "react";
-import Logo from "../../Assets/Logo.webp";
+import Logo from "../../Assets/Img/Logo.webp";
 import toast from "react-hot-toast";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: "rgba(0, 0, 0, 0.87)",
-    boxShadow: theme.shadows[1],
-    fontSize: 12,
-  },
-}));
 
 const Header = ({ isLogged = false }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -74,19 +62,21 @@ const Header = ({ isLogged = false }) => {
     return windowDimensions;
   }
 
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
     <>
       {width < 768 ? (
         <Container>
-          <Title>AJUDE MEU PET</Title>
-          <Imagem src={Logo} alt="Logo" />
-          <LightTooltip title="Menu">
+          <div className="logoBox">
+            <Title>AJUDE MEU PET</Title>
+            <Imagem src={Logo} alt="Logo" />
+          </div>
+          <LightTip title="Menu">
             <button onClick={(event) => toggleDrawer(event, true)}>
               <GiHamburgerMenu />
             </button>
-          </LightTooltip>
+          </LightTip>
           <Drawer
             anchor="top"
             open={drawerOpen}

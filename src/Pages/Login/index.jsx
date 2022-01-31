@@ -47,6 +47,7 @@ export const Login = () => {
               <Input
                 label="Email"
                 name="email"
+                type="email"
                 fullWidth
                 register={register}
                 error={!!errors.email}

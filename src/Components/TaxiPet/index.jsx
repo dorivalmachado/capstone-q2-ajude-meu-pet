@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Imagem from "../Imagem";
 import { Container, Images, Paragraph, Subtitle, Text } from "./styles";
-import LogoPetTaxi from "../../Assets/LogoPetTaxi.jpg";
+import LogoPetTaxi from "../../Assets/Img/LogoPetTaxi.jpg";
 
 const TaxiPet = () => {
   function getWindowDimensions() {

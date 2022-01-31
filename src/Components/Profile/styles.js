@@ -1,31 +1,58 @@
 import styled from "styled-components";
+import Image from "../../Assets/Img/girlLaptopCat.gif";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 130vh;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-  align-items: center;
+  padding: 30px;
+
+  .closeButton {
+    align-self: end;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      color: var(--grey70);
+      font-size: 25px;
+    }
+
+    svg:hover {
+      color: var(--grey80);
+    }
+  }
+
+  @media (min-width: 768px) {
+    /* background: white; */
+    background: url(${Image}) center no-repeat;;
+  }
 `;
 
 export const Content = styled.div`
-  width: 90vw;
-  height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ad6d53;
   border-radius: 10px;
+
+  @media (min-width: 930px) {
+    margin-left: 125px;
+  }
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  svg {
+    color: var(--orange);
+  }
 `;
 
 export const Subtitle = styled.h2`
-  color: #fff;
-  margin: 40px 0;
+  color: var(--black50);
+  font-family: var(--title-font);
+  letter-spacing: 1px;
+  font-size: 2rem;
+  margin-bottom: 40px;
 `;
