@@ -17,7 +17,7 @@ export const ServicesPage = () => {
         </div>
         <Box>
           <div className="title">
-            <p>Selecione os serviços:</p>
+            <p>Selecione os serviços</p>
           </div>
           <CardServices />
           <div className="title">
