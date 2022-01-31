@@ -20,6 +20,9 @@ import {
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button";
 import PriceTableWalk from "../PriceTableWalk";
+import {usePets} from "../../Providers/Pets"
+import { useAuth } from "../../Providers/Auth";
+import { useServices } from "../../Providers/Services";
 
 const ModalWalk = ({ open, handleClose }) => {
 
@@ -36,17 +39,15 @@ const ModalWalk = ({ open, handleClose }) => {
     setOpenPopover('');
   };
 
-  const pet = [
-    { petName: "Tobias", animalType: "dog", id: 1 },
-    { petName: "Shailow", animalType: "cat", id: 2 },
-    { petName: "Dogo", animalType: "other", id: 3 },
-  ];
+  const {pets} = usePets();
+  const {user} = useAuth();
+  const {serviceCreate} = useServices();
 
   const schema = yup.object().shape({
-    date: yup.string().required("Selecione a data"),
-    time: yup.string().required("Selecione o horário"),
-    pet: yup.string().required("Selecione um pet"),
-    obs: yup.string(),
+    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredTime: yup.string().required("Selecione o horário"),
+    petId: yup.string().required("Selecione um pet"),
+    serviceObs: yup.string(),
   });
 
   const {
@@ -59,8 +60,25 @@ const ModalWalk = ({ open, handleClose }) => {
   });  
 
   const handleBooking = (data) => {
-    console.log(data)
     closeModal();
+    data.petId = Number(data.petId);
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
+    const requisitionBody = {
+      serviceCategory: 'adestramento',
+      serviceDescription: '1 hora de passeio',
+      serviceDepartureStreet: user.street,
+      serviceDepartureNumber: user.addressNumber,
+      serviceDepartureComplement: user.addressComplement,
+      serviceDepartureCity: user.city,
+      serviceArrivalStreet: "",
+      serviceArrivalNumber: "",
+      serviceArrivalComplement: "",
+      serviceArrivalCity: "",
+      serviceConclusion: false,
+      workerId: null,
+      ...data
+    }
+    serviceCreate(requisitionBody);
   }
 
   const closeModal = () => {
@@ -95,26 +113,26 @@ const ModalWalk = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField sx={{width: '200px'}} type="date"  {...register('date')}/>
+                  <TextField sx={{width: '200px'}} type="date"  {...register('serviceDesiredDate')}/>
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField sx={{width: '200px'}} type="time"  {...register('time')}/>
+                  <TextField sx={{width: '200px'}} type="time"  {...register('serviceDesiredTime')}/>
                 </div>
               </div>
               <div className="changeToRow">
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pet.map((e, i) => (
+                    {pets.map((pet) => (
                       <RadioButtonPets
-                        key={i}
-                        name="pet"
+                        key={pet.id}
+                        name="petId"
                         register={register}
-                        animalType={e.animalType}
-                        value={e.id}
-                        id={e.id}
-                        petName={e.petName}
+                        animalType={pet.petType}
+                        value={pet.id}
+                        id={pet.id}
+                        petName={pet.petName}
                       />
                     ))}
                   </div>
@@ -132,7 +150,7 @@ const ModalWalk = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
-                    {...register('obs')}
+                    {...register('serviceObs')}
                   />
                 </div>
               </div>
