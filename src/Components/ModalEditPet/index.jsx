@@ -16,7 +16,7 @@ const ModalEditPet = ({open, handleClose, id}) => {
 
     const [showOtherType, setShowOtherType] = useState(false);
 
-    const {petUpdate, pets} = usePets();
+    const {petUpdate, petDelete, pets} = usePets();
     
     const schema = yup.object().shape({
         petName: yup.string(),
@@ -55,6 +55,11 @@ const ModalEditPet = ({open, handleClose, id}) => {
             }
         }
         petUpdate(data, id);
+    }
+
+    const handleExclusion = () => {
+        petDelete(id);
+        closeModal();
     }
 
     return(
@@ -101,8 +106,11 @@ const ModalEditPet = ({open, handleClose, id}) => {
                     
                     <h3>Data de nascimento</h3>
                     <Input type='date' name='petBirthDate' register={register} />
-
-                    <Button buttonColor='blue' type='submit'>Salvar as alterações</Button>
+                    
+                    <div>
+                        <Button onClick={handleExclusion}>Excluir pet</Button>
+                        <Button buttonColor='blue' type='submit'>Salvar as alterações</Button>
+                    </div>
                 </Form>
             </DialogContent>
         </Dialog>
