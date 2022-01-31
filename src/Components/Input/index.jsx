@@ -11,6 +11,7 @@ const Input = ({
   error,
   inputProps,
   helperText,
+  defaultValue,
   ...rest
 }) => {
   const textFieldStyle = {
@@ -47,6 +48,7 @@ const Input = ({
         sx={textFieldStyle}
         InputProps={inputProps}
         error={error}
+        defaultValue={defaultValue}
         {...rest}
       />
     </Container>

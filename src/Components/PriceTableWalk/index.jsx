@@ -15,7 +15,10 @@ const PriceTableWalk = ({ open, anchorEl, handleClose }) => {
         horizontal: "center",
       }}
     >
-      <Typography sx={{ p: 3 }} style={{ backgroundColor: "var(--yellow50)" }}>
+      <Typography
+        sx={{ p: 3 }}
+        style={{ backgroundColor: "var(--yellow50)", maxWidth: "320px" }}
+      >
         <strong>PASSEIOS</strong> <br />
         <br />
         Para cães e gatos de pequeno porte: R$ 20,00. <br />
