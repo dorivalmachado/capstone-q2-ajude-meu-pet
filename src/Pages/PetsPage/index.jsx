@@ -7,8 +7,9 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
-import React from "react";
+import React, { useState } from "react";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import ModalAddPet from "../../Components/ModalAddPet";
 
 const LightTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -24,8 +25,12 @@ const LightTooltip = styled(({ className, ...props }) => (
 const PetsPage = () => {
   const { pets, petDelete } = usePets();
 
+  const [openModal, setOpenModal] = useState('');
+
+  console.log(openModal)
   return (
     <MainContainer>
+      <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
       <Container>
         <aside className="headerMobile">
           <Header />
@@ -39,7 +44,8 @@ const PetsPage = () => {
             <h3>Meus Pets</h3>
             <LightTooltip title="Adicionar Pet">
               <button
-                onClick={() => console.log("Abrir modal do formulário aqui")}
+                id='add'
+                onClick={(e) => setOpenModal(e.target.id)}
               >
                 <FaPlus />
               </button>
