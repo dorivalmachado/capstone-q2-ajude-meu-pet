@@ -43,6 +43,15 @@ export const FormContainer = styled.div`
     h2 {
       color: white;
     }
+    p {
+      margin-top: 24px;
+      color: white;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
   }
 `;
 
@@ -51,7 +60,6 @@ export const Bar = styled.div`
   /* width: 100px; */
   height: 100vh;
   background-color: white;
-  background: url(${dog}) no-repeat center;
 `;
 
 // const logoFromRight = keyframes`
