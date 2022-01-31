@@ -17,10 +17,10 @@ const RadioButtonPets = ({
   const handleImage = () => {
     let image = "";
     switch (animalType) {
-      case "cat":
+      case "gato":
         image = CatImage;
         break;
-      case "dog":
+      case "cachorro":
         image = DogImage;
         break;
       default:

@@ -16,17 +16,17 @@ const CardPets = ({
   editPet,
 }) => {
   const handleImage = () => {
-    return animalType === "cat"
+    return animalType === "gato"
       ? CatImage
-      : animalType === "dog"
+      : animalType === "cachorro"
       ? DogImage
       : PawImage;
   };
 
   const handleAnimalType = () => {
-    return animalType === "cat"
+    return animalType === "gato"
       ? `Gato`
-      : animalType === "dog"
+      : animalType === "cachorro"
       ? `Cachorro`
       : animalType;
   };

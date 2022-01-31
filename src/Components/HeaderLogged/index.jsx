@@ -29,7 +29,7 @@ export const HeaderLogged = () => {
             </Link>
           </div>
           <LightTip title="Sair">
-            <LogoutBox onClick={() => logout}>
+            <LogoutBox onClick={() => logout()}>
               <GoSignOut size={40} cursor="pointer" />
             </LogoutBox>
           </LightTip>

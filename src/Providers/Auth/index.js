@@ -1,12 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import {api} from "../../Services/api";
+import { api } from "../../Services/api";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const [data, setData] = useState(() => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     const user = localStorage.getItem("@ajude-meu-pet:user") || {};
@@ -36,13 +35,13 @@ export const AuthProvider = ({ children }) => {
     api
       .post("/login/", userData)
       .then((response) => {
-        console.log('response.data:', response.data);
+        console.log("response.data:", response.data);
         const { accessToken } = response.data;
         const { user } = response.data;
-        console.log('user state from response.data:', user);
+        console.log("user state from response.data:", user);
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
-        setData({token: accessToken, user});
+        setData({ token: accessToken, user });
         history.push("/services");
       })
       .catch((_) => {
@@ -60,7 +59,10 @@ export const AuthProvider = ({ children }) => {
       })
       .then((response) => {
         toast.success("Usuário atualizado");
-        localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(response.data));
+        localStorage.setItem(
+          "@ajude-meu-pet:user",
+          JSON.stringify(response.data)
+        );
       })
       .catch((_) => {
         toast.error("Nome de usuário já existente");
@@ -70,6 +72,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("@ajude-meu-pet:token");
     localStorage.removeItem("@ajude-meu-pet:user");
     setData({});
+    toast("Até a próxima!", {
+      icon: "👋",
+    });
+    history.push("/");
   };
 
   return (
