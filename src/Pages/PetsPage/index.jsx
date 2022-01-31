@@ -9,6 +9,7 @@ import MainContainer from "../../Components/MainContainer";
 import React, { useState } from "react";
 import ModalAddPet from "../../Components/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
+import ModalEditPet from "../../Components/ModalEditPet";
 
 
 
@@ -16,10 +17,18 @@ const PetsPage = () => {
   const { pets } = usePets();
 
   const [openModal, setOpenModal] = useState('open');
+  const [petId, setPetId] = useState(0);
+
+  const editPet = (id) => {
+    setOpenModal('edit');
+    setPetId(id);
+  }
 
   return (
     <MainContainer>
       <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
+      <ModalEditPet open={openModal} handleClose={() => setOpenModal('')} id={petId}/>
+
       <Container>
         <aside className="headerMobile">
           <Header isLogged={true} />
@@ -52,7 +61,7 @@ const PetsPage = () => {
                   animalType={pet.petType}
                   petBirthDate={pet.petBirthDate}
                   gender={pet.petGender}
-                  editPet={() => console.log("abrir modal de editar pet aqui")}
+                  editPet={() => editPet(pet.id)}
                 />
               ))}
             </PetsBox>
