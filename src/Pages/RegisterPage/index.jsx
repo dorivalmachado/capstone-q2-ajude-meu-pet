@@ -35,7 +35,7 @@ const RegisterPage = () => {
     phone: yup
       .string()
       .required("Telefone obrigatório")
-      .min(13, "Número incorreto"),
+      .min(14, "Número incorreto"),
     password: yup
       .string()
       .min(
@@ -43,9 +43,9 @@ const RegisterPage = () => {
         "Deve conter 8 dígitos, entre números, letras maiúsculas e caracteres especiais"
       )
       .required()
-      .matches(/(?=.[0-9])(?=.{8,})/, "Sem número")
-      .matches(/(?=.[A-Z])(?=.{8,})/, "Sem letra maiúscula")
-      .matches(/(?=.[!@#$%^&*])(?=.{8,})/, "Sem caractere especial (!@#$%^&)"),
+      .matches(/(?=.[0-9])(?=.{1,})/, "Sem número")
+      .matches(/(?=.[A-Z])(?=.{1,})/, "Sem letra maiúscula")
+      .matches(/(?=.[!@#$%^&*])(?=.{1,})/, "Sem caractere especial (!@#$%^&)"),
     confirmPass: yup
       .string()
       .required("Campo obrigatório")
@@ -209,7 +209,7 @@ const RegisterPage = () => {
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      }
+                      },
                     }}
                   />
                 }
