@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 import Button from "../Button/index.tsx";
-import Input from "../Input";
+import Input from "../Input/index.tsx";
 import { Dialog, InputAdornment } from "@mui/material";
 import {
   FiEye,

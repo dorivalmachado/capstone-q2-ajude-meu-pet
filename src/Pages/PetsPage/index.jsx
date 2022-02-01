@@ -17,7 +17,7 @@ const PetsPage = () => {
   const { pets } = usePets();
   const {user} = useAuth();
 
-  const [openModal, setOpenModal] = useState('open');
+  const [openModal, setOpenModal] = useState(false);
   const [petId, setPetId] = useState(0);
   const [isPetAddition, setIsPetAddition] = useState(false);
   const [myPets, setMyPets] = useState([]);

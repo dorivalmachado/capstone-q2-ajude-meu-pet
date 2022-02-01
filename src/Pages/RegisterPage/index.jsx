@@ -15,7 +15,7 @@ import {
 } from "react-icons/fi";
 
 import Button from "../../Components/Button/index.tsx";
-import Input from "../../Components/Input";
+import Input from "../../Components/Input/index.tsx";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
