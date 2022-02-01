@@ -9,10 +9,11 @@ export const Container = styled.div`
   justify-content: space-around;
   width: 100%;
 
-  .logoBox{
+  .logoBox {
     display: flex;
     flex-direction: row;
     width: fit-content;
+    justify-content: space-around;
   }
 
   a {
@@ -33,7 +34,11 @@ export const Container = styled.div`
   }
 `;
 
-export const DrawerContent = styled.div`
+interface DrawerContentProps {
+  isLogged: boolean;
+}
+
+export const DrawerContent = styled.div<DrawerContentProps>`
   height: ${(props) => (props.isLogged ? "150px" : "100px")};
   margin-left: 20px;
 
@@ -71,5 +76,5 @@ export const Title = styled.h1`
 `;
 
 export const Imagem = styled.img`
-  width: 60px;
+  width: 45px;
 `;

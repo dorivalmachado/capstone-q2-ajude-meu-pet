@@ -1,6 +1,6 @@
 import { Container, Box } from "./styles";
 import CardServices from "../../Components/CardsServices";
-import Header from "../../Components/Header";
+import Header from "../../Components/Header/index.tsx";
 import { HeaderLogged } from "../../Components/HeaderLogged";
 import { HiredServices } from "../../Components/HiredServices";
 import MainContainer from "../../Components/MainContainer";
