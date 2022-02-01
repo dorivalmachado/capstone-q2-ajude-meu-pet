@@ -2,22 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  /* height: 100%; */
-  /* border: 1px solid chartreuse; */
-  overflow-x: scroll;
+  height: 215px;
+  overflow-x: auto;
   max-height: 300px;
   padding: 20px;
   display: flex;
+  align-items: center;
   gap: 20px;
 `;
 
 export const Card = styled.div`
-  width: 200px;
+  min-width: 200px;
   height: 170px;
   border-radius: 5px;
   border: 1px solid var(--grey60);
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
-  /* padding: 10px; */
   transition: all ease-in-out 0.2s;
 
   &:hover {
@@ -63,7 +62,6 @@ export const Card = styled.div`
 
     .line {
       padding: 5px;
-      /* margin: 5px; */
       display: flex;
       gap: 10px;
       align-items: center;

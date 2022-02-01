@@ -21,6 +21,7 @@ import {
   DepartureAddressForm,
   Form,
 } from "./styles";
+<<<<<<< HEAD:src/Components/Modals/ModalTaxi/index.jsx
 import { cepApi } from "../../../Services/api";
 import RadioButtonPets from "../../RadioButtonPets";
 import Button from "../../Button";
@@ -30,6 +31,16 @@ import { usePets } from "../../../Providers/Pets";
 import { useServices } from "../../../Providers/Services";
 import { Link } from "react-router-dom";
 // import {useAuth} from "../../Providers/Auth"
+=======
+import {cepApi} from "../../Services/api"
+import RadioButtonPets from "../RadioButtonPets";
+import Button from "../Button";
+import PriceTableTaxi from "../PriceTableTaxi";
+import Input from "../Input";
+import { usePets } from "../../Providers/Pets";
+import { useServices } from "../../Providers/Services";
+import { useAuth } from "../../Providers/Auth";
+>>>>>>> 6561501c2800e6f810cc1558be9225897720305e:src/Components/ModalTaxi/index.jsx
 
 const ModalTaxi = ({ open, handleClose }) => {
   const [buttonsVisibility, setButtonsVisibility] = useState(true);
@@ -42,10 +53,18 @@ const ModalTaxi = ({ open, handleClose }) => {
   const [departureNumberValue, setDepartureNumberValue] = useState("");
   const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+<<<<<<< HEAD:src/Components/Modals/ModalTaxi/index.jsx
   const [openPopover, setOpenPopover] = useState("");
 
   // const {user} = useAuth();
 
+=======
+  const [openPopover, setOpenPopover] = useState('');
+  const [myPets, setMyPets] = useState([]);
+
+  
+  
+>>>>>>> 6561501c2800e6f810cc1558be9225897720305e:src/Components/ModalTaxi/index.jsx
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenPopover("taxiPrice");
@@ -56,8 +75,20 @@ const ModalTaxi = ({ open, handleClose }) => {
     setOpenPopover("");
   };
 
+<<<<<<< HEAD:src/Components/Modals/ModalTaxi/index.jsx
   const { pets } = usePets();
   const { serviceCreate } = useServices();
+=======
+  const {pets} = usePets();
+  const {serviceCreate} = useServices();
+  const {user} = useAuth();
+
+  useEffect(() => {
+    if(pets.length > 0){
+      setMyPets(pets.filter(pet => pet.userId === user.id))
+    }
+  }, [pets])
+>>>>>>> 6561501c2800e6f810cc1558be9225897720305e:src/Components/ModalTaxi/index.jsx
 
   const schema = yup.object().shape({
     serviceDesiredDate: yup.string().required("Selecione a data"),
@@ -296,6 +327,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
+<<<<<<< HEAD:src/Components/Modals/ModalTaxi/index.jsx
                     {pets.length !== 0 ? (
                       pets.map((pet) => (
                         <RadioButtonPets
@@ -317,6 +349,19 @@ const ModalTaxi = ({ open, handleClose }) => {
                         </div>
                       </div>
                     )}
+=======
+                    {myPets.map((pet) => (
+                      <RadioButtonPets
+                        key={pet.id}
+                        name="petId"
+                        register={register}
+                        animalType={pet.petType}
+                        value={pet.id}
+                        id={pet.id}
+                        petName={pet.petName}
+                      />
+                    ))}
+>>>>>>> 6561501c2800e6f810cc1558be9225897720305e:src/Components/ModalTaxi/index.jsx
                   </div>
                 </div>
                 <div className="obsContainer">
