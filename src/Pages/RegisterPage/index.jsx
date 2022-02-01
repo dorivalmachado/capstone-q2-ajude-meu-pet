@@ -62,7 +62,7 @@ const RegisterPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
   const [isClient, setIsClient] = useState(true);
   const [showPass, setShowPass] = useState(false);
 
@@ -188,7 +188,7 @@ const RegisterPage = () => {
                 ),
               }}
             />
-            <h2>QUERO</h2>
+            <h2>Quero</h2>
             <RadioGroup
               className="radioContainer"
               row
@@ -209,7 +209,7 @@ const RegisterPage = () => {
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      },
+                      }
                     }}
                   />
                 }
