@@ -1,29 +1,27 @@
+import { usePets } from "../../Providers/Pets";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaRegWindowClose } from "react-icons/fa";
 import { Dialog, DialogContent } from "@mui/material";
+
 import Button from "../Button";
 import Input from "../Input";
 import RadioInput from "../RadioInput";
 import { Form } from "./styles";
-import { useState } from "react";
-import { usePets } from "../../Providers/Pets";
-import { RadioDefault } from "./styles";
 
 
-const ModalEditPet = ({open, handleClose, id}) => {
 
-    const [showOtherType, setShowOtherType] = useState(false);
+const ModalPet = ({add, open, handleClose, id}) => {
 
-    const {petUpdate, petDelete, pets} = usePets();
-    
+    const {petCreate, petUpdate, petDelete} = usePets();
+
     const schema = yup.object().shape({
-        petName: yup.string(),
-        petType: yup.string(),
-        petGender: yup.string(),
-        petSize: yup.string(),
-        petBirthDate: yup.string()
+        petName: yup.string().required('Informe o nome'),
+        petType: yup.string().required('Informe o tipo'),
+        petGender: yup.string().required('Informe o gênero'),
+        petSize: yup.string().required('Informe o tamanho'),
+        petBirthDate: yup.string().required('Informe a data de nascimento')
     });
 
     const {
@@ -36,25 +34,15 @@ const ModalEditPet = ({open, handleClose, id}) => {
     }); 
 
     const closeModal = () => {
-        setShowOtherType(false);
         handleClose();
         reset();
     };
 
-    const handleAddition = (data) => {
+    const handleForm = (data) => {
         closeModal();
-        const pet = pets.find(elem => elem.id === id)
-        for(let key in data){
-            if (key === 'petBirthDate' && data[key] !== ''){
-                data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.petBirthDate.replaceAll('-','/')));
-            }
-
-            if(data[key] === ''){
-                data[key] = pet[key];
-            }
-        }
-        petUpdate(data, id);
-    }
+        data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.petBirthDate.replaceAll('-','/')));
+        add ? petCreate(data) : petUpdate(data, id);
+    };
 
     const handleExclusion = () => {
         petDelete(id);
@@ -63,7 +51,7 @@ const ModalEditPet = ({open, handleClose, id}) => {
 
     return(
         <Dialog
-            open={open === 'edit'}
+            open={open}
             onClose={closeModal}
             sx={{
             "& .MuiDialog-paper": {
@@ -73,9 +61,9 @@ const ModalEditPet = ({open, handleClose, id}) => {
             }}
         >
             <DialogContent>
-                <Form onSubmit={handleSubmit(handleAddition)}>
+                <Form onSubmit={handleSubmit(handleForm)}>
                     <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
-                    <h2>Adicione seu pet</h2>
+                    {add ? <h2>Adicione seu pet</h2> : <h2>Altere as informações do seu pet</h2>}
                     
                     <Input label='Nome' name='petName' register={register}/>
                     
@@ -83,16 +71,13 @@ const ModalEditPet = ({open, handleClose, id}) => {
                     <div>
                         <RadioInput label='Cachorro' value='cachorro' name='petType' register={register} id='cachorro'/>
                         <RadioInput label='Gato' value='gato' name='petType' register={register} id='gato'/>
-                        <RadioInput label='Outro' value='outro' name='petType' register={() => {}} id='outro' onClick={() => setShowOtherType(true)}/>
-                        <RadioDefault type="radio" {...register("petType")} value="" checked="checked"/>
+                        <RadioInput label='Outro' value='outro' name='petType' register={register} id='outro' />
                     </div>
-                    {showOtherType && <Input label='Outro' name='petType' register={register}/>}
 
                     <h3>Gênero</h3>
                     <div>
                         <RadioInput label='Feminino' value='female' name='petGender' register={register} id='female'/>
                         <RadioInput label='Masculino' value='male' name='petGender' register={register} id='male'/>
-                        <RadioDefault type="radio" {...register("petGender")} value="" checked="checked"/>
                     </div>
                     
                     <h3>Tamanho</h3>
@@ -100,14 +85,13 @@ const ModalEditPet = ({open, handleClose, id}) => {
                         <RadioInput label='Pequeno' value='pequeno' name='petSize' register={register} id='pequeno'/>
                         <RadioInput label='Médio' value='médio' name='petSize' register={register} id='médio'/>
                         <RadioInput label='Grande' value='grande' name='petSize' register={register} id='grande'/>
-                        <RadioDefault type="radio" {...register("petSize")} value="" checked="checked"/>
                     </div>
                     
                     <h3>Data de nascimento</h3>
                     <Input type='date' name='petBirthDate' register={register} />
                     
                     <div>
-                        <Button onClick={handleExclusion}>Excluir pet</Button>
+                        {!add && <Button onClick={handleExclusion}>Excluir pet</Button>}
                         <Button buttonColor='blue' type='submit'>Salvar as alterações</Button>
                     </div>
                 </Form>
@@ -116,4 +100,4 @@ const ModalEditPet = ({open, handleClose, id}) => {
     )
 }
 
-export default ModalEditPet
+export default ModalPet;
