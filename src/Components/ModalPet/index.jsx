@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FaRegWindowClose } from "react-icons/fa";
 import { Dialog, DialogContent } from "@mui/material";
 
-import Button from "../Button";
+import Button from "../Button/index.tsx";
 import Input from "../Input";
 import RadioInput from "../RadioInput";
 import { Form } from "./styles";

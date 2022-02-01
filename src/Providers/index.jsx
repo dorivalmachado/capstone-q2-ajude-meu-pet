@@ -1,4 +1,4 @@
-import { AuthProvider } from "./Auth";
+import { AuthProvider } from "./Auth/index.tsx";
 import { PetsProvider } from "./Pets";
 import { ServicesProvider } from "./Services";
 

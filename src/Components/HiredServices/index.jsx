@@ -8,7 +8,7 @@ import { BsCheck2Square } from "react-icons/bs";
 import { useServices } from "../../Providers/Services";
 import { usePets } from "../../Providers/Pets";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 
 export const HiredServices = () => {
   const { services } = useServices();

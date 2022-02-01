@@ -1,5 +1,9 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { Container, ButtonStyle } from "./styles";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+  buttonColor: string,
+}
 
 const Button = ({
   type = "button",
@@ -7,7 +11,7 @@ const Button = ({
   children,
   buttonColor,
   ...rest
-}) => {
+}: ButtonProps) => {
   return (
     <Container>
       <ButtonStyle

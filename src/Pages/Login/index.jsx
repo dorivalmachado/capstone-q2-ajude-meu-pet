@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { Link } from "react-router-dom";
 import { FiEyeOff, FiEye, FiLock, FiUser } from "react-icons/fi";
-import Button from "../../Components/Button";
+import Button from "../../Components/Button/index.tsx";
 import DogImage from "../../Assets/Img/corgiRunning.gif";
 import Input from "../../Components/Input";
 

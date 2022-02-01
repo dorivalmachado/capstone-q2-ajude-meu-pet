@@ -8,7 +8,7 @@ import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
 import React, { useEffect, useState } from "react";
 import { LightTip } from "../../Helpers/Tooltip";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import ModalPet from "../../Components/ModalPet";
 
 

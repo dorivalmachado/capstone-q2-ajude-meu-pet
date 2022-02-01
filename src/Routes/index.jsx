@@ -1,5 +1,5 @@
 import { Switch } from "react-router-dom";
-import { useAuth } from "../Providers/Auth";
+import { useAuth } from "../Providers/Auth/index.tsx";
 
 import { Login } from "../Pages/Login";
 import { ServicesPage } from "../Pages/ServicesPage";

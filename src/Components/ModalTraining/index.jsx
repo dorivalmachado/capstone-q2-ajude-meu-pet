@@ -20,10 +20,10 @@ import {
   TrainingType 
 } from "./styles";
 import RadioButtonPets from "../RadioButtonPets";
-import Button from "../Button";
+import Button from "../Button/index.tsx";
 import PriceTableTraining from "../PriceTableTraining";
 import {usePets} from "../../Providers/Pets"
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useServices } from "../../Providers/Services";
 
 const ModalTraining = ({ open, handleClose }) => {

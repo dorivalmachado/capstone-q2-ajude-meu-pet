@@ -5,7 +5,7 @@ import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import LogoImg from "../../Assets/Img/logo.svg";
 
 export const HeaderLogged = () => {
