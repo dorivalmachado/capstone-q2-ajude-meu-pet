@@ -1,27 +1,101 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { api } from "../../Services/api";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
-export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [data, setData] = useState(() => {
+interface AuthProviderProps {
+  children: ReactNode,
+}
+
+interface UserData {
+  accessToken: string,
+  user: User,
+}
+
+interface Data {
+  token: string,
+  user: User,
+}
+
+interface User{
+  email: string,
+  name: string,
+  phone: string,
+  street: string,
+  addressNumber: string,
+  addressComplement: string,
+  city: string,
+  isClient: boolean,
+  id: number
+}
+
+interface UserRegister{
+  email: string,
+  name: string,
+  phone: string,
+  password: string
+}
+
+interface UserLogin{
+  email: string,
+  password: string
+}
+
+interface UserUpdate{
+  email?: string,
+  password?: string,
+  name?: string,
+  phone?: string,
+  street?: string,
+  addressNumber?: string,
+  addressComplement?: string,
+  city?: string,
+  isClient?: boolean
+}
+
+interface UpdateRes {
+  email: string,
+  name: string,
+  phone: string,
+  street: string,
+  addressNumber: string,
+  addressComplement: string,
+  password: string,
+  city: string,
+  isClient: boolean,
+  id: number
+}
+
+interface AuthData{
+  signup: (userData: UserRegister) => void,
+  login: (userData: UserLogin) => void,
+  updateUser: (userData: UserUpdate) =>void,
+  logout: () => void,
+  user: User,
+  token: string,
+}
+
+
+export const AuthContext = createContext<AuthData>({} as AuthData);
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [data, setData] = useState<Data>(() => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
-    const user = localStorage.getItem("@ajude-meu-pet:user") || {};
+    const user = JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {} as User;
 
     if (token && user) {
-      return { token, user: JSON.parse(user) };
+      return { token, user };
     }
 
-    return {};
+    return {} as Data;
   });
 
   const history = useHistory();
 
-  const signup = (userData) => {
+  const signup = (userData: UserRegister) => {
     api
-      .post("/register/", userData)
+      .post<UserData>("/register/", userData)
       .then((_) => {
         toast.success("Cadastro realizado");
         history.push("/login");
@@ -31,9 +105,9 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const login = (userData) => {
+  const login = (userData: UserLogin) => {
     api
-      .post("/login/", userData)
+      .post<UserData>("/login/", userData)
       .then((response) => {
         const { accessToken } = response.data;
         const { user } = response.data;
@@ -47,10 +121,10 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const updateUser = (userData) => {
+  const updateUser = (userData: UserUpdate) => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     api
-      .patch(`/users/${data.user.id}/`, userData, {
+      .patch<UpdateRes>(`/users/${data.user.id}/`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -69,7 +143,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("@ajude-meu-pet:token");
     localStorage.removeItem("@ajude-meu-pet:user");
-    setData({});
+    setData({} as Data);
     toast("Até a próxima!", {
       icon: "👋",
     });

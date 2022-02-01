@@ -1,19 +1,24 @@
 import React from "react";
 import { Container } from "./styles";
 import { TextField } from "@mui/material";
+import { FieldValues, UseFormRegister } from "react-hook-form";
+// import { TextFieldProps } from "material-ui";
+
+// interface InputProps extends TextFieldProps {
+interface InputProps {
+  error?: boolean;
+  register: UseFormRegister<FieldValues>;
+  name: string;
+  type?: string;
+}
 
 const Input = ({
   type = "text",
-  label,
   name,
   register,
-  value,
-  error,
-  inputProps,
-  helperText,
-  defaultValue,
+  error=false,
   ...rest
-}) => {
+}: InputProps) => {
   const textFieldStyle = {
     "& label.Mui-focused": {
       color: "var(--yellow80)",
@@ -38,17 +43,11 @@ const Input = ({
   return (
     <Container>
       <TextField
-        label={label}
         type={type}
         variant="outlined"
-        name={name}
-        value={value}
-        helperText={helperText}
         {...register(name)}
         sx={textFieldStyle}
-        InputProps={inputProps}
         error={error}
-        defaultValue={defaultValue}
         {...rest}
       />
     </Container>

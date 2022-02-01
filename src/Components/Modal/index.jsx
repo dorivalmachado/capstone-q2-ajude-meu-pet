@@ -9,7 +9,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import Button from "../Button";
+import Button from "../Button/index.tsx";
 
 const ModalBase = ({ open, handleClose, children }) => {
   return (
