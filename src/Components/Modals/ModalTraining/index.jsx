@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import { DialogContent, TextareaAutosize, TextField } from "@mui/material";
 import { FaRegWindowClose } from "react-icons/fa";
@@ -38,6 +38,7 @@ const ModalTraining = ({ open, handleClose }) => {
   const [training, setTraining] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState("");
+  const [myPets, setMyPets] = useState([]);
 
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
@@ -52,6 +53,12 @@ const ModalTraining = ({ open, handleClose }) => {
   const { pets } = usePets();
   const { user } = useAuth();
   const { serviceCreate } = useServices();
+
+  useEffect(() => {
+    if (pets.length > 0) {
+      setMyPets(pets.filter((pet) => pet.userId === user.id));
+    }
+  }, [pets]);
 
   const schema = yup.object().shape({
     serviceDesiredDate: yup.string().required("Selecione a data"),
@@ -169,8 +176,8 @@ const ModalTraining = ({ open, handleClose }) => {
                 <div className="petContainer">
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
-                    {pets.length !== 0 ? (
-                      pets.map((pet) => (
+                    {myPets.length !== 0 ? (
+                      myPets.map((pet) => (
                         <RadioButtonPets
                           key={pet.id}
                           name="petId"

@@ -6,23 +6,16 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
-<<<<<<< HEAD
-import React, { useState } from "react";
 import ModalAddPet from "../../Components/Modals/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
 import ModalEditPet from "../../Components/Modals/ModalEditPet";
-=======
 import React, { useEffect, useState } from "react";
-import { LightTip } from "../../Helpers/Tooltip";
 import { useAuth } from "../../Providers/Auth";
-import ModalPet from "../../Components/ModalPet";
-
-
->>>>>>> 6561501c2800e6f810cc1558be9225897720305e
+import ModalPet from "../../Components/Modals/ModalPet";
 
 const PetsPage = () => {
   const { pets } = usePets();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const [openModal, setOpenModal] = useState("open");
   const [petId, setPetId] = useState(0);
@@ -30,40 +23,30 @@ const PetsPage = () => {
   const [myPets, setMyPets] = useState([]);
 
   const editPet = (id) => {
-<<<<<<< HEAD
-    setOpenModal("edit");
-    setPetId(id);
-  };
-=======
     setOpenModal(true);
     setPetId(id);
     setIsPetAddition(false);
-  }
->>>>>>> 6561501c2800e6f810cc1558be9225897720305e
+  };
 
-  const addPet = ()  => {
+  const addPet = () => {
     setOpenModal(true);
     setIsPetAddition(true);
-  }
+  };
 
   useEffect(() => {
-    if(pets.length > 0){
-      setMyPets(pets.filter(pet => pet.userId === user.id))
+    if (pets.length > 0) {
+      setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets])
+  }, [pets]);
 
   return (
     <MainContainer>
-<<<<<<< HEAD
-      <ModalAddPet open={openModal} handleClose={() => setOpenModal("")} />
-      <ModalEditPet
+      <ModalPet
+        add={isPetAddition}
         open={openModal}
-        handleClose={() => setOpenModal("")}
+        handleClose={() => setOpenModal(false)}
         id={petId}
       />
-=======
-      <ModalPet add={isPetAddition} open={openModal} handleClose={() => setOpenModal(false)} id={petId}/>
->>>>>>> 6561501c2800e6f810cc1558be9225897720305e
 
       <Container>
         <aside className="headerMobile">
@@ -77,15 +60,7 @@ const PetsPage = () => {
           <div className="titleBox">
             <h3>Meus Pets</h3>
             <LightTip title="Adicionar Pet">
-              <button
-<<<<<<< HEAD
-                id="add"
-                onClick={(e) => setOpenModal(e.currentTarget.id)}
-=======
-                id='add'
-                onClick={addPet}
->>>>>>> 6561501c2800e6f810cc1558be9225897720305e
-              >
+              <button id="add" onClick={addPet}>
                 <FaPlus />
               </button>
             </LightTip>
