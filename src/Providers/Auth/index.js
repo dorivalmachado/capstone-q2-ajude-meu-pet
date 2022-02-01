@@ -35,10 +35,8 @@ export const AuthProvider = ({ children }) => {
     api
       .post("/login/", userData)
       .then((response) => {
-        console.log("response.data:", response.data);
         const { accessToken } = response.data;
         const { user } = response.data;
-        console.log("user state from response.data:", user);
         localStorage.setItem("@ajude-meu-pet:token", accessToken);
         localStorage.setItem("@ajude-meu-pet:user", JSON.stringify(user));
         setData({ token: accessToken, user });

@@ -58,15 +58,24 @@ export const FormContainer = styled.div`
   h1 {
     color: var(--black50);
     font-family: var(--title-font);
-    font-size: 1.5rem;
+    font-size: 32px;
     letter-spacing: 1px;
-    margin-bottom: 20px;
     padding: 0;
     text-align: center;
   }
 
   h2 {
     color: var(--black50);
+    font-family: var(--title-font);
+    font-weight: normal;
+  }
+
+  .cDUxdC{
+    margin-bottom: 15px;
+  }
+
+  .css-ahj2mt-MuiTypography-root{
+    font-size: 15px;
   }
 
   form {
@@ -84,6 +93,8 @@ export const FormContainer = styled.div`
 
     .css-1wc848c-MuiFormHelperText-root.Mui-error {
       text-align: center;
+      font-size: 11px;
+      line-height: 12px;
     }
 
     .css-7cjq23-MuiFormControl-root-MuiTextField-root {
@@ -104,6 +115,7 @@ export const FormContainer = styled.div`
 
   p {
     color: var(--black50);
+    font-size: 14px;
   }
 
   a {

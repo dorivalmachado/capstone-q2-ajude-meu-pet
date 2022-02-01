@@ -1,53 +1,64 @@
 import styled from "styled-components";
-import logo from "../../Assets/Img/logo.svg";
 
 export const Container = styled.aside`
-  width: 150px;
-  height: 100vh;
+  align-items: center;
   border-right: 2px solid var(--blue);
-
-  a {
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-  }
-
-  a:hover {
-    color: var(--yellow80);
-  }
-`;
-
-export const MainPage = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
-
-export const Logo = styled.div`
-  background: url(${logo}) no-repeat center;
-  height: 100px;
-  object-fit: contain;
-`;
-
-export const Menu = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  height: calc(100vh - 110px);
-  justify-content: space-between;
+  height: 100vh;
+  justify-content: center;
+  width: 150px;
 
-  .menuTop {
+  .content {
     display: flex;
     flex-direction: column;
-    gap: 100px;
-    margin-top: 100px;
+    height: 90vh;
+    justify-content: space-between;
+  }
+
+  p {
+    font-family: var(--title-font);
+    letter-spacing: 1px;
+  }
+
+  a {
+    align-items: center;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  svg {
+    font-size: 25px;
+  }
+
+  a:hover,
+  svg:hover {
+    color: var(--yellow80);
   }
 
   .menuBottom {
+    margin: 0 auto;
+  }
+`;
+
+export const Menu = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  justify-content: flex-start;
+  margin-top: 5vh;
+
+  .menuTop {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    /* margin-top:100px; */
+    gap: 100px;
   }
 `;
 
