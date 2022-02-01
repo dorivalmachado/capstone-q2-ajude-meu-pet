@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const Form = styled.form`
   position: relative;
   padding-top: 30px;
@@ -26,6 +24,3 @@ export const Form = styled.form`
   }
 `
 
-export const RadioDefault = styled.input`
-  display: none;
-`
