@@ -22,20 +22,7 @@ import { FaRegWindowClose } from "react-icons/fa";
 const Profile = ({ open, onClose }) => {
   const [showPass, setShowPass] = useState(false);
 
-  const { updateUser } = useAuth();
-
-  const user = {
-    email: "kenzinho@mail.com",
-    password: "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
-    name: "Kenzinho",
-    phone: "(22)98729-9061",
-    street: "Gen. Mário Tourinho",
-    addressNumber: "1733",
-    addressComplement: "706",
-    city: "Curitiba",
-    isClient: false,
-    id: 1,
-  };
+  const { updateUser, user } = useAuth();
 
   const [phone, setPhone] = useState(() => user.phone);
 
@@ -68,8 +55,7 @@ const Profile = ({ open, onClose }) => {
   });
 
   const handleChange = (data) => {
-    // updateUser({ ...data, userId: user.id, isClient: true });
-    console.log({ ...data, userId: user.id, isClient: true });
+    updateUser({ ...data, userId: user.id, isClient: true });
   };
 
   const maskPhone = (value) => {
@@ -79,7 +65,7 @@ const Profile = ({ open, onClose }) => {
       .replace(/(\d{5})(\d)/, "$1-$2")
       .replace(/(-\d{4})(\d+?)$/, "$1");
   };
-  console.log(phone);
+  
   return (
     <Dialog
       open={open}
