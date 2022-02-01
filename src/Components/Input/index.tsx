@@ -2,7 +2,9 @@ import React from "react";
 import { Container } from "./styles";
 import { TextField } from "@mui/material";
 import { FieldValues, UseFormRegister } from "react-hook-form";
+// import { TextFieldProps } from "material-ui";
 
+// interface InputProps extends TextFieldProps {
 interface InputProps {
   error?: boolean;
   register: UseFormRegister<FieldValues>;
