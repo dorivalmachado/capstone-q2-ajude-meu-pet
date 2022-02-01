@@ -7,27 +7,29 @@ import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
 import React, { useState } from "react";
-import ModalAddPet from "../../Components/ModalAddPet";
+import ModalAddPet from "../../Components/Modals/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
-import ModalEditPet from "../../Components/ModalEditPet";
-
-
+import ModalEditPet from "../../Components/Modals/ModalEditPet";
 
 const PetsPage = () => {
   const { pets } = usePets();
 
-  const [openModal, setOpenModal] = useState('open');
+  const [openModal, setOpenModal] = useState("open");
   const [petId, setPetId] = useState(0);
 
   const editPet = (id) => {
-    setOpenModal('edit');
+    setOpenModal("edit");
     setPetId(id);
-  }
+  };
 
   return (
     <MainContainer>
-      <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
-      <ModalEditPet open={openModal} handleClose={() => setOpenModal('')} id={petId}/>
+      <ModalAddPet open={openModal} handleClose={() => setOpenModal("")} />
+      <ModalEditPet
+        open={openModal}
+        handleClose={() => setOpenModal("")}
+        id={petId}
+      />
 
       <Container>
         <aside className="headerMobile">
@@ -42,7 +44,7 @@ const PetsPage = () => {
             <h3>Meus Pets</h3>
             <LightTip title="Adicionar Pet">
               <button
-                id='add'
+                id="add"
                 onClick={(e) => setOpenModal(e.currentTarget.id)}
               >
                 <FaPlus />
