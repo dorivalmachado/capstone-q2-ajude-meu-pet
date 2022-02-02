@@ -22,8 +22,8 @@ const Routes = () => {
       <Route exact path="/services" isPrivate component={ServicesPage} />
       <Route exact path="/pets" isPrivate component={PetsPage} />
       <Route exact path="/profile" isPrivate component={ProfilePage} />
-      <Route component={NotFound} isPrivate={!!token} />
       <Route exact path="/team" component={TeamPage} />
+      <Route component={NotFound} isPrivate={!!token} />
     </Switch>
   );
 };

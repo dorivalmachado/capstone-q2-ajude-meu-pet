@@ -23,7 +23,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Providers/Auth";
-import { motion } from "framer-motion";
 import dog from "../../Assets/Img/flirtingDog.gif";
 
 const RegisterPage = () => {
@@ -36,7 +35,7 @@ const RegisterPage = () => {
     phone: yup
       .string()
       .required("Telefone obrigatório")
-      .min(13, "Número incorreto"),
+      .min(14, "Número incorreto"),
     password: yup
       .string()
       .min(
@@ -44,9 +43,9 @@ const RegisterPage = () => {
         "Deve conter 8 dígitos, entre números, letras maiúsculas e caracteres especiais"
       )
       .required()
-      .matches(/(?=.[0-9])(?=.{8,})/, "Sem número")
-      .matches(/(?=.[A-Z])(?=.{8,})/, "Sem letra maiúscula")
-      .matches(/(?=.[!@#$%^&*])(?=.{8,})/, "Sem caractere especial (!@#$%^&)"),
+      .matches(/(?=.[0-9])(?=.{1,})/, "Sem número")
+      .matches(/(?=.[A-Z])(?=.{1,})/, "Sem letra maiúscula")
+      .matches(/(?=.[!@#$%^&*])(?=.{1,})/, "Sem caractere especial (!@#$%^&)"),
     confirmPass: yup
       .string()
       .required("Campo obrigatório")
@@ -86,12 +85,6 @@ const RegisterPage = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      exit={{ opacity: 0 }}
-    >
       <Container>
         <img src={dog} alt="Dog saying How you doin'" />
         <ContentContainer>
@@ -113,144 +106,144 @@ const RegisterPage = () => {
                   ),
                 }}
               />
-
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                fullWidth
-                register={register}
-                error={!!errors.email}
-                helperText={errors.email?.message}
-                inputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FiMail />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Input
-                label="Telefone"
-                name="phone"
-                fullWidth
-                error={!!errors.phone}
-                helperText={errors.phone?.message}
-                register={register}
-                value={phone}
-                onChange={(e) => setPhone(maskPhone(e.target.value))}
-                inputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FiSmartphone />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Input
-                label="Senha"
-                name="password"
-                type={showPass ? "text" : "password"}
-                register={register}
-                error={!!errors.password}
-                helperText={errors.password?.message}
-                fullWidth
-                inputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FiLock />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      onClick={() => setShowPass(!showPass)}
-                    >
-                      {showPass ? <FiEye /> : <FiEyeOff />}
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Input
-                label="Confirmar senha"
-                name="confirmPass"
-                type={showPass ? "text" : "password"}
-                register={register}
-                error={!!errors.confirmPass}
-                helperText={errors.confirmPass?.message}
-                fullWidth
-                inputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FiLock />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      onClick={() => setShowPass(!showPass)}
-                    >
-                      {showPass ? <FiEye /> : <FiEyeOff />}
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <h2>Quero</h2>
-              <RadioGroup
-                className="radioContainer"
-                row
-                value={isClient}
-                onChange={handleRadioChange}
-                sx={{
-                  "& .MuiSvgIcon-root": {
-                    fontSize: 20,
-                  },
-                }}
-              >
-                <FormControlLabel
-                  value="worker"
-                  control={
-                    <Radio
-                      required
-                      sx={{
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              fullWidth
+              register={register}
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FiMail />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Input
+              label="Telefone"
+              name="phone"
+              fullWidth
+              error={!!errors.phone}
+              helperText={errors.phone?.message}
+              register={register}
+              value={phone}
+              onChange={(e) => setPhone(maskPhone(e.target.value))}
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FiSmartphone />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Input
+              label="Senha"
+              name="password"
+              type={showPass ? "text" : "password"}
+              register={register}
+              error={!!errors.password}
+              helperText={errors.password?.message}
+              fullWidth
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FiLock />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment
+                    position="end"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? <FiEye /> : <FiEyeOff />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Input
+              label="Confirmar senha"
+              name="confirmPass"
+              type={showPass ? "text" : "password"}
+              register={register}
+              error={!!errors.confirmPass}
+              helperText={errors.confirmPass?.message}
+              fullWidth
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FiLock />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment
+                    position="end"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? <FiEye /> : <FiEyeOff />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {/* <h2>Quero</h2>
+            <RadioGroup
+              className="radioContainer"
+              row
+              value={isClient}
+              onChange={handleRadioChange}
+              sx={{
+                "& .MuiSvgIcon-root": {
+                  fontSize: 20,
+                },
+              }}
+            >
+              <FormControlLabel
+                value="worker"
+                control={
+                  <Radio
+                    required
+                    checked=''
+                    sx={{
+                      color: "var(--black50)",
+                      "&.Mui-checked": {
                         color: "var(--black50)",
-                        "&.Mui-checked": {
-                          color: "var(--black50)",
-                        },
-                      }}
-                    />
-                  }
-                  label="Prestar um serviço"
-                  labelPlacement="bottom"
-                />
-                <FormControlLabel
-                  value="client"
-                  control={
-                    <Radio
-                      required
-                      sx={{
+                      },
+                    }}
+                  />
+                }
+                label="Prestar um serviço"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="client"
+                control={
+                  <Radio
+                    required
+                    checked
+                    sx={{
+                      color: "var(--black50)",
+                      "&.Mui-checked": {
                         color: "var(--black50)",
-                        "&.Mui-checked": {
-                          color: "var(--black50)",
-                        },
-                      }}
-                    />
-                  }
-                  label="Contratar um serviço"
-                  labelPlacement="bottom"
-                />
-              </RadioGroup>
-              <Button type="submit" buttonColor="darkBrown">
-                Cadastrar
-              </Button>
-            </form>
-            <p>
-              Já possui uma conta? <Link to="/login">Entre aqui</Link>
-            </p>
-          </FormContainer>
-        </ContentContainer>
-      </Container>
-    </motion.div>
+                      },
+                    }}
+                  />
+                }
+                label="Contratar um serviço"
+                labelPlacement="bottom"
+              />
+            </RadioGroup> */}
+            <Button type="submit" buttonColor="darkBrown">
+              Cadastrar
+            </Button>
+          </form>
+          <p>
+            Já possui uma conta? <Link to="/login">Entre aqui</Link>
+          </p>
+        </FormContainer>
+      </ContentContainer>
+    </Container>
   );
 };
 
