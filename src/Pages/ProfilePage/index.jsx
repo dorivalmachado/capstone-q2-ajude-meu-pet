@@ -1,5 +1,5 @@
 import { Container, ContainerContent } from "./styles";
-import { HeaderLogged } from "../../Components/HeaderLogged";
+import { HeaderLogged } from "../../Components/HeaderLogged/index.tsx";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useState } from "react";
 import Header from "../../Components/Header/index.tsx";
