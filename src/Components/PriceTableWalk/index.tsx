@@ -1,10 +1,15 @@
 import { Popover, Typography } from "@mui/material";
+import { PopoverProps } from "material-ui";
 
-const PriceTableWalk = ({ open, anchorEl, handleClose }) => {
+interface PriceTableWalkProps extends PopoverProps{
+  openPop: string,
+  handleClose: () => void 
+}
+
+const PriceTableWalk = ({ openPop, handleClose, ...rest }: PriceTableWalkProps) => {
   return (
     <Popover
-      open={open === "walkPrice"}
-      anchorEl={anchorEl}
+      open={openPop === "walkPrice"}
       onClose={handleClose}
       anchorOrigin={{
         vertical: "top",
@@ -14,6 +19,7 @@ const PriceTableWalk = ({ open, anchorEl, handleClose }) => {
         vertical: "bottom",
         horizontal: "center",
       }}
+      {...rest}
     >
       <Typography
         sx={{ p: 3 }}

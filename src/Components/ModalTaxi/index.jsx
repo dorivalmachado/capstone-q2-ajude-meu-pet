@@ -14,19 +14,19 @@ import toast from "react-hot-toast";
 import { 
   ArrivalAddress,
   ButtonsContainer, 
-  CepContainer, 
+  // CepContainer, 
   ContainerBottom, 
   ContainerTaxi, 
-  CssTextField,
+  // CssTextField,
   DepartureAddress, 
-  DepartureAddressButtons, 
+  // DepartureAddressButtons, 
   DepartureAddressForm, 
   Form, 
 } from "./styles";
-import {cepApi} from "../../Services/api"
+// import {cepApi} from "../../Services/api"
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button/index.tsx";
-import PriceTableTaxi from "../PriceTableTaxi";
+import PriceTableTaxi from "../PriceTableTaxi/index.tsx";
 import Input from "../Input/index.tsx";
 import { usePets } from "../../Providers/Pets/index.tsx";
 import { useServices } from "../../Providers/Services/index.tsx";
@@ -35,20 +35,19 @@ import { useAuth } from "../../Providers/Auth/index.tsx";
 
 const ModalTaxi = ({ open, handleClose }) => {
 
-  const [buttonsVisibility, setButtonsVisibility] = useState(true);
-  const [arrivalCep, setArrivalCep] = useState("");
-  const [arrivalCityName, setArrivalCityName] = useState("");
-  const [arrivalStreetName, setArrivalStreetName] = useState("");
-  const [departureCep, setDepartureCep] = useState("");
-  const [departureCityName, setDepartureCityName] = useState("");
-  const [departureStreetName, setDepartureStreetName] = useState("");
-  const [departureNumberValue, setDepartureNumberValue] = useState("");
-  const [departureComplementValue, setDepartureComplementValue] = useState("");
+  // const [buttonsVisibility, setButtonsVisibility] = useState(true);
+  // const [arrivalCep, setArrivalCep] = useState("");
+  // const [arrivalCityName, setArrivalCityName] = useState("");
+  // const [arrivalStreetName, setArrivalStreetName] = useState("");
+  // const [departureCep, setDepartureCep] = useState("");
+  // const [departureCityName, setDepartureCityName] = useState("");
+  // const [departureStreetName, setDepartureStreetName] = useState("");
+  // const [departureNumberValue, setDepartureNumberValue] = useState("");
+  // const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState('');
   const [myPets, setMyPets] = useState([]);
 
-  
   
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
@@ -111,13 +110,13 @@ const ModalTaxi = ({ open, handleClose }) => {
   const closeModal = () => {
     handleClose();
     reset();
-    setDepartureCityName('');
-    setDepartureNumberValue('');
-    setDepartureStreetName('');
-    setDepartureComplementValue('');
-    setArrivalStreetName('');
-    setArrivalCityName('');
-    setButtonsVisibility(true);
+    // setDepartureCityName('');
+    // setDepartureNumberValue('');
+    // setDepartureStreetName('');
+    // setDepartureComplementValue('');
+    // setArrivalStreetName('');
+    // setArrivalCityName('');
+    // setButtonsVisibility(true);
   }
   
 
@@ -190,7 +189,7 @@ const ModalTaxi = ({ open, handleClose }) => {
           <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
           <DialogContent>
 
-            <PriceTableTaxi open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <PriceTableTaxi openPop={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
             <ContainerTaxi>
               <DepartureAddress>
                 <h3>Qual o endereço de origem? </h3>
@@ -209,10 +208,34 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='serviceDepartureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
-                  <Input label='Número' register={register} name='serviceDepartureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
-                  <Input label='Complemento' register={register} name='serviceDepartureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
-                  <Input label='Cidade' register={register} name='serviceDepartureCity' value={departureCityName} onChange={ (e) => setDepartureCityName(e.target.value)}/>
+                  <Input 
+                    label='Rua' 
+                    register={register} 
+                    name='serviceDepartureStreet' 
+                    // value={departureStreetName} 
+                    // onChange={ (e) => setDepartureStreetName(e.target.value)}
+                  />
+                  <Input 
+                    label='Número' 
+                    register={register} 
+                    name='serviceDepartureNumber' 
+                    // value={departureNumberValue} 
+                    // onChange={ (e) => setDepartureNumberValue(e.target.value)}
+                  />
+                  <Input 
+                    label='Complemento' 
+                    register={register} 
+                    name='serviceDepartureComplement' 
+                    // value={departureComplementValue} 
+                    // onChange={ (e) => setDepartureComplementValue(e.target.value)}
+                  />
+                  <Input 
+                    label='Cidade' 
+                    register={register} 
+                    name='serviceDepartureCity' 
+                    // value={departureCityName} 
+                    // onChange={ (e) => setDepartureCityName(e.target.value)}
+                  />
                 </DepartureAddressForm>
               </DepartureAddress>
               <ArrivalAddress>
@@ -227,10 +250,22 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='serviceArrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
+                  <Input 
+                    label='Rua' 
+                    register={register} 
+                    name='serviceArrivalStreet' 
+                    // value={arrivalStreetName} 
+                    // onChange={ (e) => setArrivalStreetName(e.target.value)}
+                  />
                   <Input label='Número' register={register} name='serviceArrivalNumber'/>
                   <Input label='Complemento' register={register} name='serviceArrivalComplement'/>
-                  <Input label='Cidade' register={register} name='serviceArrivalCity' value={arrivalCityName} onChange={ (e) => setArrivalCityName(e.target.value)}/>
+                  <Input 
+                    label='Cidade' 
+                    register={register} 
+                    name='serviceArrivalCity' 
+                    // value={arrivalCityName} 
+                    // onChange={ (e) => setArrivalCityName(e.target.value)}
+                  />
                 </div>
               </ArrivalAddress>
             </ContainerTaxi>

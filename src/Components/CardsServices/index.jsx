@@ -9,9 +9,9 @@ import {
     CardFront, 
     Container 
 } from "./styles"
-import PriceTableTraining from "../PriceTableTraining";
-import PriceTableWalk from "../PriceTableWalk";
-import PriceTableTaxi from "../PriceTableTaxi";
+import PriceTableTraining from "../PriceTableTraining/index.tsx";
+import PriceTableWalk from "../PriceTableWalk/index.tsx";
+import PriceTableTaxi from "../PriceTableTaxi/index.tsx";
 import ModalTraining from "../ModalTraining";
 import ModalWalk from "../ModalWalk";
 import ModalTaxi from "../ModalTaxi";
@@ -37,12 +37,11 @@ const CardsServices = () => {
         setOpenPopover('');
     };
 
-    
     return(
         <>
-            <PriceTableTraining open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
-            <PriceTableWalk open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
-            <PriceTableTaxi open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <PriceTableTraining openPop={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <PriceTableWalk openPop={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <PriceTableTaxi openPop={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
 
             <ModalTraining open={openModal} handleClose={handleCloseModal}/>
             <ModalWalk open={openModal} handleClose={handleCloseModal}/>

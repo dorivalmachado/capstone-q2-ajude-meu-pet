@@ -1,10 +1,15 @@
 import { Popover, Typography } from "@mui/material";
+import { PopoverProps } from "material-ui";
 
-const PriceTableTraining = ({ open, anchorEl, handleClose }) => {
+interface PriceTableTrainingProps extends PopoverProps{
+  openPop: string,
+  handleClose: () => void 
+}
+
+const PriceTableTraining = ({ openPop, handleClose, ...rest }: PriceTableTrainingProps) => {
   return (
     <Popover
-      open={open === "trainingPrice"}
-      anchorEl={anchorEl}
+      open={openPop === "trainingPrice"}
       onClose={handleClose}
       anchorOrigin={{
         vertical: "top",
@@ -14,6 +19,7 @@ const PriceTableTraining = ({ open, anchorEl, handleClose }) => {
         vertical: "bottom",
         horizontal: "center",
       }}
+      {...rest}
     >
       <Typography
         sx={{ p: 3 }}
