@@ -2,15 +2,15 @@ import { Container, ContainerContent } from "./styles";
 import { HeaderLogged } from "../../Components/HeaderLogged";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useState } from "react";
+import Header from "../../Components/Header/index.tsx";
 import Button from "../../Components/Button/index.tsx";
-import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
 import Profile from "../../Components/Profile";
 
 const ProfilePage = () => {
   const [open, setOpen] = useState(false);
 
-    const { user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <MainContainer>
