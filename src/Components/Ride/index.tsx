@@ -1,4 +1,4 @@
-import Imagem from "../Imagem";
+import Imagem from "../Imagem/index.tsx";
 import { Container, Paragraph, Subtitle, Text } from "./styles.ts";
 import LogoCaminhada from "../../Assets/Img/LogoCaminhada.jpg";
 import { useEffect, useState } from "react";

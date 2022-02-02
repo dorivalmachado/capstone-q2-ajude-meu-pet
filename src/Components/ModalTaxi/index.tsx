@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import {
-  DialogContent,
-  TextareaAutosize,
-  TextField
-} from "@mui/material";
+import { DialogContent, TextareaAutosize, TextField } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaRegWindowClose } from "react-icons/fa";
 import toast from "react-hot-toast";
 
-import { 
+import {
   ArrivalAddress,
-  ButtonsContainer, 
-  CepContainer, 
-  ContainerBottom, 
-  ContainerTaxi, 
+  ButtonsContainer,
+  CepContainer,
+  ContainerBottom,
+  ContainerTaxi,
   CssTextField,
-  DepartureAddress, 
-  DepartureAddressButtons, 
-  DepartureAddressForm, 
-  Form, 
-} from "./styles";
-import {cepApi} from "../../Services/api"
+  DepartureAddress,
+  DepartureAddressButtons,
+  DepartureAddressForm,
+  Form,
+} from "./styles.ts";
+import { cepApi } from "../../Services/api";
 import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button/index.tsx";
 import PriceTableTaxi from "../PriceTableTaxi";
@@ -32,9 +28,7 @@ import { usePets } from "../../Providers/Pets/index.tsx";
 import { useServices } from "../../Providers/Services/index.tsx";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 
-
 const ModalTaxi = ({ open, handleClose }) => {
-
   const [buttonsVisibility, setButtonsVisibility] = useState(true);
   const [arrivalCep, setArrivalCep] = useState("");
   const [arrivalCityName, setArrivalCityName] = useState("");
@@ -45,30 +39,28 @@ const ModalTaxi = ({ open, handleClose }) => {
   const [departureNumberValue, setDepartureNumberValue] = useState("");
   const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [openPopover, setOpenPopover] = useState('');
+  const [openPopover, setOpenPopover] = useState("");
   const [myPets, setMyPets] = useState([]);
 
-  
-  
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpenPopover('taxiPrice');
+    setOpenPopover("taxiPrice");
   };
 
   const handleClosePopover = () => {
     setAnchorEl(null);
-    setOpenPopover('');
+    setOpenPopover("");
   };
 
-  const {pets} = usePets();
-  const {serviceCreate} = useServices();
-  const {user} = useAuth();
+  const { pets } = usePets();
+  const { serviceCreate } = useServices();
+  const { user } = useAuth();
 
   useEffect(() => {
-    if(pets.length > 0){
-      setMyPets(pets.filter(pet => pet.userId === user.id))
+    if (pets.length > 0) {
+      setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets])
+  }, [pets]);
 
   const schema = yup.object().shape({
     serviceDesiredDate: yup.string().required("Selecione a data"),
@@ -92,12 +84,14 @@ const ModalTaxi = ({ open, handleClose }) => {
     register,
   } = useForm({
     resolver: yupResolver(schema),
-  });  
+  });
 
   const handleBooking = (data) => {
     closeModal();
     data.petId = Number(data.petId);
-    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(new Date(data.serviceDesiredDate.replaceAll('-','/')));
+    data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
+      new Date(data.serviceDesiredDate.replaceAll("-", "/"))
+    );
     const requisitionBody = {
       ...data,
       serviceCategory: "taxi",
@@ -106,20 +100,19 @@ const ModalTaxi = ({ open, handleClose }) => {
       workerId: null,
     };
     serviceCreate(requisitionBody);
-  }
+  };
 
   const closeModal = () => {
     handleClose();
     reset();
-    setDepartureCityName('');
-    setDepartureNumberValue('');
-    setDepartureStreetName('');
-    setDepartureComplementValue('');
-    setArrivalStreetName('');
-    setArrivalCityName('');
+    setDepartureCityName("");
+    setDepartureNumberValue("");
+    setDepartureStreetName("");
+    setDepartureComplementValue("");
+    setArrivalStreetName("");
+    setArrivalCityName("");
     setButtonsVisibility(true);
-  }
-  
+  };
 
   // useEffect(() => {
   //   const formattedCep = arrivalCep.split('').filter(elem => !isNaN(Number(elem))).join('');
@@ -176,7 +169,7 @@ const ModalTaxi = ({ open, handleClose }) => {
   return (
     <div>
       <Dialog
-        open={open === 'taxi'}
+        open={open === "taxi"}
         onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
@@ -186,11 +179,13 @@ const ModalTaxi = ({ open, handleClose }) => {
         }}
       >
         <Form onSubmit={handleSubmit(handleBooking)}>
-
-          <FaRegWindowClose size={25} color='#999999' onClick={closeModal}/>
+          <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
           <DialogContent>
-
-            <PriceTableTaxi open={openPopover} anchorEl={anchorEl} handleClose={handleClosePopover}/>
+            <PriceTableTaxi
+              open={openPopover}
+              anchorEl={anchorEl}
+              handleClose={handleClosePopover}
+            />
             <ContainerTaxi>
               <DepartureAddress>
                 <h3>Qual o endereço de origem? </h3>
@@ -209,10 +204,36 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='serviceDepartureStreet' value={departureStreetName} onChange={ (e) => setDepartureStreetName(e.target.value)}/>
-                  <Input label='Número' register={register} name='serviceDepartureNumber' value={departureNumberValue} onChange={ (e) => setDepartureNumberValue(e.target.value)}/>
-                  <Input label='Complemento' register={register} name='serviceDepartureComplement' value={departureComplementValue} onChange={ (e) => setDepartureComplementValue(e.target.value)}/>
-                  <Input label='Cidade' register={register} name='serviceDepartureCity' value={departureCityName} onChange={ (e) => setDepartureCityName(e.target.value)}/>
+                  <Input
+                    label="Rua"
+                    register={register}
+                    name="serviceDepartureStreet"
+                    value={departureStreetName}
+                    onChange={(e) => setDepartureStreetName(e.target.value)}
+                  />
+                  <Input
+                    label="Número"
+                    register={register}
+                    name="serviceDepartureNumber"
+                    value={departureNumberValue}
+                    onChange={(e) => setDepartureNumberValue(e.target.value)}
+                  />
+                  <Input
+                    label="Complemento"
+                    register={register}
+                    name="serviceDepartureComplement"
+                    value={departureComplementValue}
+                    onChange={(e) =>
+                      setDepartureComplementValue(e.target.value)
+                    }
+                  />
+                  <Input
+                    label="Cidade"
+                    register={register}
+                    name="serviceDepartureCity"
+                    value={departureCityName}
+                    onChange={(e) => setDepartureCityName(e.target.value)}
+                  />
                 </DepartureAddressForm>
               </DepartureAddress>
               <ArrivalAddress>
@@ -227,10 +248,30 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input label='Rua' register={register} name='serviceArrivalStreet' value={arrivalStreetName} onChange={ (e) => setArrivalStreetName(e.target.value)}/>
-                  <Input label='Número' register={register} name='serviceArrivalNumber'/>
-                  <Input label='Complemento' register={register} name='serviceArrivalComplement'/>
-                  <Input label='Cidade' register={register} name='serviceArrivalCity' value={arrivalCityName} onChange={ (e) => setArrivalCityName(e.target.value)}/>
+                  <Input
+                    label="Rua"
+                    register={register}
+                    name="serviceArrivalStreet"
+                    value={arrivalStreetName}
+                    onChange={(e) => setArrivalStreetName(e.target.value)}
+                  />
+                  <Input
+                    label="Número"
+                    register={register}
+                    name="serviceArrivalNumber"
+                  />
+                  <Input
+                    label="Complemento"
+                    register={register}
+                    name="serviceArrivalComplement"
+                  />
+                  <Input
+                    label="Cidade"
+                    register={register}
+                    name="serviceArrivalCity"
+                    value={arrivalCityName}
+                    onChange={(e) => setArrivalCityName(e.target.value)}
+                  />
                 </div>
               </ArrivalAddress>
             </ContainerTaxi>
@@ -239,11 +280,19 @@ const ModalTaxi = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField sx={{width: '200px'}} type="date"  {...register('serviceDesiredDate')}/>
+                  <TextField
+                    sx={{ width: "200px" }}
+                    type="date"
+                    {...register("serviceDesiredDate")}
+                  />
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField sx={{width: '200px'}} type="time"  {...register('serviceDesiredTime')}/>
+                  <TextField
+                    sx={{ width: "200px" }}
+                    type="time"
+                    {...register("serviceDesiredTime")}
+                  />
                 </div>
               </div>
               <div className="changeToRow">
@@ -276,24 +325,21 @@ const ModalTaxi = ({ open, handleClose }) => {
                       borderRadius: "5px",
                       padding: "10px",
                     }}
-                    {...register('serviceObs')}
+                    {...register("serviceObs")}
                   />
                 </div>
               </div>
             </ContainerBottom>
-
           </DialogContent>
           <ButtonsContainer>
-            <Button type='submit' buttonColor="darkBrown">
+            <Button type="submit" buttonColor="darkBrown">
               Agendar!
             </Button>
             <Button buttonColor="blue " onClick={handleOpenPopover}>
               Tabela de preços
             </Button>
           </ButtonsContainer>
-        
         </Form>
-
       </Dialog>
     </div>
   );

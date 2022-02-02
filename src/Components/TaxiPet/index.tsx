@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Imagem from "../Imagem";
+import Imagem from "../Imagem/index.tsx";
 import { Container, Paragraph, Subtitle, Text } from "./styles.ts";
 import LogoPetTaxi from "../../Assets/Img/LogoPetTaxi.jpg";
 

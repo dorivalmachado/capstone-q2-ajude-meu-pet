@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container } from "./styles.ts";
 import { TextField } from "@mui/material";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 // import { TextFieldProps } from "material-ui";
@@ -16,7 +16,7 @@ const Input = ({
   type = "text",
   name,
   register,
-  error=false,
+  error = false,
   ...rest
 }: InputProps) => {
   const textFieldStyle = {
