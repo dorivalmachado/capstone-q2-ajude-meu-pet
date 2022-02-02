@@ -1,8 +1,8 @@
 import React, { ButtonHTMLAttributes } from "react";
-import { Container, ButtonStyle } from "./styles";
+import { Container, ButtonStyle } from "./styles.ts";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-  buttonColor: string,
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonColor: string;
 }
 
 const Button = ({
