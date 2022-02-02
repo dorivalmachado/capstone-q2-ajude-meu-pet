@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioPet } from "./styles";
+import { RadioPet } from "./styles.ts";
 import CatImage from "../../Assets/Img/cat.png";
 import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";

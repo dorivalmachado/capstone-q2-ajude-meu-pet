@@ -8,7 +8,7 @@ import RegisterPage from "../Pages/RegisterPage/index.tsx";
 import NotFound from "../Pages/NotFound/index.tsx";
 import PetsPage from "../Pages/PetsPage/index.tsx";
 import ProfilePage from "../Pages/ProfilePage/index.tsx";
-import Route from "./Route";
+import Route from "./Route.tsx";
 import { TeamPage } from "../Pages/TeamPage/index.tsx";
 
 const Routes = () => {

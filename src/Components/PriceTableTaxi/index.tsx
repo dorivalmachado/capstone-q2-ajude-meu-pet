@@ -1,10 +1,15 @@
 import { Popover, Typography } from "@mui/material";
+import { PopoverProps } from "material-ui";
 
-const PriceTableTaxi = ({ open, anchorEl, handleClose }) => {
+interface PriceTableTaxiProps extends PopoverProps{
+  openPop: string,
+  handleClose: () => void 
+}
+
+const PriceTableTaxi = ({ openPop, handleClose, ...rest }:PriceTableTaxiProps) => {
   return (
     <Popover
-      open={open === "taxiPrice"}
-      anchorEl={anchorEl}
+      open={openPop === "taxiPrice"}
       onClose={handleClose}
       anchorOrigin={{
         vertical: "top",
@@ -14,6 +19,7 @@ const PriceTableTaxi = ({ open, anchorEl, handleClose }) => {
         vertical: "bottom",
         horizontal: "center",
       }}
+      {...rest}
     >
       <Typography
         sx={{ p: 3 }}

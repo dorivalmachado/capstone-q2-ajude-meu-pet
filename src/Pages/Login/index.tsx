@@ -1,4 +1,4 @@
-import { Container, FormContainer, ContentContainer } from "./styles";
+import { Container, FormContainer, ContentContainer } from "./styles.ts";
 import { InputAdornment } from "@mui/material";
 
 import React, { useState } from "react";

@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioStyle } from "./styles";
+import { RadioStyle } from "./styles.ts";
 
 const RadioInput = ({ label, name, register, value, id, ...rest }) => {
   return (
