@@ -14,7 +14,7 @@ import {
   Content,
   SubText,
   TitleText,
-} from "./styles";
+} from "./styles.ts";
 import logo from "../../Assets/Img/logo.png";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer";

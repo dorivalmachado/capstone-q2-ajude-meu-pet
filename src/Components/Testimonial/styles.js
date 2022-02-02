@@ -62,8 +62,8 @@ export const Paragraph = styled.p`
 `;
 
 export const Imagem = styled.img`
-  height: 7rem;
-  width: 7rem;
+  height: 9rem;
+  width: 9rem;
   border-radius: 50%;
 `;
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 135vh;
+  height: 140vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,6 +17,7 @@ export const Text = styled.div`
   height: 100vh;
 
   @media (min-width: 768px) {
+    height: 115vh;
     width: 40vw;
     display: flex;
     flex-direction: column;
@@ -25,7 +26,7 @@ export const Text = styled.div`
     margin-left: 60px;
     background-color: #8b5742;
     border-radius: 10px;
-    padding: 0 10px;
+    padding: 0 30px;
   }
 `;
 
@@ -53,6 +54,7 @@ export const Paragraph = styled.p`
 
   @media (min-width: 768px) {
     color: #fff;
+    padding: 0 30px;
   }
   @media (min-width: 1024px) {
     font-size: 22px;

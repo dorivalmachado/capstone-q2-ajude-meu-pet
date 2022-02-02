@@ -59,6 +59,7 @@ export const Paragraph = styled.p`
     color: #fff;
     background-color: #8b5742;
     margin-right: 30px;
+    padding: 0 30px;
   }
 
   @media (min-width: 1024px) {
