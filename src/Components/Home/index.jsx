@@ -1,8 +1,10 @@
 import {
   Assign,
+  CarouselContainer,
   Container,
   ContentImg,
   Imagem,
+  MainContainer,
   Paragraph,
   Subtitle,
   Text,
@@ -15,8 +17,20 @@ import Adestramento3 from "../../Assets/Img/Adestramento3.jpg";
 import Caminhada1 from "../../Assets/Img/Caminhada1.jpg";
 import Caminhada2 from "../../Assets/Img/Caminhada2.jpg";
 import { Link } from "react-router-dom";
+import loveAnimals from "../../Assets/Img/loveAnimals.gif";
+import AOS from "aos";
 
 const Home = () => {
+  useEffect(() => {
+    AOS.init({
+      delay: 50,
+      duration: 1500,
+      easing: "ease-in-out",
+      once: false,
+      mirror: true,
+    });
+  }, []);
+
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -45,20 +59,28 @@ const Home = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <>
+    <MainContainer>
       {width < 768 ? (
-        <Container id="home">
-          <Subtitle>Cuide do seu melhor amigo</Subtitle>
-          <Text>
-            <Paragraph>
-              Nós acreditamos que todo pet merece um cuidado especial. Por isso
-              oferecemos serviços prestados por pessoas que amam animais tanto
-              quanto nós. Acesse nossa plataforma e confira nossos serviços
-            </Paragraph>
-          </Text>
-        </Container>
+        <div data-aos="zoom-in">
+          <Container id="home">
+            <Subtitle>Cuide do seu melhor amigo</Subtitle>
+            <img
+              src={loveAnimals}
+              alt="We love animals"
+              className="imageMobile"
+            />
+            <Text>
+              <Paragraph>
+                Nós acreditamos que todo pet merece um cuidado especial. Por
+                isso oferecemos serviços prestados por pessoas que amam animais
+                tanto quanto nós. Acesse nossa plataforma e confira nossos
+                serviços!
+              </Paragraph>
+            </Text>
+          </Container>
+        </div>
       ) : (
-        <>
+        <CarouselContainer>
           <Carousel>
             <ContentImg>
               <Imagem src={Adestramento1} alt="Adestramento" />
@@ -81,9 +103,9 @@ const Home = () => {
               Não é cadastrado ainda? <Link to="/register">Cadastre-se</Link>
             </p>
           </Assign>
-        </>
+        </CarouselContainer>
       )}
-    </>
+    </MainContainer>
   );
 };
 

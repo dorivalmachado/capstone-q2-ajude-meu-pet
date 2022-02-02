@@ -1,5 +1,6 @@
 import { Container, FormContainer, ContentContainer } from "./styles";
 import { InputAdornment } from "@mui/material";
+import { motion } from "framer-motion";
 
 import React, { useState } from "react";
 import * as yup from "yup";
@@ -37,62 +38,69 @@ export const Login = () => {
   };
 
   return (
-    <Container>
-      <img src={DogImage} alt="Dog running" />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      exit={{ opacity: 0 }}
+    >
+      <Container>
+        <img src={DogImage} alt="Dog running" />
 
-      <ContentContainer>
-        <FormContainer>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit(handleSignIn)}>
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              fullWidth
-              register={register}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-              inputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FiUser />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Input
-              type={showPass ? "text" : "password"}
-              label="Senha"
-              fullWidth
-              register={register}
-              name="password"
-              error={!!errors.password}
-              helperText={errors.password?.message}
-              inputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FiLock />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment
-                    position="end"
-                    onClick={() => setShowPass(!showPass)}
-                  >
-                    {showPass ? <FiEye /> : <FiEyeOff />}
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button type="submit" buttonColor="lightBrown">
-              Entrar
-            </Button>
-          </form>
-          <p>
-            Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
-          </p>
-        </FormContainer>
-      </ContentContainer>
-    </Container>
+        <ContentContainer>
+          <FormContainer>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit(handleSignIn)}>
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                fullWidth
+                register={register}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiUser />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Input
+                type={showPass ? "text" : "password"}
+                label="Senha"
+                fullWidth
+                register={register}
+                name="password"
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiLock />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? <FiEye /> : <FiEyeOff />}
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Button type="submit" buttonColor="lightBrown">
+                Entrar
+              </Button>
+            </form>
+            <p>
+              Não é cadastrado ainda? <Link to="/register">Cadastre-se!</Link>
+            </p>
+          </FormContainer>
+        </ContentContainer>
+      </Container>
+    </motion.div>
   );
 };
