@@ -15,7 +15,7 @@ import {
   SubText,
   TitleText,
 } from "./styles.ts";
-import Logo from "../../Assets/Img/Logo.webp";
+import logo from "../../Assets/Img/logo.png";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -62,7 +62,7 @@ export const TeamPage = () => {
         <div>
           <Container>
             <Title>AJUDE MEU PET</Title>
-            <Imagem src={Logo} alt="Logo" />
+            <Imagem src={logo} alt="Logo" />
             <Link to="/">Voltar</Link>
           </Container>
           <Refs>
@@ -141,7 +141,7 @@ export const TeamPage = () => {
         <div>
           <Header>
             <Title>AJUDE MEU PET</Title>
-            <Imagem src={Logo} alt="Logo" />
+            <Imagem src={logo} alt="Logo" />
             <Link to="/">Voltar á pagina anterior</Link>
           </Header>
 

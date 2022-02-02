@@ -1,6 +1,6 @@
 import { Container } from "./styles.js";
 import Footer from "../../Components/Footer";
-import Header from "../../Components/Header";
+import Header from "../../Components/Header/index.tsx";
 import Home from "../../Components/Home";
 import MainContainer from "../../Components/MainContainer";
 import Ride from "../../Components/Ride";
@@ -13,7 +13,7 @@ const LandingPage = () => {
     <>
       <MainContainer>
         <Container>
-          <Header/>
+          <Header />
           <Home />
           <Ride />
           <Training />

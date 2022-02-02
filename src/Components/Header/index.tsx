@@ -1,4 +1,4 @@
-import { Container, Imagem, Title, DrawerContent } from "./styles";
+import { Container, Imagem, Title, DrawerContent } from "./styles.ts";
 import { Drawer } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoSignIn, GoSignOut, GoPencil } from "react-icons/go";
@@ -6,16 +6,25 @@ import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useEffect, useState } from "react";
-import Logo from "../../Assets/Img/Logo.webp";
+import logo from "../../Assets/Img/logo.png";
 
-const Header = ({ isLogged = false }) => {
+interface HeaderProps {
+  isLogged: boolean;
+}
+
+interface ToggleDrawerData {
+  event: any;
+  status: boolean;
+}
+
+const Header = ({ isLogged = false }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { logout } = useAuth();
 
-  const toggleDrawer = (event, status) => {
+  const toggleDrawer = (event, status): ToggleDrawerData => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -59,8 +68,8 @@ const Header = ({ isLogged = false }) => {
         <Container>
           <div className="logoBox">
             <Title>AJUDE MEU PET</Title>
-            <Imagem src={Logo} alt="Logo" />
           </div>
+          <Imagem src={logo} alt="Logo" />
           <LightTip title="Menu">
             <button onClick={(event) => toggleDrawer(event, true)}>
               <GiHamburgerMenu />
@@ -109,7 +118,7 @@ const Header = ({ isLogged = false }) => {
       ) : (
         <Container>
           <Title>AJUDE MEU PET</Title>
-          <Imagem src={Logo} alt="Logo" />
+          <Imagem src={logo} alt="Logo" />
           <a href="#home">HOME</a>
           <a href="#passeio">PASSEIOS</a>
           <a href="#adestramento">ADESTRAMENTO</a>

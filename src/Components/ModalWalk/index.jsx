@@ -18,10 +18,10 @@ import {
   WalkDescription
 } from "./styles";
 import RadioButtonPets from "../RadioButtonPets";
-import Button from "../Button";
+import Button from "../Button/index.tsx";
 import PriceTableWalk from "../PriceTableWalk";
 import {usePets} from "../../Providers/Pets"
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useServices } from "../../Providers/Services";
 
 const ModalWalk = ({ open, handleClose }) => {
