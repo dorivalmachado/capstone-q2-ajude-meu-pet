@@ -22,7 +22,7 @@ import Button from "../Button/index.tsx";
 import PriceTableWalk from "../PriceTableWalk";
 import {usePets} from "../../Providers/Pets/index.tsx"
 import { useAuth } from "../../Providers/Auth/index.tsx";
-import { useServices } from "../../Providers/Services";
+import { useServices } from "../../Providers/Services/index.tsx";
 
 const ModalWalk = ({ open, handleClose }) => {
 
