@@ -9,6 +9,7 @@ const ModalBase = ({ open, handleClose, children }) => {
     <div>
       <Dialog
         open={open === "training"}
+
         onClose={handleClose}
         sx={{
           "& .MuiDialog-paper": {

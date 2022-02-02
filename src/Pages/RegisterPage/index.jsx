@@ -35,7 +35,7 @@ const RegisterPage = () => {
     phone: yup
       .string()
       .required("Telefone obrigatório")
-      .min(13, "Número incorreto"),
+      .min(14, "Número incorreto"),
     password: yup
       .string()
       .min(
@@ -43,9 +43,9 @@ const RegisterPage = () => {
         "Deve conter 8 dígitos, entre números, letras maiúsculas e caracteres especiais"
       )
       .required()
-      .matches(/(?=.[0-9])(?=.{8,})/, "Sem número")
-      .matches(/(?=.[A-Z])(?=.{8,})/, "Sem letra maiúscula")
-      .matches(/(?=.[!@#$%^&*])(?=.{8,})/, "Sem caractere especial (!@#$%^&)"),
+      .matches(/(?=.[0-9])(?=.{1,})/, "Sem número")
+      .matches(/(?=.[A-Z])(?=.{1,})/, "Sem letra maiúscula")
+      .matches(/(?=.[!@#$%^&*])(?=.{1,})/, "Sem caractere especial (!@#$%^&)"),
     confirmPass: yup
       .string()
       .required("Campo obrigatório")
@@ -85,28 +85,27 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container>
-      <img src={dog} alt="Dog saying How you doin'" />
-      <ContentContainer>
-        <FormContainer>
-          <h1>Cadastro</h1>
-          <form onSubmit={handleSubmit(handleSignUp)}>
-            <Input
-              label="Nome"
-              name="name"
-              register={register}
-              fullWidth
-              error={!!errors.name}
-              helperText={errors.name?.message}
-              inputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FiUser />
-                  </InputAdornment>
-                ),
-              }}
-            />
-
+      <Container>
+        <img src={dog} alt="Dog saying How you doin'" />
+        <ContentContainer>
+          <FormContainer>
+            <h1>Cadastro</h1>
+            <form onSubmit={handleSubmit(handleSignUp)}>
+              <Input
+                label="Nome"
+                name="name"
+                register={register}
+                fullWidth
+                error={!!errors.name}
+                helperText={errors.name?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiUser />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             <Input
               label="Email"
               name="email"
@@ -188,7 +187,7 @@ const RegisterPage = () => {
                 ),
               }}
             />
-            <h2>Quero</h2>
+            {/* <h2>Quero</h2>
             <RadioGroup
               className="radioContainer"
               row
@@ -205,11 +204,12 @@ const RegisterPage = () => {
                 control={
                   <Radio
                     required
+                    checked=''
                     sx={{
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      }
+                      },
                     }}
                   />
                 }
@@ -221,6 +221,7 @@ const RegisterPage = () => {
                 control={
                   <Radio
                     required
+                    checked
                     sx={{
                       color: "var(--black50)",
                       "&.Mui-checked": {
@@ -232,7 +233,7 @@ const RegisterPage = () => {
                 label="Contratar um serviço"
                 labelPlacement="bottom"
               />
-            </RadioGroup>
+            </RadioGroup> */}
             <Button type="submit" buttonColor="darkBrown">
               Cadastrar
             </Button>

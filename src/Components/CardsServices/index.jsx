@@ -12,9 +12,9 @@ import {
 import PriceTableTraining from "../PriceTableTraining";
 import PriceTableWalk from "../PriceTableWalk";
 import PriceTableTaxi from "../PriceTableTaxi";
-import ModalTraining from "../ModalTraining";
-import ModalWalk from "../ModalWalk";
-import ModalTaxi from "../ModalTaxi";
+import ModalTraining from "../Modals/ModalTraining";
+import ModalWalk from "../Modals/ModalWalk";
+import ModalTaxi from "../Modals/ModalTaxi";
 
 const CardsServices = () => {
   const [anchorEl, setAnchorEl] = useState(null);
