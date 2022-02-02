@@ -28,7 +28,7 @@ const PriceTableTraining = ({ open, anchorEl, handleClose }) => {
         <br />
         Adestramento do tipo <strong>avançado</strong>, cada aula custa de R$
         200,00 a R$ 400,00, dependendo do profissional que irá realizar o
-        serivço.
+        serviço.
       </Typography>
     </Popover>
   );

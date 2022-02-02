@@ -1,21 +1,15 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import { ButtonsContainer } from "./styles";
-import {
-  // Button,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextField,
-} from "@mui/material";
+import { DialogContent } from "@mui/material";
 import Button from "../Button";
 
 const ModalBase = ({ open, handleClose, children }) => {
   return (
     <div>
       <Dialog
-        open={open === 'training'}
+        open={open === "training"}
+
         onClose={handleClose}
         sx={{
           "& .MuiDialog-paper": {
