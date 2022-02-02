@@ -1,4 +1,4 @@
-import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
+import { Container, ContainerContent, PetsBox, NoCards } from "./styles.ts";
 import { FaPlus } from "react-icons/fa";
 import { HeaderLogged } from "../../Components/HeaderLogged";
 import { usePets } from "../../Providers/Pets";
