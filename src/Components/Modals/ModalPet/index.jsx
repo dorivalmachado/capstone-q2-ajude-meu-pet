@@ -8,10 +8,12 @@ import { Dialog, DialogContent } from "@mui/material";
 import Button from "../../Button";
 import Input from "../../Input";
 import RadioInput from "../../RadioInput";
-import { Form } from "./styles";
+import { ErrorMessage, Form } from "./styles";
+import { useState } from "react";
 
 const ModalPet = ({ add, open, handleClose, id }) => {
   const { petCreate, petUpdate, petDelete } = usePets();
+
 
   const schema = yup.object().shape({
     petName: yup.string().required("Informe o nome"),
@@ -40,13 +42,16 @@ const ModalPet = ({ add, open, handleClose, id }) => {
     data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(data.petBirthDate.replaceAll("-", "/"))
     );
+    
     add ? petCreate(data) : petUpdate(data, id);
+
   };
 
   const handleExclusion = () => {
     petDelete(id);
     closeModal();
   };
+
 
   return (
     <Dialog
@@ -68,7 +73,13 @@ const ModalPet = ({ add, open, handleClose, id }) => {
             <h2>Altere as informações do seu pet</h2>
           )}
 
-          <Input label="Nome" name="petName" register={register} />
+          <Input 
+            label="Nome" 
+            name="petName" 
+            register={register} 
+            error={!!errors.petName}
+            helperText={errors.petName?.message}
+          />
 
           <h3>Tipo</h3>
           <div>
@@ -94,6 +105,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="outro"
             />
           </div>
+          <ErrorMessage>{errors.petType?.message && 'Informe o tipo'}</ErrorMessage>
 
           <h3>Gênero</h3>
           <div>
@@ -112,6 +124,8 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="male"
             />
           </div>
+          <ErrorMessage>{errors.petGender?.message && 'Informe o gênero'}</ErrorMessage>
+
 
           <h3>Tamanho</h3>
           <div>
@@ -137,9 +151,14 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="grande"
             />
           </div>
+          <ErrorMessage>{errors.petSize?.message && 'Informe o tamanho'}</ErrorMessage>
 
           <h3>Data de nascimento</h3>
-          <Input type="date" name="petBirthDate" register={register} />
+          <Input 
+            type="date" name="petBirthDate" register={register} 
+            error={!!errors.petBirthDate}
+            helperText={errors.petBirthDate?.message}
+          />
 
           <div>
             {!add && <Button onClick={handleExclusion}>Excluir pet</Button>}

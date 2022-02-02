@@ -184,3 +184,9 @@ export const ContainerBottom = styled.div`
     flex: 1;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  color: #d32f2f;
+  font-size: 12px;
+  margin: 0 14px 15px;
+`

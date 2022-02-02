@@ -6,9 +6,7 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
-import ModalAddPet from "../../Components/Modals/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
-import ModalEditPet from "../../Components/Modals/ModalEditPet";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../Providers/Auth";
 import ModalPet from "../../Components/Modals/ModalPet";
@@ -17,7 +15,7 @@ const PetsPage = () => {
   const { pets } = usePets();
   const { user } = useAuth();
 
-  const [openModal, setOpenModal] = useState("open");
+  const [openModal, setOpenModal] = useState(false);
   const [petId, setPetId] = useState(0);
   const [isPetAddition, setIsPetAddition] = useState(false);
   const [myPets, setMyPets] = useState([]);

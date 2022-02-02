@@ -19,6 +19,7 @@ import {
   DepartureAddress,
   DepartureAddressButtons,
   DepartureAddressForm,
+  ErrorMessage,
   Form,
 } from "./styles";
 
@@ -212,6 +213,8 @@ const ModalTaxi = ({ open, handleClose }) => {
                     label="Rua"
                     register={register}
                     name="serviceDepartureStreet"
+                    error={!!errors.serviceDepartureStreet}
+                    helperText={errors.serviceDepartureStreet?.message}
                     value={departureStreetName}
                     onChange={(e) => setDepartureStreetName(e.target.value)}
                   />
@@ -219,6 +222,8 @@ const ModalTaxi = ({ open, handleClose }) => {
                     label="Número"
                     register={register}
                     name="serviceDepartureNumber"
+                    error={!!errors.serviceDepartureNumber}
+                    helperText={errors.serviceDepartureNumber?.message}
                     value={departureNumberValue}
                     onChange={(e) => setDepartureNumberValue(e.target.value)}
                   />
@@ -226,15 +231,19 @@ const ModalTaxi = ({ open, handleClose }) => {
                     label="Complemento"
                     register={register}
                     name="serviceDepartureComplement"
+                    error={!!errors.serviceDepartureComplement}
+                    helperText={errors.serviceDepartureComplement?.message}
                     value={departureComplementValue}
                     onChange={(e) =>
-                      setDepartureComplementValue(e.target.value)
+                    setDepartureComplementValue(e.target.value)
                     }
                   />
                   <Input
                     label="Cidade"
                     register={register}
                     name="serviceDepartureCity"
+                    error={!!errors.serviceDepartureCity}
+                    helperText={errors.serviceDepartureCity?.message}
                     value={departureCityName}
                     onChange={(e) => setDepartureCityName(e.target.value)}
                   />
@@ -256,6 +265,8 @@ const ModalTaxi = ({ open, handleClose }) => {
                     label="Rua"
                     register={register}
                     name="serviceArrivalStreet"
+                    error={!!errors.serviceArrivalStreet}
+                    helperText={errors.serviceArrivalStreet?.message}
                     value={arrivalStreetName}
                     onChange={(e) => setArrivalStreetName(e.target.value)}
                   />
@@ -263,16 +274,22 @@ const ModalTaxi = ({ open, handleClose }) => {
                     label="Número"
                     register={register}
                     name="serviceArrivalNumber"
+                    error={!!errors.serviceArrivalNumber}
+                    helperText={errors.serviceArrivalNumber?.message}
                   />
                   <Input
                     label="Complemento"
                     register={register}
                     name="serviceArrivalComplement"
+                    error={!!errors.serviceArrivalComplement}
+                    helperText={errors.serviceArrivalComplement?.message}
                   />
                   <Input
                     label="Cidade"
                     register={register}
                     name="serviceArrivalCity"
+                    error={!!errors.serviceArrivalCity}
+                    helperText={errors.serviceArrivalCity?.message}
                     value={arrivalCityName}
                     onChange={(e) => setArrivalCityName(e.target.value)}
                   />
@@ -284,18 +301,25 @@ const ModalTaxi = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="date"
-                    {...register("serviceDesiredDate")}
+                    register={register}
+                    name='serviceDesiredDate'
+                    error={!!errors.serviceDesiredDate}
+                    helperText={errors.serviceDesiredDate?.message}
                   />
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="time"
                     {...register("serviceDesiredTime")}
+                    register={register}
+                    name='serviceDesiredTime'
+                    error={!!errors.serviceDesiredTime}
+                    helperText={errors.serviceDesiredTime?.message}
                   />
                 </div>
               </div>
@@ -325,6 +349,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
+                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

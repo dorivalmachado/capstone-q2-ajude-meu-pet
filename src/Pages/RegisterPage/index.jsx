@@ -188,7 +188,7 @@ const RegisterPage = () => {
                 ),
               }}
             />
-            <h2>Quero</h2>
+            {/* <h2>Quero</h2>
             <RadioGroup
               className="radioContainer"
               row
@@ -205,6 +205,7 @@ const RegisterPage = () => {
                 control={
                   <Radio
                     required
+                    checked=''
                     sx={{
                       color: "var(--black50)",
                       "&.Mui-checked": {
@@ -221,6 +222,7 @@ const RegisterPage = () => {
                 control={
                   <Radio
                     required
+                    checked
                     sx={{
                       color: "var(--black50)",
                       "&.Mui-checked": {
@@ -232,7 +234,7 @@ const RegisterPage = () => {
                 label="Contratar um serviço"
                 labelPlacement="bottom"
               />
-            </RadioGroup>
+            </RadioGroup> */}
             <Button type="submit" buttonColor="darkBrown">
               Cadastrar
             </Button>
