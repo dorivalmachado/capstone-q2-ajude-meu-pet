@@ -3,7 +3,7 @@ import { useAuth } from "../Providers/Auth/index.tsx";
 
 import { Login } from "../Pages/Login/index.tsx";
 import { ServicesPage } from "../Pages/ServicesPage";
-import RegisterPage from "../Pages/RegisterPage";
+import RegisterPage from "../Pages/RegisterPage/index.tsx";
 import LandingPage from "../Pages/LandingPage";
 import NotFound from "../Pages/NotFound/index.tsx";
 import PetsPage from "../Pages/PetsPage";
