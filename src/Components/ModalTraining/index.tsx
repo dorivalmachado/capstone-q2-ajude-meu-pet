@@ -14,13 +14,13 @@ import {
   TrainingDescription,
   TrainingOptions,
   TrainingType,
-} from "./styles.ts";
-import RadioButtonPets from "../RadioButtonPets/index.tsx";
-import Button from "../Button/index.tsx";
-import PriceTableTraining from "../PriceTableTraining/index.tsx";
-import { usePets } from "../../Providers/Pets/index.tsx";
-import { useAuth } from "../../Providers/Auth/index.tsx";
-import { useServices } from "../../Providers/Services/index.tsx";
+} from "./styles";
+import RadioButtonPets from "../RadioButtonPets";
+import Button from "../Button";
+import PriceTableTraining from "../PriceTableTraining";
+import { usePets } from "../../Providers/Pets";
+import { useAuth } from "../../Providers/Auth";
+import { useServices } from "../../Providers/Services";
 
 const ModalTraining = ({ open, handleClose }) => {
   const trainingDescription = {

@@ -11,13 +11,13 @@ import {
   ContainerBottom,
   Form,
   WalkDescription,
-} from "./styles.ts";
-import RadioButtonPets from "../RadioButtonPets/index.tsx";
-import Button from "../Button/index.tsx";
-import PriceTableWalk from "../PriceTableWalk/index.tsx";
-import { usePets } from "../../Providers/Pets/index.tsx";
-import { useAuth } from "../../Providers/Auth/index.tsx";
-import { useServices } from "../../Providers/Services/index.tsx";
+} from "./styles";
+import RadioButtonPets from "../RadioButtonPets";
+import Button from "../Button";
+import PriceTableWalk from "../PriceTableWalk";
+import { usePets } from "../../Providers/Pets";
+import { useAuth } from "../../Providers/Auth";
+import { useServices } from "../../Providers/Services";
 
 const ModalWalk = ({ open, handleClose }) => {
   const [anchorEl, setAnchorEl] = useState(null);

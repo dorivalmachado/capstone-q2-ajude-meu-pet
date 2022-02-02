@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { api } from "../../Services/api";
 import toast from "react-hot-toast";
-import { useAuth } from "../Auth/index.tsx";
+import { useAuth } from "../Auth";
 
 interface PetsProviderProps {
   children: ReactNode,

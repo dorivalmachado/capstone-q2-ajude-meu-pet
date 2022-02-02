@@ -1,14 +1,14 @@
-import { Container, Card } from "./styles.ts";
+import { Container, Card } from "./styles";
 import dog from "../../Assets/Img/dog.png";
 import cat from "../../Assets/Img/cat.png";
 import other from "../../Assets/Img/pawprints.png";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { BsCheck2Square } from "react-icons/bs";
-import { useServices } from "../../Providers/Services/index.tsx";
-import { usePets } from "../../Providers/Pets/index.tsx";
+import { useServices } from "../../Providers/Services";
+import { usePets } from "../../Providers/Pets";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 
 export const HiredServices = () => {
   const { services } = useServices();

@@ -1,14 +1,14 @@
-import { usePets } from "../../Providers/Pets/index.tsx";
+import { usePets } from "../../Providers/Pets";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaRegWindowClose } from "react-icons/fa";
 import { Dialog, DialogContent } from "@mui/material";
 
-import Button from "../Button/index.tsx";
-import Input from "../Input/index.tsx";
-import RadioInput from "../RadioInput/index.tsx";
-import { Form } from "./styles.ts";
+import Button from "../Button";
+import Input from "../Input";
+import RadioInput from "../RadioInput";
+import { Form } from "./styles";
 
 const ModalPet = ({ add, open, handleClose, id }) => {
   const { petCreate, petUpdate, petDelete } = usePets();

@@ -18,15 +18,15 @@ import {
   DepartureAddressButtons,
   DepartureAddressForm,
   Form,
-} from "./styles.ts";
+} from "./styles";
 import { cepApi } from "../../Services/api";
-import RadioButtonPets from "../RadioButtonPets/index.tsx";
-import Button from "../Button/index.tsx";
-import PriceTableTaxi from "../PriceTableTaxi/index.tsx";
-import Input from "../Input/index.tsx";
-import { usePets } from "../../Providers/Pets/index.tsx";
-import { useServices } from "../../Providers/Services/index.tsx";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import RadioButtonPets from "../RadioButtonPets";
+import Button from "../Button";
+import PriceTableTaxi from "../PriceTableTaxi";
+import Input from "../Input";
+import { usePets } from "../../Providers/Pets";
+import { useServices } from "../../Providers/Services";
+import { useAuth } from "../../Providers/Auth";
 
 const ModalTaxi = ({ open, handleClose }) => {
   const [buttonsVisibility, setButtonsVisibility] = useState(true);

@@ -1,7 +1,7 @@
 import "./Styles/Reset.css";
 import { Toaster } from "react-hot-toast";
 import GlobalStyle from "./Styles/GlobalStyle";
-import Routes from "./Routes/index.tsx";
+import Routes from "./Routes";
 
 function App() {
   return (

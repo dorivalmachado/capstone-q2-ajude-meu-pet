@@ -1,11 +1,11 @@
 import { CgProfile } from "react-icons/cg";
-import { Container, Menu, LogoutBox } from "./styles.ts";
+import { Container, Menu, LogoutBox } from "./styles";
 import { GoSignOut } from "react-icons/go";
-import { LightTip } from "../../Helpers/Tooltip/index.tsx";
+import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 import LogoImg from "../../Assets/Img/logo.svg";
 
 export const HeaderLogged = () => {

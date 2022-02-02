@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
-import Providers from "./Providers/index.tsx";
+import Providers from "./Providers";
 import { Toaster } from "react-hot-toast";
 
 ReactDOM.render(

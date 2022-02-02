@@ -8,8 +8,8 @@ import {
   TrainingOptions,
   TrainingType,
   WalkDescription,
-} from "./styles.ts";
-import Button from "../Button/index.tsx";
+} from "./styles";
+import Button from "../Button";
 
 const TopModal = ({ category }) => {
   const trainingDescription = {

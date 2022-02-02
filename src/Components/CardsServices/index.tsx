@@ -8,13 +8,13 @@ import {
   CardBack,
   CardFront,
   Container,
-} from "./styles.ts";
-import PriceTableTraining from "../PriceTableTraining/index.tsx";
-import PriceTableWalk from "../PriceTableWalk/index.tsx";
-import PriceTableTaxi from "../PriceTableTaxi/index.tsx";
-import ModalTraining from "../ModalTraining/index.tsx";
-import ModalWalk from "../ModalWalk/index.tsx";
-import ModalTaxi from "../ModalTaxi/index.tsx";
+} from "./styles";
+import PriceTableTraining from "../PriceTableTraining";
+import PriceTableWalk from "../PriceTableWalk";
+import PriceTableTaxi from "../PriceTableTaxi";
+import ModalTraining from "../ModalTraining";
+import ModalWalk from "../ModalWalk";
+import ModalTaxi from "../ModalTaxi";
 
 const CardsServices = () => {
   const [anchorEl, setAnchorEl] = useState(null);

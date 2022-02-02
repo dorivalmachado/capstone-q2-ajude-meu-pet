@@ -1,4 +1,4 @@
-import { CardTextContainer, CardTextMobileTitle, Main } from "./styles.ts";
+import { CardTextContainer, CardTextMobileTitle, Main } from "./styles";
 
 const CardText = ({ alternate, children, title = "" }) => {
   return (

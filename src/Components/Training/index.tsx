@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Imagem from "../Imagem/index.tsx";
+import Imagem from "../Imagem";
 import {
   Container,
   Content,
@@ -7,7 +7,7 @@ import {
   Paragraph,
   Subtitle,
   Text,
-} from "./styles.ts";
+} from "./styles";
 import LogoAdestramento1 from "../../Assets/Img/LogoAdestramento1.jpeg";
 import LogoAdestramento2 from "../../Assets/Img/LogoAdestramento2.jpeg";
 

@@ -1,15 +1,15 @@
-import { Container, ContainerContent, PetsBox, NoCards } from "./styles.ts";
+import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
 import { FaPlus } from "react-icons/fa";
-import { HeaderLogged } from "../../Components/HeaderLogged/index.tsx";
-import { usePets } from "../../Providers/Pets/index.tsx";
-import CardPets from "../../Components/CardPets/index.tsx";
+import { HeaderLogged } from "../../Components/HeaderLogged";
+import { usePets } from "../../Providers/Pets";
+import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
-import Header from "../../Components/Header/index.tsx";
-import MainContainer from "../../Components/MainContainer/index.tsx";
+import Header from "../../Components/Header";
+import MainContainer from "../../Components/MainContainer";
 import React, { useEffect, useState } from "react";
-import { LightTip } from "../../Helpers/Tooltip/index.tsx";
-import { useAuth } from "../../Providers/Auth/index.tsx";
-import ModalPet from "../../Components/ModalPet/index.tsx";
+import { LightTip } from "../../Helpers/Tooltip";
+import { useAuth } from "../../Providers/Auth";
+import ModalPet from "../../Components/ModalPet";
 
 const PetsPage = () => {
   const { pets } = usePets();

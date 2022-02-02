@@ -1,9 +1,9 @@
-import { Container, Box } from "./styles.ts";
-import CardServices from "../../Components/CardsServices/index.tsx";
-import Header from "../../Components/Header/index.tsx";
-import { HeaderLogged } from "../../Components/HeaderLogged/index.tsx";
-import { HiredServices } from "../../Components/HiredServices/index.tsx";
-import MainContainer from "../../Components/MainContainer/index.tsx";
+import { Container, Box } from "./styles";
+import CardServices from "../../Components/CardsServices";
+import Header from "../../Components/Header";
+import { HeaderLogged } from "../../Components/HeaderLogged";
+import { HiredServices } from "../../Components/HiredServices";
+import MainContainer from "../../Components/MainContainer";
 
 export const ServicesPage = () => {
   return (

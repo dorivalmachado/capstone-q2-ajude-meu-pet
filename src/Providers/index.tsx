@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { AuthProvider } from "./Auth/index.tsx";
-import { PetsProvider } from "./Pets/index.tsx";
-import { ServicesProvider } from "./Services/index.tsx";
+import { AuthProvider } from "./Auth";
+import { PetsProvider } from "./Pets";
+import { ServicesProvider } from "./Services";
 
 interface ProvidersProps{
   children: ReactNode

@@ -1,7 +1,7 @@
-import { Container, ContainerContent } from "./styles.ts";
-import Button from "../../Components/Button/index.tsx";
+import { Container, ContainerContent } from "./styles";
+import Button from "../../Components/Button";
 import DogImage from "../../Assets/Img/hello.gif";
-import MainContainer from "../../Components/MainContainer/index.tsx";
+import MainContainer from "../../Components/MainContainer";
 import { useHistory } from "react-router-dom";
 
 const NotFound = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { ButtonsContainer } from "./styles.ts";
+import { ButtonsContainer } from "./styles";
 import {
   // Button,
   DialogActions,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import Button from "../Button/index.tsx";
+import Button from "../Button";
 
 const ModalBase = ({ open, handleClose, children }) => {
   return (

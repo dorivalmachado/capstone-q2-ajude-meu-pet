@@ -1,4 +1,4 @@
-import { Container } from "./styles.ts";
+import { Container } from "./styles";
 import { TextareaAutosize, TextField } from "@mui/material";
 import RadioButtonPets from "../RadioButtonPets";
 
