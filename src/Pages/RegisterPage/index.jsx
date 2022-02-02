@@ -85,28 +85,27 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container>
-      <img src={dog} alt="Dog saying How you doin'" />
-      <ContentContainer>
-        <FormContainer>
-          <h1>Cadastro</h1>
-          <form onSubmit={handleSubmit(handleSignUp)}>
-            <Input
-              label="Nome"
-              name="name"
-              register={register}
-              fullWidth
-              error={!!errors.name}
-              helperText={errors.name?.message}
-              inputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FiUser />
-                  </InputAdornment>
-                ),
-              }}
-            />
-
+      <Container>
+        <img src={dog} alt="Dog saying How you doin'" />
+        <ContentContainer>
+          <FormContainer>
+            <h1>Cadastro</h1>
+            <form onSubmit={handleSubmit(handleSignUp)}>
+              <Input
+                label="Nome"
+                name="name"
+                register={register}
+                fullWidth
+                error={!!errors.name}
+                helperText={errors.name?.message}
+                inputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FiUser />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             <Input
               label="Email"
               name="email"

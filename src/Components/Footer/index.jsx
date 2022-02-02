@@ -7,7 +7,7 @@ const Footer = () => {
     <Container>
       <LeftBox>
         <div className="logoBox">
-          <h2>Ajude meu pet</h2>
+          <h2>Ajude Meu Pet</h2>
           <img src={Logo} alt="dog logo" />
         </div>
 

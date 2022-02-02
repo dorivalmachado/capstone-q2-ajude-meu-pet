@@ -1,9 +1,20 @@
-import Imagem from "../Imagem";
 import { Container, Paragraph, Subtitle, Text } from "./styles";
 import LogoCaminhada from "../../Assets/Img/LogoCaminhada.jpg";
 import { useEffect, useState } from "react";
+import AOS from "aos";
 
 const Ride = () => {
+
+  useEffect(() => {
+    AOS.init({
+      delay: 50,
+      duration: 1500,
+      easing: "ease-in-out",
+      once: false,
+      mirror: true,
+    });
+  }, []);
+
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -29,23 +40,25 @@ const Ride = () => {
     return windowDimensions;
   }
 
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
-    <Container id='passeio'>
-      <Subtitle>Passeios</Subtitle>
-      <Text>
-        <Paragraph>
-          Você acha que o seu animalzinho de estimação está fora de forma?
-          Nossos passeios são a alternativa certa para você. Nossos
-          profissionais fazem caminhadas ou corridas com os pets nas mais
-          variadas distâncias, para que seu pet tenha a medida certa de
-          exercícios.
-        </Paragraph>
-        {width > 767 && (
-          <Imagem src={LogoCaminhada} alt="mulher caminhando com cachorro" />
-        )}
-      </Text>
+    <Container id="passeio">
+      <div data-aos="fade-right">
+        <Subtitle>Passeios</Subtitle>
+        <Text>
+          <Paragraph>
+            Você acha que o seu animalzinho de estimação está fora de forma?
+            Nossos passeios são a alternativa certa para você. Nossos
+            profissionais fazem caminhadas ou corridas com os pets nas mais
+            variadas distâncias, para que seu pet tenha a medida certa de
+            exercícios.
+          </Paragraph>
+          {width > 767 && (
+            <img src={LogoCaminhada} alt="mulher caminhando com cachorro" />
+          )}
+        </Text>
+      </div>
     </Container>
   );
 };

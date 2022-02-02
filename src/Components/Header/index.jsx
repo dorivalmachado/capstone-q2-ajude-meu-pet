@@ -8,7 +8,7 @@ import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
 import { useAuth } from "../../Providers/Auth";
 import { useEffect, useState } from "react";
-import Logo from "../../Assets/Img/Logo.webp";
+import Logo from "../../Assets/Img/logo.png";
 
 const Header = ({ isLogged = false }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -58,7 +58,7 @@ const Header = ({ isLogged = false }) => {
       {width < 768 ? (
         <Container>
           <div className="logoBox">
-            <Title>AJUDE MEU PET</Title>
+            <Title>Ajude Meu Pet</Title>
             <Imagem src={Logo} alt="Logo" />
           </div>
           <LightTip title="Menu">
@@ -88,7 +88,7 @@ const Header = ({ isLogged = false }) => {
                   </li>
                   <li onClick={() => logout()}>
                     <GoSignOut />
-                    Sair
+                   <p>Sair</p>
                   </li>
                 </ul>
               ) : (
@@ -108,13 +108,15 @@ const Header = ({ isLogged = false }) => {
         </Container>
       ) : (
         <Container>
-          <Title>AJUDE MEU PET</Title>
-          <Imagem src={Logo} alt="Logo" />
-          <a href="#home">HOME</a>
-          <a href="#passeio">PASSEIOS</a>
-          <a href="#adestramento">ADESTRAMENTO</a>
-          <a href="#taxi">TAXI-PET</a>
-          <Link to="/login">LOGIN</Link>
+          <div className="logoBox">
+            <Title>Ajude Meu Pet</Title>
+            <Imagem src={Logo} alt="Logo" />
+          </div>
+          <a href="#home">Home</a>
+          <a href="#passeio">Passeios</a>
+          <a href="#adestramento">Adestramento</a>
+          <a href="#taxi">Taxi-Pet</a>
+          <Link to="/login">Login</Link>
         </Container>
       )}
     </>

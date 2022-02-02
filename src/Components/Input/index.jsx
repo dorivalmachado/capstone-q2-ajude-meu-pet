@@ -23,9 +23,6 @@ const Input = ({
     },
     "& .MuiOutlinedInput-root": {
       background: "white",
-      "& fieldset": {
-        //   borderColor: "black",
-      },
       "&:hover fieldset": {
         borderColor: "var(--yellow80)",
       },
