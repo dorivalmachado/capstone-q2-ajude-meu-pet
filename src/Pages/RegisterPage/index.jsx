@@ -210,7 +210,7 @@ const RegisterPage = () => {
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      }
+                      },
                     }}
                   />
                 }
