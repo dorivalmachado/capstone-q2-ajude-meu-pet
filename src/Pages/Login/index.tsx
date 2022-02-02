@@ -12,6 +12,12 @@ import Button from "../../Components/Button";
 import DogImage from "../../Assets/Img/corgiRunning.gif";
 import Input from "../../Components/Input";
 
+interface UserLogin{
+  email: string; 
+  password: string;
+}
+
+
 export const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { login } = useAuth();
@@ -28,11 +34,11 @@ export const Login = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({
+  } = useForm<UserLogin>({
     resolver: yupResolver(schema),
   });
 
-  const handleSignIn = (data) => {
+  const handleSignIn = (data: UserLogin) => {
     login(data);
   };
 
