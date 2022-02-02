@@ -81,11 +81,11 @@ export const AuthContext = createContext<AuthData>({} as AuthData);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [data, setData] = useState<Data>(() => {
-    const token = localStorage.getItem("@ajude-meu-pet:token") || "";
-    const user = JSON.parse(localStorage.getItem("@ajude-meu-pet:user")) || {} as User;
+    const token = localStorage.getItem("@ajude-meu-pet:token");
+    const user = localStorage.getItem("@ajude-meu-pet:user");
 
     if (token && user) {
-      return { token, user };
+      return { token, user: JSON.parse(user) };
     }
 
     return {} as Data;
