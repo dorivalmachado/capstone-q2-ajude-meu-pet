@@ -20,9 +20,9 @@ import {
   Form,
 } from "./styles.ts";
 import { cepApi } from "../../Services/api";
-import RadioButtonPets from "../RadioButtonPets";
+import RadioButtonPets from "../RadioButtonPets/index.tsx";
 import Button from "../Button/index.tsx";
-import PriceTableTaxi from "../PriceTableTaxi";
+import PriceTableTaxi from "../PriceTableTaxi/index.tsx";
 import Input from "../Input/index.tsx";
 import { usePets } from "../../Providers/Pets/index.tsx";
 import { useServices } from "../../Providers/Services/index.tsx";

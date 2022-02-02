@@ -1,4 +1,4 @@
-import { Container, Card } from "./styles";
+import { Container, Card } from "./styles.ts";
 import dog from "../../Assets/Img/dog.png";
 import cat from "../../Assets/Img/cat.png";
 import other from "../../Assets/Img/pawprints.png";
@@ -19,20 +19,22 @@ export const HiredServices = () => {
 
   useEffect(() => {
     if (pets.length > 0 && services.length > 0) {
-      const formattedService = services.filter(service => service.clientId === user.id).map((service) => {
-        const pet = pets.find((elem) => elem.id === service.petId);
-        const { petType, petName } = pet;
-        const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =
-          service;
-        return {
-          petType,
-          petName,
-          serviceDesiredDate,
-          serviceCategory,
-          serviceConclusion,
-          id,
-        };
-      });
+      const formattedService = services
+        .filter((service) => service.clientId === user.id)
+        .map((service) => {
+          const pet = pets.find((elem) => elem.id === service.petId);
+          const { petType, petName } = pet;
+          const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =
+            service;
+          return {
+            petType,
+            petName,
+            serviceDesiredDate,
+            serviceCategory,
+            serviceConclusion,
+            id,
+          };
+        });
       setMyServices(formattedService);
     }
   }, [pets, services]);

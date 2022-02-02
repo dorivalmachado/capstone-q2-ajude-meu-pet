@@ -7,7 +7,7 @@ import { Dialog, DialogContent } from "@mui/material";
 
 import Button from "../Button/index.tsx";
 import Input from "../Input/index.tsx";
-import RadioInput from "../RadioInput";
+import RadioInput from "../RadioInput/index.tsx";
 import { Form } from "./styles.ts";
 
 const ModalPet = ({ add, open, handleClose, id }) => {

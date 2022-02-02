@@ -1,4 +1,4 @@
-import { Container, ContentContainer, FormContainer } from "./styles";
+import { Container, ContentContainer, FormContainer } from "./styles.ts";
 import {
   RadioGroup,
   Radio,
@@ -209,7 +209,7 @@ const RegisterPage = () => {
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      }
+                      },
                     }}
                   />
                 }
