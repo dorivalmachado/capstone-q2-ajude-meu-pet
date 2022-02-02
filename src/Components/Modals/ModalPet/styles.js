@@ -23,14 +23,10 @@ export const Form = styled.form`
     right: 20px;
   }
 
-  input > + span{
-    background-color: red;
-  }
-
-  input:required + span{
-    
-      background-color: red;
-    
-  }
+  
 `
-
+export const ErrorMessage = styled.p`
+  color: #d32f2f;
+  font-size: 12px;
+  margin: 0 14px 15px;
+`

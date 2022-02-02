@@ -8,7 +8,7 @@ import { Dialog, DialogContent } from "@mui/material";
 import Button from "../../Button";
 import Input from "../../Input";
 import RadioInput from "../../RadioInput";
-import { Form } from "./styles";
+import { ErrorMessage, Form } from "./styles";
 import { useState } from "react";
 
 const ModalPet = ({ add, open, handleClose, id }) => {
@@ -52,7 +52,6 @@ const ModalPet = ({ add, open, handleClose, id }) => {
     closeModal();
   };
 
-  console.log(errors)
 
   return (
     <Dialog
@@ -90,31 +89,23 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petType"
               register={register}
               id="cachorro"
-              // required
-              // onClick={(e) => setType(e.target.value)}
             />
             <RadioInput
               label="Gato"
               value="gato"
               name="petType"
               register={register}
-              // required
               id="gato"
-              // onClick={(e) => setType(e.target.value)}
             />
             <RadioInput
               label="Outro"
               value="outro"
               name="petType"
-              // required
               register={register}
               id="outro"
-              // onClick={(e) => setType(e.target.value)}
             />
-          {/* <span>Informe o tipo</span> */}
           </div>
-          {/* {showTypeError && <span>Informe o tipo</span>} */}
-          <p>{errors.petType?.message && 'Campo obrigatório'}</p>
+          <ErrorMessage>{errors.petType?.message && 'Campo obrigatório'}</ErrorMessage>
 
           <h3>Gênero</h3>
           <div>
@@ -124,7 +115,6 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petGender"
               register={register}
               id="female"
-              // onClick={(e) => setGender(e.target.value)}
             />
             <RadioInput
               label="Masculino"
@@ -132,12 +122,10 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petGender"
               register={register}
               id="male"
-              // onClick={(e) => setGender(e.target.value)}
             />
           </div>
-          <p>{errors.petGender?.message}</p>
+          <ErrorMessage>{errors.petGender?.message && 'Campo obrigatório'}</ErrorMessage>
 
-          {/* {showGenderError && <span>Informe o gênero</span>} */}
 
           <h3>Tamanho</h3>
           <div>
@@ -147,7 +135,6 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="pequeno"
-              // onClick={(e) => setSize(e.target.value)}
             />
             <RadioInput
               label="Médio"
@@ -155,7 +142,6 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="médio"
-              // onClick={(e) => setSize(e.target.value)}
             />
             <RadioInput
               label="Grande"
@@ -163,11 +149,9 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="grande"
-              // onClick={(e) => setSize(e.target.value)}
             />
           </div>
-          {/* {showSizeError && <span>Informe o tamanho</span>} */}
-          <p>{errors.petSize?.message}</p>
+          <ErrorMessage>{errors.petSize?.message && 'Campo obrigatório'}</ErrorMessage>
 
           <h3>Data de nascimento</h3>
           <Input 
