@@ -6,7 +6,7 @@ import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useEffect, useState } from "react";
 import logo from "../../Assets/Img/logo.png";
 

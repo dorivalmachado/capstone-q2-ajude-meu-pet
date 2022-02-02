@@ -14,15 +14,15 @@ import {
   FiUser,
 } from "react-icons/fi";
 
-import Button from "../../Components/Button";
-import Input from "../../Components/Input";
+import Button from "../../Components/Button/index.tsx";
+import Input from "../../Components/Input/index.tsx";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import dog from "../../Assets/Img/flirtingDog.gif";
 
 const RegisterPage = () => {

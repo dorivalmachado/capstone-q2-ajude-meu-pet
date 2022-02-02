@@ -1,5 +1,5 @@
 import { Container, ContainerContent } from "./styles.js";
-import Button from "../../Components/Button";
+import Button from "../../Components/Button/index.tsx";
 import DogImage from "../../Assets/Img/hello.gif";
 import MainContainer from "../../Components/MainContainer";
 import { useHistory } from "react-router-dom";

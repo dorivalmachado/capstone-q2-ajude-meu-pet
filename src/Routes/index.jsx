@@ -1,7 +1,7 @@
 import { Switch } from "react-router-dom";
-import { useAuth } from "../Providers/Auth";
+import { useAuth } from "../Providers/Auth/index.tsx";
 
-import { Login } from "../Pages/Login";
+import { Login } from "../Pages/Login/index.tsx";
 import { ServicesPage } from "../Pages/ServicesPage";
 import RegisterPage from "../Pages/RegisterPage";
 import LandingPage from "../Pages/LandingPage";

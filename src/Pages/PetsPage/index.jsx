@@ -8,14 +8,14 @@ import Header from "../../Components/Header/index.tsx";
 import MainContainer from "../../Components/MainContainer";
 import React, { useEffect, useState } from "react";
 import { LightTip } from "../../Helpers/Tooltip";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import ModalPet from "../../Components/ModalPet";
 
 const PetsPage = () => {
   const { pets } = usePets();
   const { user } = useAuth();
 
-  const [openModal, setOpenModal] = useState("open");
+  const [openModal, setOpenModal] = useState(false);
   const [petId, setPetId] = useState(0);
   const [isPetAddition, setIsPetAddition] = useState(false);
   const [myPets, setMyPets] = useState([]);

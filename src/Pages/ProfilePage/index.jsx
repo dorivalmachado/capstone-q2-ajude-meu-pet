@@ -1,9 +1,9 @@
 import { Container, ContainerContent } from "./styles";
 import { HeaderLogged } from "../../Components/HeaderLogged";
-import { useAuth } from "../../Providers/Auth";
+import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useState } from "react";
-import Button from "../../Components/Button";
 import Header from "../../Components/Header/index.tsx";
+import Button from "../../Components/Button/index.tsx";
 import MainContainer from "../../Components/MainContainer";
 import Profile from "../../Components/Profile";
 
