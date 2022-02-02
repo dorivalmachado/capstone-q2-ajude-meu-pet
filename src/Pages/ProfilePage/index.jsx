@@ -4,7 +4,7 @@ import { useAuth } from "../../Providers/Auth/index.tsx";
 import { useState } from "react";
 import Header from "../../Components/Header/index.tsx";
 import Button from "../../Components/Button/index.tsx";
-import MainContainer from "../../Components/MainContainer";
+import MainContainer from "../../Components/MainContainer/index.tsx";
 import Profile from "../../Components/Profile";
 
 const ProfilePage = () => {

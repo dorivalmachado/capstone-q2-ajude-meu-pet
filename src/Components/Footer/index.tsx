@@ -1,4 +1,4 @@
-import { Container, LeftBox, RightBox } from "./styles";
+import { Container, LeftBox, RightBox } from "./styles.ts";
 import Logo from "../../Assets/Img/logo.svg";
 import { Link } from "react-router-dom";
 

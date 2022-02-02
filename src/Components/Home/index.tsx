@@ -6,7 +6,7 @@ import {
   Paragraph,
   Subtitle,
   Text,
-} from "./styles";
+} from "./styles.ts";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import Adestramento1 from "../../Assets/Img/Adestramento1.jpg";
