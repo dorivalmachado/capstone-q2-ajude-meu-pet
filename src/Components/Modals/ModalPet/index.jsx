@@ -105,7 +105,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="outro"
             />
           </div>
-          <ErrorMessage>{errors.petType?.message && 'Campo obrigatório'}</ErrorMessage>
+          <ErrorMessage>{errors.petType?.message && 'Informe o tipo'}</ErrorMessage>
 
           <h3>Gênero</h3>
           <div>
@@ -124,7 +124,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="male"
             />
           </div>
-          <ErrorMessage>{errors.petGender?.message && 'Campo obrigatório'}</ErrorMessage>
+          <ErrorMessage>{errors.petGender?.message && 'Informe o gênero'}</ErrorMessage>
 
 
           <h3>Tamanho</h3>
@@ -151,7 +151,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               id="grande"
             />
           </div>
-          <ErrorMessage>{errors.petSize?.message && 'Campo obrigatório'}</ErrorMessage>
+          <ErrorMessage>{errors.petSize?.message && 'Informe o tamanho'}</ErrorMessage>
 
           <h3>Data de nascimento</h3>
           <Input 

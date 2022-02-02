@@ -10,6 +10,7 @@ import catSleeping from "../../../Assets/Img/catSleeping.gif";
 import {
   ButtonsContainer,
   ContainerBottom,
+  ErrorMessage,
   Form,
   WalkDescription,
 } from "./styles";
@@ -168,6 +169,7 @@ const ModalWalk = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
+                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

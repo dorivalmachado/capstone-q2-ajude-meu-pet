@@ -349,7 +349,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
-                  <ErrorMessage>{errors.petId?.message  && 'Campo obrigatório'}</ErrorMessage>
+                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>
