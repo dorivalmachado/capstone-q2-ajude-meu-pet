@@ -1,6 +1,6 @@
 import { AuthProvider } from "./Auth/index.tsx";
-import { PetsProvider } from "./Pets";
-import { ServicesProvider } from "./Services";
+import { PetsProvider } from "./Pets/index.tsx";
+import { ServicesProvider } from "./Services/index.tsx";
 
 const Providers = ({ children }) => {
   return (
