@@ -14,17 +14,12 @@ interface HeaderProps {
   isLogged: boolean;
 }
 
-interface ToggleDrawerData {
-  event: any;
-  status: boolean;
-}
-
 const Header = ({ isLogged = false }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { logout } = useAuth();
 
-  const toggleDrawer = (event, status): ToggleDrawerData => {
+  const toggleDrawer = (event: any, status: boolean) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
