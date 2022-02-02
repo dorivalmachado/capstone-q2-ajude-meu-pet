@@ -22,5 +22,15 @@ export const Form = styled.form`
     top: 10px;
     right: 20px;
   }
+
+  input > + span{
+    background-color: red;
+  }
+
+  input:required + span{
+    
+      background-color: red;
+    
+  }
 `
 

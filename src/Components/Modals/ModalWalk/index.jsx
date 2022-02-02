@@ -20,6 +20,7 @@ import { usePets } from "../../../Providers/Pets";
 import { useAuth } from "../../../Providers/Auth";
 import { useServices } from "../../../Providers/Services";
 import { Link } from "react-router-dom";
+import Input from "../../Input";
 
 const ModalWalk = ({ open, handleClose }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,7 +70,7 @@ const ModalWalk = ({ open, handleClose }) => {
       new Date(data.serviceDesiredDate.replaceAll("-", "/"))
     );
     const requisitionBody = {
-      serviceCategory: "adestramento",
+      serviceCategory: "passeio",
       serviceDescription: "1 hora de passeio",
       serviceDepartureStreet: user.street,
       serviceDepartureNumber: user.addressNumber,
@@ -119,18 +120,25 @@ const ModalWalk = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="date"
-                    {...register("serviceDesiredDate")}
+                    register={register}
+                    name='serviceDesiredDate'
+                    error={!!errors.serviceDesiredDate}
+                    helperText={errors.serviceDesiredDate?.message}
                   />
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="time"
                     {...register("serviceDesiredTime")}
+                    register={register}
+                    name='serviceDesiredTime'
+                    error={!!errors.serviceDesiredTime}
+                    helperText={errors.serviceDesiredTime?.message}
                   />
                 </div>
               </div>

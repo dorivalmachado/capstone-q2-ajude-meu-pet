@@ -23,6 +23,7 @@ import PriceTableTraining from "../../PriceTableTraining";
 import { usePets } from "../../../Providers/Pets";
 import { useAuth } from "../../../Providers/Auth";
 import { useServices } from "../../../Providers/Services";
+import Input from "../../../Components/Input";
 import { Link } from "react-router-dom";
 
 const ModalTraining = ({ open, handleClose }) => {
@@ -150,6 +151,7 @@ const ModalTraining = ({ open, handleClose }) => {
                   <option value="avancado">Avançado</option>
                   <option value="grupal">Grupal</option>
                 </TrainingOptions>
+                <p>{errors.email?.message}</p>
               </TrainingType>
             </ContainerTraining>
 
@@ -157,18 +159,25 @@ const ModalTraining = ({ open, handleClose }) => {
               <div className="dateTimeContainer">
                 <div className="dateTimeContainer_box">
                   <p>Em qual dia?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="date"
-                    {...register("serviceDesiredDate")}
+                    register={register}
+                    name='serviceDesiredDate'
+                    error={!!errors.serviceDesiredDate}
+                    helperText={errors.serviceDesiredDate?.message}
                   />
                 </div>
                 <div className="dateTimeContainer_box">
                   <p>Em qual horário?</p>
-                  <TextField
+                  <Input
                     sx={{ width: "180px" }}
                     type="time"
                     {...register("serviceDesiredTime")}
+                    register={register}
+                    name='serviceDesiredTime'
+                    error={!!errors.serviceDesiredTime}
+                    helperText={errors.serviceDesiredTime?.message}
                   />
                 </div>
               </div>
@@ -177,17 +186,19 @@ const ModalTraining = ({ open, handleClose }) => {
                   <p>Qual o seu pet?</p>
                   <div className="petContainer_box">
                     {myPets.length !== 0 ? (
-                      myPets.map((pet) => (
-                        <RadioButtonPets
-                          key={pet.id}
-                          name="petId"
-                          register={register}
-                          animalType={pet.petType}
-                          value={pet.id}
-                          id={pet.id}
-                          petName={pet.petName}
-                        />
-                      ))
+                      <>
+                        {myPets.map((pet) => (
+                          <RadioButtonPets
+                            key={pet.id}
+                            name="petId"
+                            register={register}
+                            animalType={pet.petType}
+                            value={pet.id}
+                            id={pet.id}
+                            petName={pet.petName}
+                          />
+                        ))}
+                      </>
                     ) : (
                       <div className="noPets">
                         <img src={catSleeping} alt="cat sleeping" />

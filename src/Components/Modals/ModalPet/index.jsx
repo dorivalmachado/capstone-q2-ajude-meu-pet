@@ -9,9 +9,11 @@ import Button from "../../Button";
 import Input from "../../Input";
 import RadioInput from "../../RadioInput";
 import { Form } from "./styles";
+import { useState } from "react";
 
 const ModalPet = ({ add, open, handleClose, id }) => {
   const { petCreate, petUpdate, petDelete } = usePets();
+
 
   const schema = yup.object().shape({
     petName: yup.string().required("Informe o nome"),
@@ -40,13 +42,17 @@ const ModalPet = ({ add, open, handleClose, id }) => {
     data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(data.petBirthDate.replaceAll("-", "/"))
     );
+    
     add ? petCreate(data) : petUpdate(data, id);
+
   };
 
   const handleExclusion = () => {
     petDelete(id);
     closeModal();
   };
+
+  console.log(errors)
 
   return (
     <Dialog
@@ -68,7 +74,13 @@ const ModalPet = ({ add, open, handleClose, id }) => {
             <h2>Altere as informações do seu pet</h2>
           )}
 
-          <Input label="Nome" name="petName" register={register} />
+          <Input 
+            label="Nome" 
+            name="petName" 
+            register={register} 
+            error={!!errors.petName}
+            helperText={errors.petName?.message}
+          />
 
           <h3>Tipo</h3>
           <div>
@@ -78,22 +90,31 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petType"
               register={register}
               id="cachorro"
+              // required
+              // onClick={(e) => setType(e.target.value)}
             />
             <RadioInput
               label="Gato"
               value="gato"
               name="petType"
               register={register}
+              // required
               id="gato"
+              // onClick={(e) => setType(e.target.value)}
             />
             <RadioInput
               label="Outro"
               value="outro"
               name="petType"
+              // required
               register={register}
               id="outro"
+              // onClick={(e) => setType(e.target.value)}
             />
+          {/* <span>Informe o tipo</span> */}
           </div>
+          {/* {showTypeError && <span>Informe o tipo</span>} */}
+          <p>{errors.petType?.message && 'Campo obrigatório'}</p>
 
           <h3>Gênero</h3>
           <div>
@@ -103,6 +124,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petGender"
               register={register}
               id="female"
+              // onClick={(e) => setGender(e.target.value)}
             />
             <RadioInput
               label="Masculino"
@@ -110,8 +132,12 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petGender"
               register={register}
               id="male"
+              // onClick={(e) => setGender(e.target.value)}
             />
           </div>
+          <p>{errors.petGender?.message}</p>
+
+          {/* {showGenderError && <span>Informe o gênero</span>} */}
 
           <h3>Tamanho</h3>
           <div>
@@ -121,6 +147,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="pequeno"
+              // onClick={(e) => setSize(e.target.value)}
             />
             <RadioInput
               label="Médio"
@@ -128,6 +155,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="médio"
+              // onClick={(e) => setSize(e.target.value)}
             />
             <RadioInput
               label="Grande"
@@ -135,11 +163,18 @@ const ModalPet = ({ add, open, handleClose, id }) => {
               name="petSize"
               register={register}
               id="grande"
+              // onClick={(e) => setSize(e.target.value)}
             />
           </div>
+          {/* {showSizeError && <span>Informe o tamanho</span>} */}
+          <p>{errors.petSize?.message}</p>
 
           <h3>Data de nascimento</h3>
-          <Input type="date" name="petBirthDate" register={register} />
+          <Input 
+            type="date" name="petBirthDate" register={register} 
+            error={!!errors.petBirthDate}
+            helperText={errors.petBirthDate?.message}
+          />
 
           <div>
             {!add && <Button onClick={handleExclusion}>Excluir pet</Button>}
