@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, ContentBox } from "./styles";
+import { Container, ContentBox } from "./styles.ts";
 import CatImage from "../../Assets/Img/cat.png";
 import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
-import { LightTip } from "../../Helpers/Tooltip";
+import { LightTip } from "../../Helpers/Tooltip/index.tsx";
 
 const CardPets = ({
   name,
