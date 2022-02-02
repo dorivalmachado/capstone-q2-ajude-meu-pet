@@ -13,7 +13,7 @@ const LandingPage = () => {
     <>
       <MainContainer>
         <Container>
-          <Header />
+          <Header isLogged={false} />
           <Home />
           <Ride />
           <Training />
