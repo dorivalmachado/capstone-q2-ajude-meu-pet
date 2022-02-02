@@ -6,7 +6,7 @@ import { BsCalendarDate } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { BsCheck2Square } from "react-icons/bs";
 import { useServices } from "../../Providers/Services";
-import { usePets } from "../../Providers/Pets";
+import { usePets } from "../../Providers/Pets/index.tsx";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 

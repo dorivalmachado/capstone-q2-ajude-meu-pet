@@ -28,7 +28,7 @@ import RadioButtonPets from "../RadioButtonPets";
 import Button from "../Button/index.tsx";
 import PriceTableTaxi from "../PriceTableTaxi";
 import Input from "../Input/index.tsx";
-import { usePets } from "../../Providers/Pets";
+import { usePets } from "../../Providers/Pets/index.tsx";
 import { useServices } from "../../Providers/Services";
 import { useAuth } from "../../Providers/Auth/index.tsx";
 

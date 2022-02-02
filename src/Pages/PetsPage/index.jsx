@@ -1,7 +1,7 @@
 import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
 import { FaPlus } from "react-icons/fa";
 import { HeaderLogged } from "../../Components/HeaderLogged";
-import { usePets } from "../../Providers/Pets";
+import { usePets } from "../../Providers/Pets/index.tsx";
 import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header/index.tsx";
