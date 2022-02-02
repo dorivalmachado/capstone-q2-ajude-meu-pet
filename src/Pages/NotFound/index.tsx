@@ -1,4 +1,4 @@
-import { Container, ContainerContent } from "./styles.js";
+import { Container, ContainerContent } from "./styles.ts";
 import Button from "../../Components/Button/index.tsx";
 import DogImage from "../../Assets/Img/hello.gif";
 import MainContainer from "../../Components/MainContainer";
