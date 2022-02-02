@@ -12,6 +12,7 @@ import {
   ButtonsContainer,
   ContainerBottom,
   ContainerTraining,
+  ErrorMessage,
   Form,
   TrainingDescription,
   TrainingOptions,
@@ -151,7 +152,7 @@ const ModalTraining = ({ open, handleClose }) => {
                   <option value="avancado">Avançado</option>
                   <option value="grupal">Grupal</option>
                 </TrainingOptions>
-                <p>{errors.email?.message}</p>
+                <ErrorMessage>{!training && errors.serviceDescription ? errors.serviceDescription?.message : null}</ErrorMessage>
               </TrainingType>
             </ContainerTraining>
 
@@ -209,6 +210,7 @@ const ModalTraining = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
+                  <ErrorMessage>{errors.petId?.message  && 'Campo obrigatório'}</ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

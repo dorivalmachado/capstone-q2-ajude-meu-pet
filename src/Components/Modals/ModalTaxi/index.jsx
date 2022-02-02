@@ -19,6 +19,7 @@ import {
   DepartureAddress,
   DepartureAddressButtons,
   DepartureAddressForm,
+  ErrorMessage,
   Form,
 } from "./styles";
 
@@ -234,7 +235,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                     helperText={errors.serviceDepartureComplement?.message}
                     value={departureComplementValue}
                     onChange={(e) =>
-                      setDepartureComplementValue(e.target.value)
+                    setDepartureComplementValue(e.target.value)
                     }
                   />
                   <Input
@@ -348,6 +349,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
+                  <ErrorMessage>{errors.petId?.message  && 'Campo obrigatório'}</ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

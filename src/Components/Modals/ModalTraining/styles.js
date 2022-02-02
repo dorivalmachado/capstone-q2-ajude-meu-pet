@@ -41,7 +41,7 @@ export const ContainerTraining = styled.div`
     margin-bottom: 15px;
   }
 
-  p {
+  h3 + p {
     font-size: 18px;
   }
 
@@ -78,6 +78,7 @@ export const TrainingOptions = styled.select`
   max-width: 250px;
   height: 35px;
   font-size: 16px;
+  margin-bottom: 5px;
 
   :focus {
     outline-color: var(--blue);
@@ -176,3 +177,9 @@ export const ContainerBottom = styled.div`
     flex: 1;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  color: #d32f2f;
+  font-size: 12px;
+  margin: 0 14px 15px;
+`
