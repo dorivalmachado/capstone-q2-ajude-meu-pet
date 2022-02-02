@@ -7,7 +7,7 @@ import LandingPage from "../Pages/LandingPage/index.tsx";
 import RegisterPage from "../Pages/RegisterPage/index.tsx";
 import NotFound from "../Pages/NotFound/index.tsx";
 import PetsPage from "../Pages/PetsPage/index.tsx";
-import ProfilePage from "../Pages/ProfilePage";
+import ProfilePage from "../Pages/ProfilePage/index.tsx";
 import Route from "./Route";
 import { TeamPage } from "../Pages/TeamPage/index.tsx";
 

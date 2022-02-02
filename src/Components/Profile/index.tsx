@@ -1,4 +1,4 @@
-import { Container, Content, Form, Subtitle } from "./styles";
+import { Container, Content, Form, Subtitle } from "./styles.ts";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -65,7 +65,7 @@ const Profile = ({ open, onClose }) => {
       .replace(/(\d{5})(\d)/, "$1-$2")
       .replace(/(-\d{4})(\d+?)$/, "$1");
   };
-  
+
   return (
     <Dialog
       open={open}
