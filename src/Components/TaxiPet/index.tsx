@@ -1,9 +1,9 @@
-import Imagem from "../Imagem";
-import { Container, Paragraph, Subtitle, Text } from "./styles";
-import LogoCaminhada from "../../Assets/Img/LogoCaminhada.jpg";
 import { useEffect, useState } from "react";
+import Imagem from "../Imagem";
+import { Container, Paragraph, Subtitle, Text } from "./styles.ts";
+import LogoPetTaxi from "../../Assets/Img/LogoPetTaxi.jpg";
 
-const Ride = () => {
+const TaxiPet = () => {
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -32,22 +32,23 @@ const Ride = () => {
   const { height, width } = useWindowDimensions();
 
   return (
-    <Container id='passeio'>
-      <Subtitle>Passeios</Subtitle>
+    <Container id="taxi">
+      <Subtitle>TaxiPet</Subtitle>
       <Text>
         <Paragraph>
-          Você acha que o seu animalzinho de estimação está fora de forma?
-          Nossos passeios são a alternativa certa para você. Nossos
-          profissionais fazem caminhadas ou corridas com os pets nas mais
-          variadas distâncias, para que seu pet tenha a medida certa de
-          exercícios.
+          Se seu pet está com a agenda cheia de compromissos e você não tem
+          tempo de levá-lo, nós fazemos isso para você. Com o taxi-pet seu
+          animalzinho sempre estará na hora certa e no lugar certo.
         </Paragraph>
         {width > 767 && (
-          <Imagem src={LogoCaminhada} alt="mulher caminhando com cachorro" />
+          <Imagem
+            src={LogoPetTaxi}
+            alt="cachorro de óculos na janela do carro"
+          />
         )}
       </Text>
     </Container>
   );
 };
 
-export default Ride;
+export default TaxiPet;

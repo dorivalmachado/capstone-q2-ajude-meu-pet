@@ -1,4 +1,4 @@
-import { Card, Container, Content, Imagem, Subtitle, Text } from "./styles";
+import { Card, Container, Content, Imagem, Subtitle, Text } from "./styles.ts";
 import Depo1 from "../../Assets/Img/Depo1.webp";
 import Depo2 from "../../Assets/Img/Depo2.jpg";
 import Depo3 from "../../Assets/Img/Depo3.jpg";

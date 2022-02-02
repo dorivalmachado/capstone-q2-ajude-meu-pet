@@ -7,7 +7,7 @@ import {
   Paragraph,
   Subtitle,
   Text,
-} from "./styles";
+} from "./styles.ts";
 import LogoAdestramento1 from "../../Assets/Img/LogoAdestramento1.jpeg";
 import LogoAdestramento2 from "../../Assets/Img/LogoAdestramento2.jpeg";
 
@@ -40,7 +40,7 @@ const Training = () => {
   const { height, width } = useWindowDimensions();
 
   return (
-    <Container id='adestramento'>
+    <Container id="adestramento">
       <Subtitle>Adestramento</Subtitle>
       <Content>
         {width > 767 && (

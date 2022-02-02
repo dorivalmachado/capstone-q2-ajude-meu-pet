@@ -5,7 +5,7 @@ import { usePets } from "../../Providers/Pets";
 import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header/index.tsx";
-import MainContainer from "../../Components/MainContainer";
+import MainContainer from "../../Components/MainContainer/index.tsx";
 import React, { useEffect, useState } from "react";
 import { LightTip } from "../../Helpers/Tooltip";
 import { useAuth } from "../../Providers/Auth/index.tsx";
