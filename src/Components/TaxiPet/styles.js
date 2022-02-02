@@ -48,11 +48,11 @@ export const Paragraph = styled.p`
     margin-right: 40px;
     color: #fff;
     background-color: #8b5742;
-    height: 40vh;
+    height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 30px;
     border-radius: 10px;
   }
 
