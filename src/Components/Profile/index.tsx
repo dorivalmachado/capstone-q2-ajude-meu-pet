@@ -24,6 +24,14 @@ interface ProfileProps {
   onClose: () => void;
 }
 
+interface ProfileData{
+  name: string,
+  email: string,
+  password: string,
+  address: string,
+  phone: string,
+}
+
 const Profile = ({ open, onClose }: ProfileProps) => {
   const [showPass, setShowPass] = useState(false);
 
@@ -55,15 +63,15 @@ const Profile = ({ open, onClose }: ProfileProps) => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({
+  } = useForm<ProfileData>({
     resolver: yupResolver(schema),
   });
 
-  const handleChange = (data) => {
-    updateUser({ ...data, userId: user.id, isClient: true });
+  const handleChange = (data: ProfileData) => {
+    updateUser({ ...data, isClient: true });
   };
 
-  const maskPhone = (value) => {
+  const maskPhone = (value: string) => {
     return value
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d)/, "($1)$2")
