@@ -122,17 +122,9 @@ export const Images = styled.div`
     background-color: var(--yellow80);
     background-repeat: no-repeat;
     background-size: contain;
-    height: 12vw;
+    height: 13.5vw;
     max-height: 183px;
     max-width: 230px;
     width: 15vw;
-  }
-
-  div:nth-child(1) {
-    clip-path: polygon(50px 0, 700px 0, 700px 100%, 0 100%);
-  }
-
-  div:nth-child(6) {
-    clip-path: polygon(0px 0px, 211px 0, 0 810px, 0 0);
   }
 `;

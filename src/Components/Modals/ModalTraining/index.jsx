@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import { DialogContent, TextareaAutosize, TextField } from "@mui/material";
+import { DialogContent, TextareaAutosize } from "@mui/material";
 import { FaRegWindowClose } from "react-icons/fa";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,9 @@ import { useServices } from "../../../Providers/Services";
 import Input from "../../../Components/Input";
 import { Link } from "react-router-dom";
 
-const ModalTraining = ({ open, handleClose }) => {
+const ModalTraining = React.forwardRef((props, ref) => {
+  <input ref={ref} {...props} />;
+
   const trainingDescription = {
     basico:
       "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",
@@ -60,10 +62,15 @@ const ModalTraining = ({ open, handleClose }) => {
     if (pets.length > 0) {
       setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets]);
+  }, [pets, user.id]);
 
   const schema = yup.object().shape({
-    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredDate: yup
+      .date()
+      .required("Selecione a data")
+      .nullable()
+      .typeError("Data obrigatória")
+      .min(new Date(), "Não pode ser no passado"),
     serviceDesiredTime: yup.string().required("Selecione o horário"),
     petId: yup.string().required("Selecione um pet"),
     serviceObs: yup.string(),
@@ -82,9 +89,11 @@ const ModalTraining = ({ open, handleClose }) => {
   const handleBooking = (data) => {
     closeModal();
     data.petId = Number(data.petId);
+    let formatDate = data.serviceDesiredDate.toString();
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
-      new Date(data.serviceDesiredDate.replaceAll("-", "/"))
+      new Date(formatDate.replaceAll("-", "/"))
     );
+
     const requisitionBody = {
       serviceCategory: "adestramento",
       serviceDepartureStreet: user.street,
@@ -103,7 +112,7 @@ const ModalTraining = ({ open, handleClose }) => {
   };
 
   const closeModal = () => {
-    handleClose();
+    props.handleClose();
     setTraining("");
     reset();
   };
@@ -111,7 +120,7 @@ const ModalTraining = ({ open, handleClose }) => {
   return (
     <div>
       <Dialog
-        open={open === "training"}
+        open={props.open === "training"}
         onClose={closeModal}
         sx={{
           "& .MuiDialog-paper": {
@@ -119,6 +128,7 @@ const ModalTraining = ({ open, handleClose }) => {
             maxWidth: "800px",
           },
         }}
+        ref={ref}
       >
         <Form onSubmit={handleSubmit(handleBooking)}>
           <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
@@ -152,7 +162,11 @@ const ModalTraining = ({ open, handleClose }) => {
                   <option value="avancado">Avançado</option>
                   <option value="grupal">Grupal</option>
                 </TrainingOptions>
-                <ErrorMessage>{!training && errors.serviceDescription ? errors.serviceDescription?.message : null}</ErrorMessage>
+                <ErrorMessage>
+                  {!training && errors.serviceDescription
+                    ? errors.serviceDescription?.message
+                    : null}
+                </ErrorMessage>
               </TrainingType>
             </ContainerTraining>
 
@@ -164,7 +178,7 @@ const ModalTraining = ({ open, handleClose }) => {
                     sx={{ width: "180px" }}
                     type="date"
                     register={register}
-                    name='serviceDesiredDate'
+                    name="serviceDesiredDate"
                     error={!!errors.serviceDesiredDate}
                     helperText={errors.serviceDesiredDate?.message}
                   />
@@ -174,9 +188,8 @@ const ModalTraining = ({ open, handleClose }) => {
                   <Input
                     sx={{ width: "180px" }}
                     type="time"
-                    {...register("serviceDesiredTime")}
                     register={register}
-                    name='serviceDesiredTime'
+                    name="serviceDesiredTime"
                     error={!!errors.serviceDesiredTime}
                     helperText={errors.serviceDesiredTime?.message}
                   />
@@ -210,7 +223,9 @@ const ModalTraining = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
-                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
+                  <ErrorMessage>
+                    {errors.petId?.message && "Selecione um pet"}
+                  </ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>
@@ -244,6 +259,6 @@ const ModalTraining = ({ open, handleClose }) => {
       </Dialog>
     </div>
   );
-};
+});
 
 export default ModalTraining;

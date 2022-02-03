@@ -49,7 +49,7 @@ export const Menu = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10vh;
   height: 100%;
   justify-content: flex-start;
   margin-top: 5vh;

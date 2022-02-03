@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import { DialogContent, TextareaAutosize, TextField } from "@mui/material";
+import { DialogContent, TextareaAutosize } from "@mui/material";
 import { FaRegWindowClose } from "react-icons/fa";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -46,10 +46,15 @@ const ModalWalk = ({ open, handleClose }) => {
     if (pets.length > 0) {
       setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets]);
+  }, [pets, user.id]);
 
   const schema = yup.object().shape({
-    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredDate: yup
+      .date()
+      .required("Selecione a data")
+      .nullable()
+      .typeError("Data obrigatória")
+      .min(new Date(), "Não pode ser no passado"),
     serviceDesiredTime: yup.string().required("Selecione o horário"),
     petId: yup.string().required("Selecione um pet"),
     serviceObs: yup.string(),
@@ -66,10 +71,11 @@ const ModalWalk = ({ open, handleClose }) => {
 
   const handleBooking = (data) => {
     closeModal();
-    data.petId = Number(data.petId);
+    let formatDate = data.serviceDesiredDate.toString();
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
-      new Date(data.serviceDesiredDate.replaceAll("-", "/"))
+      new Date(formatDate.replaceAll("-", "/"))
     );
+
     const requisitionBody = {
       serviceCategory: "passeio",
       serviceDescription: "1 hora de passeio",
@@ -85,6 +91,7 @@ const ModalWalk = ({ open, handleClose }) => {
       workerId: null,
       ...data,
     };
+    
     serviceCreate(requisitionBody);
   };
 
@@ -125,7 +132,7 @@ const ModalWalk = ({ open, handleClose }) => {
                     sx={{ width: "180px" }}
                     type="date"
                     register={register}
-                    name='serviceDesiredDate'
+                    name="serviceDesiredDate"
                     error={!!errors.serviceDesiredDate}
                     helperText={errors.serviceDesiredDate?.message}
                   />
@@ -135,9 +142,8 @@ const ModalWalk = ({ open, handleClose }) => {
                   <Input
                     sx={{ width: "180px" }}
                     type="time"
-                    {...register("serviceDesiredTime")}
                     register={register}
-                    name='serviceDesiredTime'
+                    name="serviceDesiredTime"
                     error={!!errors.serviceDesiredTime}
                     helperText={errors.serviceDesiredTime?.message}
                   />
@@ -169,7 +175,9 @@ const ModalWalk = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
-                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
+                  <ErrorMessage>
+                    {errors.petId?.message && "Selecione um pet"}
+                  </ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

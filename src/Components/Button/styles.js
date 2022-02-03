@@ -64,6 +64,16 @@ export const Container = styled.div`
   .yellow:active {
     background: var(--yellow80);
   }
+
+  .red {
+    background: var(--red);
+    color: var(--white);
+    font-size: 16px;
+  }
+
+  .red:hover {
+    background: #ff00009c;
+  }
 `;
 
 export const ButtonStyle = styled.button`

@@ -35,7 +35,7 @@ export const Text = styled.div`
       z-index: 2;
       -webkit-clip-path: polygon(180px 0, 800px 0, 800px 100%, 0 100%);
     }
-
+    
     &:after {
       background-color: var(--yellow80);
       content: "";

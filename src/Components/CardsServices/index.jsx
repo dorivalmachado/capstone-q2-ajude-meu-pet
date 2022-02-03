@@ -52,6 +52,7 @@ const CardsServices = () => {
         anchorEl={anchorEl}
         handleClose={handleClosePopover}
       />
+      
 
       <ModalTraining open={openModal} handleClose={handleCloseModal} />
       <ModalWalk open={openModal} handleClose={handleCloseModal} />
@@ -65,7 +66,7 @@ const CardsServices = () => {
                 <h2>Adestramento</h2>
               </CardFront>
               <CardBack>
-                <div>
+                <div className="cardText">
                   <p>
                     Seu pet com a melhor educação,sabendo truques e comandos!
                   </p>
@@ -93,7 +94,7 @@ const CardsServices = () => {
                 <h2>Passeio</h2>
               </CardFront>
               <CardBack>
-                <div>
+                <div className="cardText">
                   <p>Sem tempo para passear?</p>
 
                   <p>
@@ -118,7 +119,7 @@ const CardsServices = () => {
                 <h2>Taxi-Pet</h2>
               </CardFront>
               <CardBack>
-                <div>
+                <div className="cardText">
                   <p>
                     Precisando de alguém para levar seu bichinho para algum
                     compromisso?

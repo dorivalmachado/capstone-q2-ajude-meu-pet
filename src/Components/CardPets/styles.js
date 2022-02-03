@@ -1,40 +1,66 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: var(--blue);
-  border-radius: 8px;
+  background: var(--blue150);
+  border-radius: 20px;
+  border: 2px dashed var(--black50);
   box-shadow: 1px 2px 6px var(--grey70);
-  color: white;
+  color: var(--black50);
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 200px;
   padding: 20px;
-  width: 220px;
+  width: 250px;
 
   .iconBox {
     align-self: flex-end;
+    color: var(--grey60);
     cursor: pointer;
+
+    svg {
+      font-size: 20px;
+    }
   }
 
   .iconBox:hover {
-
     color: var(--grey90);
   }
 
   &:nth-child(1n) {
-    background-color: var(--blue);
+    background-color: var(--blue150);
   }
 
   &:nth-child(2n) {
-    background-color: var(--blue50);
+    background-color: var(--cream);
+
+    svg {
+      color: var(--caramel300);
+    }
   }
 
   &:nth-child(3n) {
-    background-color: var(--caramel25);
+    background: var(--orange);
+
+    .iconBox {
+      svg {
+        color: var(--grey60);
+      }
+    }
   }
 
   &:nth-child(4n) {
-    background-color: #cd920d;
+    background: var(--caramel25);
+    color: var(--white);
+
+    svg {
+      color: var(--white);
+    }
+
+    .iconBox {
+      svg {
+        color: var(--cream);
+      }
+    }
   }
 `;
 
@@ -49,7 +75,7 @@ export const ContentBox = styled.div`
     flex-direction: row;
   }
 
-  .imageBox{
+  .imageBox {
     align-items: center;
     background: var(--white);
     border-radius: 50%;
@@ -58,7 +84,7 @@ export const ContentBox = styled.div`
     justify-content: center;
     width: 130px;
   }
-  
+
   img {
     width: 50px;
     height: 50px;
@@ -76,7 +102,6 @@ export const ContentBox = styled.div`
       text-transform: capitalize;
     }
   }
-
 
   svg {
     margin-left: 2px;

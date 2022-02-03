@@ -35,7 +35,7 @@ const PetsPage = () => {
     if (pets.length > 0) {
       setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets]);
+  }, [pets, user.id]);
 
   return (
     <MainContainer>
