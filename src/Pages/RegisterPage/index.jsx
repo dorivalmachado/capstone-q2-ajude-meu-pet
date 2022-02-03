@@ -1,10 +1,5 @@
 import { Container, ContentContainer, FormContainer } from "./styles";
-import {
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  InputAdornment,
-} from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import {
   FiEye,
   FiEyeOff,
@@ -63,12 +58,12 @@ const RegisterPage = () => {
   });
 
   const [phone, setPhone] = useState("");
-  const [isClient, setIsClient] = useState(true);
   const [showPass, setShowPass] = useState(false);
+  // const [isClient, setIsClient] = useState(true);
 
-  const handleRadioChange = (e) => {
-    setIsClient(e.target.value);
-  };
+  // const handleRadioChange = (e) => {
+  //   setIsClient(e.target.value);
+  // };
 
   const maskPhone = (value) => {
     return value
@@ -80,32 +75,33 @@ const RegisterPage = () => {
 
   const handleSignUp = (data) => {
     delete data.confirmPass;
-    const newData = { ...data, isClient: isClient, phone: phone };
+    const newData = { ...data, isClient: true, phone: phone };
     signup(newData);
   };
 
   return (
-      <Container>
-        <img src={dog} alt="Dog saying How you doin'" />
-        <ContentContainer>
-          <FormContainer>
-            <h1>Cadastro</h1>
-            <form onSubmit={handleSubmit(handleSignUp)}>
-              <Input
-                label="Nome"
-                name="name"
-                register={register}
-                fullWidth
-                error={!!errors.name}
-                helperText={errors.name?.message}
-                inputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <FiUser />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+    <Container>
+      <img src={dog} alt="Dog saying How you doin'" />
+      <ContentContainer>
+        <FormContainer>
+          <h1>Cadastro</h1>
+          <form onSubmit={handleSubmit(handleSignUp)}>
+            <Input
+              label="Nome"
+              name="name"
+              register={register}
+              fullWidth
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FiUser />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
             <Input
               label="Email"
               name="email"
@@ -188,26 +184,23 @@ const RegisterPage = () => {
               }}
             />
             {/* <h2>Quero</h2>
-            <RadioGroup
-              className="radioContainer"
-              row
-              value={isClient}
-              onChange={handleRadioChange}
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  fontSize: 20,
-                },
-              }}
-            >
-              <FormControlLabel
-                value="worker"
-                control={
-                  <Radio
-                    required
-                    checked=''
-                    sx={{
-                      color: "var(--black50)",
-                      "&.Mui-checked": {
+              <RadioGroup
+                className="radioContainer"
+                row
+                value={isClient}
+                onChange={handleRadioChange}
+                sx={{
+                  "& .MuiSvgIcon-root": {
+                    fontSize: 20,
+                  },
+                }}
+              >
+                <FormControlLabel
+                  value="worker"
+                  control={
+                    <Radio
+                      required
+                      sx={{
                         color: "var(--black50)",
                       },
                     }}

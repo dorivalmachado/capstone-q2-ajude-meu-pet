@@ -30,6 +30,18 @@ export const Container = styled.div`
     font-size: 25px;
   }
 
+  a:nth-child(6) {
+    color: var(--yellow50);
+  }
+
+  a svg {
+    vertical-align: middle;
+  }
+
+  a:nth-child(6):hover {
+    color: var(--blue10);
+  }
+
   a:after {
     display: block;
     content: "";
