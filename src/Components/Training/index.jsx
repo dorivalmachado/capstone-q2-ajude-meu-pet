@@ -57,13 +57,15 @@ const Training = () => {
       <Subtitle>Adestramento</Subtitle>
       <Content>
         <Text>
-          <Paragraph>
-            <strong>Adestramento básico</strong>: Como o próprio nome já diz, o
-            adestramento básico ensina ao pet conceitos de obediência simples.
-            Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender
-            o não, aqui e meia volta.
-          </Paragraph>
-          <img src={givePaw} alt="Cachorro dando a patinha" />
+          <div className="contentContainer">
+            <Paragraph>
+              <strong>Adestramento básico</strong>: Como o próprio nome já diz,
+              o adestramento básico ensina ao pet conceitos de obediência
+              simples. Alguns exemplos são: senta, deita, fica, junto, dar a
+              pata, entender o não, aqui e meia volta.
+            </Paragraph>
+            <img src={givePaw} alt="Cachorro dando a patinha" />
+          </div>
           <Paragraph>
             <strong>Adestramento avançado</strong>: treinamento oferecido para
             cães de trabalho e para esportes. Dentro do adestramento no pet

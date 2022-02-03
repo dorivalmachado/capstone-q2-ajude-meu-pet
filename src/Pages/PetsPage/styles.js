@@ -54,6 +54,7 @@ export const ContainerContent = styled.div`
       border: 2px dashed #c9c9c9;
       color: var(--black50);
       font-size: 24px;
+      font-family: var(--title-font);
       font-weight: normal;
       padding: 10px;
     }
@@ -87,21 +88,11 @@ export const ContainerContent = styled.div`
 export const PetsBox = styled.div`
   display: grid;
   grid-gap: 25px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
   justify-content: space-evenly;
   justify-items: center;
   overflow: scroll;
   scroll-behavior: smooth;
-
-  @media (min-width: 768px) {
-    display: grid;
-    grid-gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-    justify-content: space-evenly;
-    justify-items: center;
-    overflow: scroll;
-    scroll-behavior: smooth;
-  }
 `;
 
 export const NoCards = styled.div`

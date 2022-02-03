@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import { DialogContent, TextareaAutosize, TextField } from "@mui/material";
+import { DialogContent, TextareaAutosize } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaRegWindowClose } from "react-icons/fa";
-import toast from "react-hot-toast";
 
 import catSleeping from "../../../Assets/Img/catSleeping.gif";
 
 import {
   ArrivalAddress,
   ButtonsContainer,
-  CepContainer,
   ContainerBottom,
   ContainerTaxi,
-  CssTextField,
   DepartureAddress,
-  DepartureAddressButtons,
   DepartureAddressForm,
   ErrorMessage,
   Form,
 } from "./styles";
 
-import { cepApi } from "../../../Services/api";
 import RadioButtonPets from "../../RadioButtonPets";
 import Button from "../../Button";
 import PriceTableTaxi from "../../PriceTableTaxi";
@@ -34,11 +29,11 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../../Providers/Auth";
 
 const ModalTaxi = ({ open, handleClose }) => {
-  const [buttonsVisibility, setButtonsVisibility] = useState(true);
-  const [arrivalCep, setArrivalCep] = useState("");
+  // const [buttonsVisibility, setButtonsVisibility] = useState(true);
+  // const [arrivalCep, setArrivalCep] = useState("");
   const [arrivalCityName, setArrivalCityName] = useState("");
   const [arrivalStreetName, setArrivalStreetName] = useState("");
-  const [departureCep, setDepartureCep] = useState("");
+  // const [departureCep, setDepartureCep] = useState("");
   const [departureCityName, setDepartureCityName] = useState("");
   const [departureStreetName, setDepartureStreetName] = useState("");
   const [departureNumberValue, setDepartureNumberValue] = useState("");
@@ -65,10 +60,15 @@ const ModalTaxi = ({ open, handleClose }) => {
     if (pets.length > 0) {
       setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets]);
+  }, [pets, user.id]);
 
   const schema = yup.object().shape({
-    serviceDesiredDate: yup.string().required("Selecione a data"),
+    serviceDesiredDate: yup
+      .date()
+      .required("Selecione a data")
+      .nullable()
+      .typeError("Data obrigatória")
+      .min(new Date(), "Não pode ser no passado"),
     serviceDesiredTime: yup.string().required("Selecione o horário"),
     petId: yup.string().required("Selecione um pet"),
     serviceObs: yup.string(),
@@ -94,9 +94,11 @@ const ModalTaxi = ({ open, handleClose }) => {
   const handleBooking = (data) => {
     closeModal();
     data.petId = Number(data.petId);
+    let formatDate = data.serviceDesiredDate.toString();
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
-      new Date(data.serviceDesiredDate.replaceAll("-", "/"))
+      new Date(formatDate.replaceAll("-", "/"))
     );
+
     const requisitionBody = {
       ...data,
       serviceCategory: "taxi",
@@ -104,6 +106,7 @@ const ModalTaxi = ({ open, handleClose }) => {
       serviceConclusion: false,
       workerId: null,
     };
+
     serviceCreate(requisitionBody);
   };
 
@@ -116,7 +119,7 @@ const ModalTaxi = ({ open, handleClose }) => {
     setDepartureComplementValue("");
     setArrivalStreetName("");
     setArrivalCityName("");
-    setButtonsVisibility(true);
+    // setButtonsVisibility(true);
   };
 
   // useEffect(() => {
@@ -235,7 +238,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                     helperText={errors.serviceDepartureComplement?.message}
                     value={departureComplementValue}
                     onChange={(e) =>
-                    setDepartureComplementValue(e.target.value)
+                      setDepartureComplementValue(e.target.value)
                     }
                   />
                   <Input
@@ -305,7 +308,7 @@ const ModalTaxi = ({ open, handleClose }) => {
                     sx={{ width: "180px" }}
                     type="date"
                     register={register}
-                    name='serviceDesiredDate'
+                    name="serviceDesiredDate"
                     error={!!errors.serviceDesiredDate}
                     helperText={errors.serviceDesiredDate?.message}
                   />
@@ -315,9 +318,8 @@ const ModalTaxi = ({ open, handleClose }) => {
                   <Input
                     sx={{ width: "180px" }}
                     type="time"
-                    {...register("serviceDesiredTime")}
                     register={register}
-                    name='serviceDesiredTime'
+                    name="serviceDesiredTime"
                     error={!!errors.serviceDesiredTime}
                     helperText={errors.serviceDesiredTime?.message}
                   />
@@ -349,7 +351,9 @@ const ModalTaxi = ({ open, handleClose }) => {
                       </div>
                     )}
                   </div>
-                  <ErrorMessage>{errors.petId?.message  && 'Selecione um pet'}</ErrorMessage>
+                  <ErrorMessage>
+                    {errors.petId?.message && "Selecione um pet"}
+                  </ErrorMessage>
                 </div>
                 <div className="obsContainer">
                   <p>Alguma observação?</p>

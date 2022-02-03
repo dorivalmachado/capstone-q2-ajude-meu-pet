@@ -35,7 +35,7 @@ export const Text = styled.div`
       z-index: 2;
       -webkit-clip-path: polygon(180px 0, 800px 0, 800px 100%, 0 100%);
     }
-
+    
     &:after {
       background-color: var(--yellow80);
       content: "";
@@ -51,14 +51,14 @@ export const Subtitle = styled.h2`
   color: var(--white);
   font-family: var(--title-font);
   margin-top: 10px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 1.5px;
   text-align: center;
   text-shadow: 1px 1px var(--black50);
 
   @media (min-width: 768px) {
     color: var(--black50);
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 100;
     margin: 0;
     text-shadow: 1px 1px var(--grey20);
@@ -70,7 +70,7 @@ export const Paragraph = styled.p`
   border-radius: 10%;
   color: var(--white);
   display: flex;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   justify-content: center;
   line-height: normal;
@@ -80,7 +80,7 @@ export const Paragraph = styled.p`
 
   @media (min-width: 768px) {
     color: var(--black50);
-    font-size: 20px;
+    font-size: 18px;
     height: 220px;
     justify-content: center;
     margin: 0;
