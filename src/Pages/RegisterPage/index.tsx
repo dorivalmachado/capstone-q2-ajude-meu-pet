@@ -1,10 +1,5 @@
 import { Container, ContentContainer, FormContainer } from "./styles";
-import {
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  InputAdornment,
-} from "@mui/material";
+import {InputAdornment} from "@mui/material";
 import {
   FiEye,
   FiEyeOff,
@@ -20,10 +15,18 @@ import Input from "../../Components/Input";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Providers/Auth";
 import dog from "../../Assets/Img/flirtingDog.gif";
+
+interface SignupData{
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPass: string;
+}
 
 const RegisterPage = () => {
   const schema = yup.object().shape({
@@ -58,19 +61,19 @@ const RegisterPage = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({
+  } = useForm<SignupData>({
     resolver: yupResolver(schema),
   });
 
   const [phone, setPhone] = useState("");
-  const [isClient, setIsClient] = useState(true);
+  // const [isClient, setIsClient] = useState(true);
   const [showPass, setShowPass] = useState(false);
 
-  const handleRadioChange = (e) => {
-    setIsClient(e.target.value);
-  };
+  // const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setIsClient(!!e.target.value);
+  // };
 
-  const maskPhone = (value) => {
+  const maskPhone = (value: string) => {
     return value
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d)/, "($1)$2")
@@ -78,10 +81,14 @@ const RegisterPage = () => {
       .replace(/(-\d{4})(\d+?)$/, "$1");
   };
 
-  const handleSignUp = (data) => {
+  const handleSignUp = (data: SignupData) => {
     delete data.confirmPass;
-    const newData = { ...data, isClient: isClient, phone: phone };
+    const newData = { ...data, isClient: true, phone: phone };
     signup(newData);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(maskPhone(e.target.value))
   };
 
   return (
@@ -131,7 +138,7 @@ const RegisterPage = () => {
               helperText={errors.phone?.message}
               register={register}
               value={phone}
-              onChange={(e) => setPhone(maskPhone(e.target.value))}
+              onChange={handleChange}
               inputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -188,7 +195,7 @@ const RegisterPage = () => {
                 ),
               }}
             />
-            <h2>Quero</h2>
+            {/* <h2>Quero</h2>
             <RadioGroup
               className="radioContainer"
               row
@@ -232,7 +239,7 @@ const RegisterPage = () => {
                 label="Contratar um serviço"
                 labelPlacement="bottom"
               />
-            </RadioGroup>
+            </RadioGroup> */}
             <Button type="submit" buttonColor="darkBrown">
               Cadastrar
             </Button>
