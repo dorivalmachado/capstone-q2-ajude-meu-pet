@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Providers from "../../../Providers";
+import Providers from "../../Providers";
 
-import { HeaderLogged } from "../../../Components/HeaderLogged";
+import { HeaderLogged } from "../../Components/HeaderLogged";
 
 describe("Render the side bar", () => {
   it("Should render the side bar when user is logged", () => {

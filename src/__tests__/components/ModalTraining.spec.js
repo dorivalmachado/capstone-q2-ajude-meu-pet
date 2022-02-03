@@ -1,13 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import Provider from "../../../Providers";
-import ModalTraining from "../../../Components/ModalTraining";
+import Provider from "../../Providers";
+import { MemoryRouter } from "react-router-dom";
+import ModalTraining from "../../Components/Modals/ModalTraining";
 
 describe("Render the ModalTraining component", () => {
   it("Should render the ModalTraining component in the page", () => {
     render(
-      <Provider>
-        <ModalTraining open={"training"} />
-      </Provider>
+      <MemoryRouter>
+        <Provider>
+          <ModalTraining open={"training"} />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(

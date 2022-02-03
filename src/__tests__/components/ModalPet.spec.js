@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Provider from "../../../Providers";
+import Provider from "../../Providers";
 
-import ModalPet from "../../../Components/ModalPet";
+import ModalPet from "../../Components/Modals/ModalPet";
 
 describe("Render the ModalPet component", () => {
   it("Should render the ModalPet component, add pet", () => {
