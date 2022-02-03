@@ -4,7 +4,7 @@ import { RadioStyle } from "./styles";
 interface RadioInputProps {
   label: string;
   name: string;
-  register: (name: string) => void;
+  register: any;
   value: string;
   id: string;
 }
