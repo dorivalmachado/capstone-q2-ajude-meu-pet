@@ -69,7 +69,7 @@ export const FormContainer = styled.div`
   h1 {
     color: var(--black50);
     font-family: var(--title-font);
-    font-size: 2rem;
+    font-size: 30px;
     letter-spacing: 3px;
     margin-bottom: 20px;
     padding: 0;

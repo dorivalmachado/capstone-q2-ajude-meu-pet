@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "./styles.js";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
@@ -13,7 +14,7 @@ const LandingPage = () => {
     <>
       <MainContainer>
         <Container>
-          <Header/>
+          <Header />
           <Home />
           <Ride />
           <Training />

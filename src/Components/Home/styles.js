@@ -39,7 +39,7 @@ export const Text = styled.div`
 export const Subtitle = styled.h2`
   color: var(--caramel50);
   font-family: var(--title-font);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 1px;
   text-align: center;
   text-shadow: 1px 1px var(--grey70);
@@ -47,7 +47,7 @@ export const Subtitle = styled.h2`
 
 export const Paragraph = styled.p`
   color: var(--black50);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   line-height: normal;
   text-align: center;
@@ -77,7 +77,7 @@ export const Assign = styled.div`
   p {
     color: var(--black50);
     margin-top: 25px;
-    font-size: 18px;
+    font-size: 15px;
   }
 
   a {
@@ -90,7 +90,7 @@ export const Assign = styled.div`
   }
 
   @media (min-width: 1024px) {
-    font-size: 22px;
+    font-size: 16px;
   }
 `;
 

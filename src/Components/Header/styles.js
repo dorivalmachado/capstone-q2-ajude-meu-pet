@@ -17,10 +17,11 @@ export const Container = styled.div`
   }
 
   a {
-    font-family: var(--title-font);
-    letter-spacing: 0.5px;
-    font-weight: 500;
     color: var(--black50);
+    font-family: var(--title-font);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
   }
 
   button {
@@ -30,12 +31,29 @@ export const Container = styled.div`
     font-size: 25px;
   }
 
+  a:nth-child(6) {
+    color: var(--yellow50);
+  }
+
+  a svg {
+    vertical-align: middle;
+  }
+
+  a:nth-child(6):hover {
+    color: var(--orange);
+  }
+
   a:after {
     display: block;
     content: "";
-    border-bottom: solid 2.5px var(--yellow50);
+    border-bottom: solid 2px var(--yellow50);
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
+  }
+
+  a:nth-child(6):after {
+    border-color: var(--black50);
+    padding: 1px;
   }
 
   a:hover:after {
@@ -100,3 +118,6 @@ export const Imagem = styled.img`
     margin-left: 2vw;
   }
 `;
+
+
+

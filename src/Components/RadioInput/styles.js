@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 export const RadioStyle = styled.input`
   display: none;
-  
 
   &:checked + label {
-    background: #ff9b02;
-    border: 2px solid #2c373f;
+    background: var(--orange);
+    border: 2px dashed var(--black50);
   }
 
   + label {
-    background: #feb546;
+    border: 2px solid transparent;
+    background: var(--yellow50);
     border-radius: 4px;
-    color: #2c373f;
+    color: var(--black50);
     cursor: pointer;
-    font-size: 20px;
+    font-size: 14px;
     padding: 10px;
+    font-weight: 500;
     display: inline-block;
     width: 110px;
     text-align: center;

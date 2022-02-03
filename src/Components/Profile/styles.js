@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 25px;
 
   .closeButton {
     align-self: end;
@@ -23,7 +23,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 768px) {
-    background: url(${Image}) center no-repeat;;
+    background: url(${Image}) center no-repeat;
   }
 `;
 
@@ -54,6 +54,6 @@ export const Subtitle = styled.h2`
   color: var(--black50);
   font-family: var(--title-font);
   letter-spacing: 1px;
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 1.75rem;
+  margin-bottom: 30px;
 `;

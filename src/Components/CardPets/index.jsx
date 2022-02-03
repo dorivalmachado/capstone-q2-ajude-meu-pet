@@ -48,12 +48,6 @@ const CardPets = ({
 
   return (
     <Container>
-      <LightTip title="Editar cadastro do pet">
-        <div className="iconBox" onClick={editPet}>
-          <FiEdit />
-        </div>
-      </LightTip>
-
       <ContentBox>
         <div className="firstBox">
           <div className="imageBox">
@@ -71,8 +65,15 @@ const CardPets = ({
 
         <p>Animal de porte {size}</p>
 
-        <p>Idade: {handleBirthDate()} anos</p>
+        <p>
+          Idade: {handleBirthDate()} {handleBirthDate() === 1 ? "ano" : "anos"}
+        </p>
       </ContentBox>
+      <LightTip title="Editar cadastro do pet">
+        <div className="iconBox" onClick={editPet}>
+          <FiEdit />
+        </div>
+      </LightTip>
     </Container>
   );
 };

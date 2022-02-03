@@ -26,12 +26,13 @@ export const LeftBox = styled.div`
 
   .linkBox {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column;
     line-height: 22px;
-    width: 70px;
+    width: 70px; */
   }
 
   .linkBox a {
+    align-self: center;
     color: #484c4efa;
     cursor: pointer;
     font-size: 13px;
