@@ -1,7 +1,6 @@
-import { Popover, Typography } from "@mui/material";
-import { PopoverProps } from "material-ui";
+import { Popover, PopoverOrigin, Typography } from "@mui/material";
 
-interface PriceTableWalkProps extends PopoverProps{
+interface PriceTableWalkProps extends PopoverOrigin{
   openPop: string,
   handleClose: () => void 
 }

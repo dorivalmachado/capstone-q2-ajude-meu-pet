@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import {
   ButtonBox,
@@ -17,15 +17,15 @@ import ModalWalk from "../ModalWalk";
 import ModalTaxi from "../ModalTaxi";
 
 const CardsServices = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPopover, setOpenPopover] = useState("");
   const [openModal, setOpenModal] = useState("");
 
-  const handleOpenModal = (event) => setOpenModal(event.target.id);
+  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => setOpenModal(event.target.id);
 
   const handleCloseModal = () => setOpenModal("");
 
-  const handleOpenPopover = (event) => {
+  const handleOpenPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setOpenPopover(event.target.id);
   };
@@ -38,17 +38,17 @@ const CardsServices = () => {
   return (
     <>
       <PriceTableTraining
-        open={openPopover}
+        openPop={openPopover}
         anchorEl={anchorEl}
         handleClose={handleClosePopover}
       />
       <PriceTableWalk
-        open={openPopover}
+        openPop={openPopover}
         anchorEl={anchorEl}
         handleClose={handleClosePopover}
       />
       <PriceTableTaxi
-        open={openPopover}
+        openPop={openPopover}
         anchorEl={anchorEl}
         handleClose={handleClosePopover}
       />

@@ -19,7 +19,12 @@ import {
 import { useState } from "react";
 import { FaRegWindowClose } from "react-icons/fa";
 
-const Profile = ({ open, onClose }) => {
+interface ProfileProps{
+  open: boolean;
+  onClose: () => void;
+}
+
+const Profile = ({ open, onClose }: ProfileProps) => {
   const [showPass, setShowPass] = useState(false);
 
   const { updateUser, user } = useAuth();
@@ -147,7 +152,7 @@ const Profile = ({ open, onClose }) => {
               register={register}
               error={!!errors.address}
               helperText={errors.address?.message}
-              defaultValue={user.add}
+              defaultValue={user.address}
               inputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

@@ -8,14 +8,14 @@ interface InputProps extends BaseTextFieldProps {
   register: UseFormRegister<any>;
   name: string;
   type?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: any) => void;
+  // handleChange?: (event: ChangeEvent<HTMLInputElement>, value: any) => void;
 }
 
 const Input = ({
   type = "text",
   name,
   register,
-  onChange,
+  // handleChange,
   error = false,
   ...rest
 }: InputProps) => {
@@ -42,7 +42,7 @@ const Input = ({
       <TextField
         type={type}
         variant="outlined"
-        onChange={onChange}
+        // onChange={handleChange}
         {...register(name)}
         sx={textFieldStyle}
         error={error}

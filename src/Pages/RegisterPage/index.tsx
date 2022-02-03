@@ -25,7 +25,7 @@ interface SignupData{
   email: string;
   phone: string;
   password: string;
-  confirmPass: string;
+  confirmPass?: string;
 }
 
 const RegisterPage = () => {
@@ -88,7 +88,7 @@ const RegisterPage = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(maskPhone(e.target.value))
+    setPhone(maskPhone(e.currentTarget.value))
   };
 
   return (
@@ -138,7 +138,7 @@ const RegisterPage = () => {
               helperText={errors.phone?.message}
               register={register}
               value={phone}
-              onChange={handleChange}
+              onChangeCapture={handleChange}
               inputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
