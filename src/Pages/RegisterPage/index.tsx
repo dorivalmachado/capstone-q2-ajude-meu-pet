@@ -88,7 +88,7 @@ const RegisterPage = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(maskPhone(e.currentTarget.value))
+    setPhone(maskPhone(e.currentTarget.value));
   };
 
   return (

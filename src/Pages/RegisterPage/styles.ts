@@ -70,11 +70,11 @@ export const FormContainer = styled.div`
     font-weight: normal;
   }
 
-  .cDUxdC{
+  .cDUxdC {
     margin-bottom: 15px;
   }
 
-  .css-ahj2mt-MuiTypography-root{
+  .css-ahj2mt-MuiTypography-root {
     font-size: 15px;
   }
 
@@ -127,13 +127,4 @@ export const FormContainer = styled.div`
   a:hover {
     color: var(--yellow50);
   }
-`;
-
-export const Bar = styled.div`
-  width: ${(props) => `${props.width - 500}px`};
-  height: 100vh;
-`;
-
-export const Teste = styled.div`
-  display: flex;
 `;

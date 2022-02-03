@@ -10,20 +10,32 @@ import { usePets } from "../../Providers/Pets";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../Providers/Auth";
 
+interface ServicesProps {
+  petType: string;
+  petName: string;
+  serviceDesiredDate: string;
+  serviceCategory: string;
+  serviceConclusion: boolean;
+  id: number;
+}
+
 export const HiredServices = () => {
   const { services } = useServices();
   const { pets } = usePets();
   const { user } = useAuth();
 
-  const [myServices, setMyServices] = useState([]);
+  const [myServices, setMyServices] = useState<ServicesProps[]>([]);
 
   useEffect(() => {
     if (pets.length > 0 && services.length > 0) {
       const formattedService = services
         .filter((service) => service.clientId === user.id)
         .map((service) => {
-          const pet = pets.find((elem) => elem.id === service.petId);
-          const { petType, petName } = pet;
+          const pet = pets.filter((elem) => elem.id === service.petId);
+
+          // const petType = pet?.petType;
+          // const petName = pet?.petName;
+          const { petType, petName } = pet[0];
           const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =
             service;
           return {
@@ -47,7 +59,7 @@ export const HiredServices = () => {
           hoje mesmo!
         </p>
       ) : (
-        myServices.map((service) => (
+        myServices.map((service: any) => (
           <Card key={service.id}>
             <div className="head">
               <img
