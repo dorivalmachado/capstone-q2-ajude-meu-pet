@@ -1,5 +1,5 @@
 import { Container, ContentContainer, FormContainer } from "./styles";
-import {InputAdornment} from "@mui/material";
+import { InputAdornment } from "@mui/material";
 import {
   FiEye,
   FiEyeOff,
@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../Providers/Auth";
 import dog from "../../Assets/Img/flirtingDog.gif";
 
-interface SignupData{
+interface SignupData {
   name: string;
   email: string;
   phone: string;
@@ -88,7 +88,7 @@ const RegisterPage = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(maskPhone(e.target.value))
+    setPhone(maskPhone(e.target.value));
   };
 
   return (

@@ -11,7 +11,11 @@ import {
 } from "./styles";
 import Button from "../Button";
 
-const TopModal = ({ category }) => {
+interface TopModalProps {
+  category: string;
+}
+
+const TopModal = ({ category }: TopModalProps) => {
   const trainingDescription = {
     basico:
       "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",

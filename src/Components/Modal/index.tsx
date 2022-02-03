@@ -11,7 +11,13 @@ import {
 } from "@mui/material";
 import Button from "../Button";
 
-const ModalBase = ({ open, handleClose, children }) => {
+interface ModalBaseProps {
+  open: string;
+  handleClose: () => void;
+  children: any;
+}
+
+const ModalBase = ({ open, handleClose, children }: ModalBaseProps) => {
   return (
     <div>
       <Dialog

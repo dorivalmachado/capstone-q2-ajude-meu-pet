@@ -19,10 +19,25 @@ import { usePets } from "../../Providers/Pets";
 import { useAuth } from "../../Providers/Auth";
 import { useServices } from "../../Providers/Services";
 
-const ModalWalk = ({ open, handleClose }) => {
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+interface ModalWalkProps {
+  open: string;
+  handleClose: () => void;
+}
+
+const ModalWalk = ({ open, handleClose }: ModalWalkProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState("");
-  const [myPets, setMyPets] = useState([]);
+  const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);

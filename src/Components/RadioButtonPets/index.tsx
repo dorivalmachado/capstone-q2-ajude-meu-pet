@@ -4,6 +4,16 @@ import CatImage from "../../Assets/Img/cat.png";
 import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 
+interface RadioButtonPetsProps {
+  label: string;
+  name: string;
+  register: (name: string) => void;
+  animalType: string;
+  value: number;
+  id: string;
+  petName: string;
+}
+
 const RadioButtonPets = ({
   label,
   name,
@@ -13,7 +23,7 @@ const RadioButtonPets = ({
   id,
   petName,
   ...rest
-}) => {
+}: RadioButtonPetsProps) => {
   const handleImage = () => {
     let image = "";
     switch (animalType) {

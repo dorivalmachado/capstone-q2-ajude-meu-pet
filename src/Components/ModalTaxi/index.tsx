@@ -28,7 +28,22 @@ import { usePets } from "../../Providers/Pets";
 import { useServices } from "../../Providers/Services";
 import { useAuth } from "../../Providers/Auth";
 
-const ModalTaxi = ({ open, handleClose }) => {
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+interface ModalTaxiProps {
+  open: string;
+  handleClose: () => void;
+}
+
+const ModalTaxi = ({ open, handleClose }: ModalTaxiProps) => {
   const [buttonsVisibility, setButtonsVisibility] = useState(true);
   const [arrivalCep, setArrivalCep] = useState("");
   const [arrivalCityName, setArrivalCityName] = useState("");
@@ -40,7 +55,7 @@ const ModalTaxi = ({ open, handleClose }) => {
   const [departureComplementValue, setDepartureComplementValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState("");
-  const [myPets, setMyPets] = useState([]);
+  const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
