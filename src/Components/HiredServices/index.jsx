@@ -17,8 +17,8 @@ export const HiredServices = () => {
 
   const [myServices, setMyServices] = useState([]);
 
-  const updateServices = () => {
-    if (pets.length !== 0 && services.length !== 0) {
+  useEffect(() => {
+    if (pets.length > 0 && services.length > 0) {
       const formattedService = services
         .filter((service) => service.clientId === user.id)
         .map((service) => {
@@ -33,17 +33,12 @@ export const HiredServices = () => {
             serviceCategory,
             serviceConclusion,
             id,
-            formattedService,
           };
         });
+
       setMyServices(formattedService);
     }
-  };
-
-  useEffect(() => {
-    updateServices();
   }, [pets, services]);
-
   return (
     <Container>
       {myServices.length === 0 ? (
