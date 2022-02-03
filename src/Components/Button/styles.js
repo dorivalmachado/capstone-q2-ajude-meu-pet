@@ -4,41 +4,41 @@ export const Container = styled.div`
   margin-top: 20px;
 
   .darkBrown {
-    background: #6f4635;
+    background: var(--caramel100);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     width: 200px;
   }
 
   .darkBrown:hover {
-    background: rgb(132, 90, 73, 0.87);
+    background: var(--caramel);
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
   }
 
   .darkBrown:active {
-    background: #8b5742;
+    background: var(--caramel60);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
   }
 
   .lightBrown {
-    background: #ad6d53;
+    background: var(--caramel25);
     color: white;
-    font-size: 22px;
+    font-size: 18px;
     width: 220px;
   }
 
   .lightBrown:hover {
-    background: #8b5742;
+    background: var(--caramel60);
   }
 
   .lightBrown:active {
-    background: #845d4e;
+    background: var(--caramel75);
   }
 
   .blue {
-    background: #74a8bd;
+    background: var(--blue);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     width: 200px;
   }
 
@@ -52,8 +52,8 @@ export const Container = styled.div`
 
   .yellow {
     background: #ffc04a;
-    color: #2c373f;
-    font-size: 18px;
+    color: var(--black50);
+    font-size: 16px;
     width: 200px;
   }
 
@@ -62,7 +62,7 @@ export const Container = styled.div`
   }
 
   .yellow:active {
-    background: #ff9b02;
+    background: var(--yellow80);
   }
 `;
 
