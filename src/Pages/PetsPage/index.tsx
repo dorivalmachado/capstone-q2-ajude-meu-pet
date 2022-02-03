@@ -6,21 +6,31 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LightTip } from "../../Helpers/Tooltip";
 import { useAuth } from "../../Providers/Auth";
 import ModalPet from "../../Components/ModalPet";
+
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
 
 const PetsPage = () => {
   const { pets } = usePets();
   const { user } = useAuth();
 
-  const [openModal, setOpenModal] = useState(false);
-  const [petId, setPetId] = useState(0);
-  const [isPetAddition, setIsPetAddition] = useState(false);
-  const [myPets, setMyPets] = useState([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [petId, setPetId] = useState<number>(0);
+  const [isPetAddition, setIsPetAddition] = useState<boolean>(false);
+  const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
-  const editPet = (id) => {
+  const editPet = (id: number) => {
     setOpenModal(true);
     setPetId(id);
     setIsPetAddition(false);
@@ -33,7 +43,9 @@ const PetsPage = () => {
 
   useEffect(() => {
     if (pets.length > 0) {
-      setMyPets(pets.filter((pet) => pet.userId === user.id));
+      const anyPets = pets.filter((pet) => pet.userId === user.id);
+
+      setMyPets(anyPets);
     }
   }, [pets]);
 
@@ -70,7 +82,6 @@ const PetsPage = () => {
                 <CardPets
                   key={pet.id}
                   name={pet.petName}
-                  breed={pet.petBreed}
                   size={pet.petSize}
                   animalType={pet.petType}
                   petBirthDate={pet.petBirthDate}

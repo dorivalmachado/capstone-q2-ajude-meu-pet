@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from "react";
 import { Container, ButtonStyle } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  buttonColor: string;
+  buttonColor?: string;
 }
 
 const Button = ({

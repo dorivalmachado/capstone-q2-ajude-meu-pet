@@ -1,44 +1,49 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { api } from "../../Services/api";
 import toast from "react-hot-toast";
 import { useAuth } from "../Auth";
 
 interface PetsProviderProps {
-  children: ReactNode,
+  children: ReactNode;
 }
 
 interface Pets {
-  petName: string,
-  petType: string,
-  petGender: string,
-  petSize: string,
-  petBirthDate: string,
-  userId: number,
-  id: number
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
 }
 
 interface PetsReq {
-  petName?: string,
-  petType?: string,
-  petGender?: string,
-  petSize?: string,
-  petBirthDate?: string,
-  userId?: number,
+  petName?: string;
+  petType?: string;
+  petGender?: string;
+  petSize?: string;
+  petBirthDate?: string;
+  userId?: number;
 }
 
-interface PetsData{
-  petCreate: (obj: PetsReq) => void, 
-  petUpdate: (obj: PetsReq, petId: number) => void, 
-  petDelete: (petId: number) => void, 
-  pets: Pets[]
+interface PetsData {
+  petCreate: (obj: PetsReq) => void;
+  petUpdate: (obj: PetsReq, petId: number) => void;
+  petDelete: (petId: number) => void;
+  pets: Pets[];
 }
-
 
 export const PetsContext = createContext<PetsData>({} as PetsData);
 
 export const PetsProvider = ({ children }: PetsProviderProps) => {
   const { token, user } = useAuth();
-  const [pets, setPets] = useState<Pets[]>([]);
+  const [pets, setPets] = useState<Pets[]>([] as Pets[]);
 
   const getPets = () => {
     token !== undefined &&

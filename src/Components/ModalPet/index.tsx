@@ -10,7 +10,24 @@ import Input from "../Input";
 import RadioInput from "../RadioInput";
 import { Form } from "./styles";
 
-const ModalPet = ({ add, open, handleClose, id }) => {
+interface ModalPetProps {
+  add: boolean;
+  open: boolean;
+  handleClose: () => void;
+  id: number;
+}
+
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+const ModalPet = ({ add, open, handleClose, id }: ModalPetProps) => {
   const { petCreate, petUpdate, petDelete } = usePets();
 
   const schema = yup.object().shape({
@@ -26,7 +43,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
     reset,
     handleSubmit,
     register,
-  } = useForm({
+  } = useForm<Pets>({
     resolver: yupResolver(schema),
   });
 
@@ -35,7 +52,7 @@ const ModalPet = ({ add, open, handleClose, id }) => {
     reset();
   };
 
-  const handleForm = (data) => {
+  const handleForm = (data: Pets) => {
     closeModal();
     data.petBirthDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(data.petBirthDate.replaceAll("-", "/"))

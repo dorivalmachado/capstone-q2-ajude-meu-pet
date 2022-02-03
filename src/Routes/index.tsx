@@ -5,8 +5,14 @@ import { Login } from "../Pages/Login";
 import { ServicesPage } from "../Pages/ServicesPage";
 import LandingPage from "../Pages/LandingPage";
 import RegisterPage from "../Pages/RegisterPage";
+<<<<<<< HEAD:src/Routes/index.jsx
+import LandingPage from "../Pages/LandingPage/index.tsx";
+import NotFound from "../Pages/NotFound/index.tsx";
+import PetsPage from "../Pages/PetsPage/index.tsx";
+=======
 import NotFound from "../Pages/NotFound";
 import PetsPage from "../Pages/PetsPage";
+>>>>>>> typescript:src/Routes/index.tsx
 import ProfilePage from "../Pages/ProfilePage";
 import Route from "./Route";
 import { TeamPage } from "../Pages/TeamPage";
