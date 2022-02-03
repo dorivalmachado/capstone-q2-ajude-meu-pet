@@ -2,66 +2,89 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 85vh;
   display: flex;
   flex-direction: column;
-  background-color: #8b5742;
+  background-color: var(--caramel60);
   justify-content: center;
   align-items: center;
+  padding: 15px 0;
 
   @media (min-width: 768px) {
-    background-color: #fff;
+    background-color: var(--white);
+    border-bottom: 1px dashed var(--black50);
+    display: flex;
+    height: 520px;
+    justify-content: space-around;
   }
 `;
+
 export const Text = styled.div`
-  width: 80vw;
-  height: 40vh;
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   margin-top: 25px;
+  width: 80vw;
 
   @media (min-width: 768px) {
-    width: 80vw;
+    img {
+      box-shadow: 0px 8px 5px 0px var(--black50);
+      clip-path: polygon(180px 0, 800px 0, 800px 100%, 0 100%);
+      height: 380px;
+      max-width: 580px;
+      object-fit: cover;
+      width: 50vw;
+      z-index: 2;
+      -webkit-clip-path: polygon(180px 0, 800px 0, 800px 100%, 0 100%);
+    }
+
+    &:after {
+      background-color: var(--yellow80);
+      content: "";
+      height: 380px;
+      position: relative;
+      width: 30px;
+      z-index: 1;
+    }
   }
 `;
+
 export const Subtitle = styled.h2`
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
+  color: var(--white);
+  font-family: var(--title-font);
   margin-top: 10px;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-shadow: 1px 1px var(--black50);
 
   @media (min-width: 768px) {
-    color: #8b5742;
-    margin-bottom: 100px;
-    padding: 0 20px;
-    border-bottom: 1px solid black;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 30px;
+    color: var(--black50);
+    font-size: 2rem;
+    font-weight: 100;
+    margin: 0;
+    text-shadow: 1px 1px var(--grey20);
   }
 `;
+
 export const Paragraph = styled.p`
-  font-size: 18px;
-  color: #fff;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 10%;
-  height: 50vh;
+  color: var(--white);
+  display: flex;
+  font-size: 16px;
+  font-weight: 300;
+  justify-content: center;
+  line-height: normal;
+  margin-bottom: 20px;
   max-width: 500px;
+  text-align: center;
 
   @media (min-width: 768px) {
-    color: #fff;
-    background-color: #8b5742;
-    margin-right: 30px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 22px;
+    background-color: transparent;
+    color: var(--black50);
+    font-size: 20px;
+    height: 250px;
+    margin: 0;
+    width: 40%;
   }
 `;

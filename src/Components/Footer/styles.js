@@ -38,12 +38,12 @@ export const LeftBox = styled.div`
     font-weight: 500;
   }
 
-  .linkBox a:hover {
-    color: var(--caramel50);
+  .linkBox a {
+    color: var(--black50);
   }
 
-  .linkBox a:visited {
-    color: var(--caramel100);
+  .linkBox a:hover {
+    color: var(--yellow80);
   }
 
   img,
@@ -53,14 +53,14 @@ export const LeftBox = styled.div`
 
   @media (min-width: 768px) {
     justify-content: space-between;
-    width: 250px;
+    width: 270px;
 
     .logoBox {
       align-items: flex-start;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 150px;
+      width: 160px;
     }
 
     img,
@@ -69,15 +69,18 @@ export const LeftBox = styled.div`
     }
 
     img {
-      width: 30px;
+      align-self: center;
+      width: 40px;
     }
 
     h2 {
-      font-size: 14px;
+      align-self: center;
       color: var(--caramel25);
+      font-family: var(--title-font);
+      font-size: 14px;
       margin-top: 10px;
       padding-left: 0px;
-      text-transform: uppercase;
+      text-shadow: 1px 1px var(--caramel100);
     }
   }
 `;
