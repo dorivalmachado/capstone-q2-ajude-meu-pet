@@ -1,20 +1,64 @@
 import styled from "styled-components";
 
+export const TeamFoot = styled.div`
+  /* div:first-child {
+    position: fixed;
+    bottom: 0;
+  } */
+
+`;
+
+export const MainContainer = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between; */
+`;
+
 export const Header = styled.div`
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--grey40);
+  box-shadow: 0 8px 6px -6px var(--grey40);
   display: flex;
   flex-direction: row;
   height: 70px;
   justify-content: space-around;
   width: 100%;
+
+  a {
+    color: var(--black50);
+    font-family: var(--title-font);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  a:after {
+    display: block;
+    content: "";
+    border-bottom: solid 2px var(--yellow50);
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+  }
+
+  a:hover:after {
+    transform: scaleX(1);
+  }
+
+  @media (min-width: 768px) {
+    box-shadow: none;
+  }
 `;
 
 export const Title = styled.h1`
+  align-self: center;
   color: var(--caramel25);
+  font-family: var(--title-font);
   font-size: 24px;
   margin-top: 10px;
   padding-left: 0px;
+  text-align: center;
+  text-shadow: 1px 1px var(--caramel100);
 `;
 
 export const Imagem = styled.img`
@@ -26,32 +70,69 @@ export const Imagem = styled.img`
 `;
 
 export const Refs = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: #fff6ed;
-  height: 60vh;
   border-radius: 100px;
-  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  border: 2px dashed var(--black50);
+  margin: 10vh auto;
 
   @media (min-width: 768px) {
+    margin: 0;
     width: 45vw;
     height: 130vh;
   }
 `;
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
+  border-bottom: 1px solid var(--grey40);
+  box-shadow: 0 8px 6px -6px var(--grey40);
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  justify-content: space-around;
+  width: 100%;
+
+  a {
+    color: var(--black50);
+    font-family: var(--title-font);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  a:hover {
+    color: var(--orange50);
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+    box-shadow: none;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    margin-block: 20px;
+  }
 `;
 
 export const Dev = styled.div`
-  margin-bottom: 20px;
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
   width: 70vw;
 
   @media (min-width: 768px) {

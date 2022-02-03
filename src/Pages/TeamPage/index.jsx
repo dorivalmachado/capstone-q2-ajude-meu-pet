@@ -14,6 +14,7 @@ import {
   Content,
   SubText,
   TitleText,
+  TeamFoot,
 } from "./styles";
 import Logo from "../../Assets/Img/Logo.webp";
 import { Link } from "react-router-dom";
@@ -135,7 +136,9 @@ export const TeamPage = () => {
               </SubText>
             </Dev>
           </Refs>
-          <Footer />
+          <TeamFoot>
+            <Footer />
+          </TeamFoot>
         </div>
       ) : (
         <div>
