@@ -35,10 +35,10 @@ export const HiredServices = () => {
             id,
           };
         });
+
       setMyServices(formattedService);
     }
   }, [pets, services]);
-
   return (
     <Container>
       {myServices.length === 0 ? (
