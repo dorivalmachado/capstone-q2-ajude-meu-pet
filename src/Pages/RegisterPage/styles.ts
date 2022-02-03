@@ -129,11 +129,6 @@ export const FormContainer = styled.div`
   }
 `;
 
-export const Bar = styled.div`
-  width: ${(props) => `${props.width - 500}px`};
-  height: 100vh;
-`;
-
 export const Teste = styled.div`
   display: flex;
 `;
