@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { Container } from "./styles";
 import { BaseTextFieldProps, TextField } from "@mui/material";
 import { UseFormRegister } from "react-hook-form";
@@ -8,14 +8,12 @@ interface InputProps extends BaseTextFieldProps {
   register: UseFormRegister<any>;
   name: string;
   type?: string;
-  // handleChange?: (event: ChangeEvent<HTMLInputElement>, value: any) => void;
 }
 
 const Input = ({
   type = "text",
   name,
   register,
-  // handleChange,
   error = false,
   ...rest
 }: InputProps) => {
@@ -42,7 +40,6 @@ const Input = ({
       <TextField
         type={type}
         variant="outlined"
-        // onChange={handleChange}
         {...register(name)}
         sx={textFieldStyle}
         error={error}

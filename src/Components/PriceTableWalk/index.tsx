@@ -1,15 +1,17 @@
-import { Popover, PopoverOrigin, Typography } from "@mui/material";
+import { Popover, Typography } from "@mui/material";
 
-interface PriceTableWalkProps extends PopoverOrigin{
+interface PriceTableWalkProps {
   openPop: string,
-  handleClose: () => void 
+  anchor: HTMLButtonElement | null,
+  handleClose: () => void, 
 }
 
-const PriceTableWalk = ({ openPop, handleClose, ...rest }: PriceTableWalkProps) => {
+const PriceTableWalk = ({ openPop, anchor, handleClose }: PriceTableWalkProps) => {
   return (
     <Popover
       open={openPop === "walkPrice"}
       onClose={handleClose}
+      anchorEl={anchor}
       anchorOrigin={{
         vertical: "top",
         horizontal: "center",
@@ -18,7 +20,6 @@ const PriceTableWalk = ({ openPop, handleClose, ...rest }: PriceTableWalkProps) 
         vertical: "bottom",
         horizontal: "center",
       }}
-      {...rest}
     >
       <Typography
         sx={{ p: 3 }}

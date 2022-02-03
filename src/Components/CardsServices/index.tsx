@@ -21,13 +21,13 @@ const CardsServices = () => {
   const [openPopover, setOpenPopover] = useState("");
   const [openModal, setOpenModal] = useState("");
 
-  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => setOpenModal(event.target.id);
+  const handleOpenModal = (event: React.MouseEvent<HTMLButtonElement>) => setOpenModal(event.currentTarget.id);
 
   const handleCloseModal = () => setOpenModal("");
 
   const handleOpenPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    setOpenPopover(event.target.id);
+    setOpenPopover(event.currentTarget.id);
   };
 
   const handleClosePopover = () => {
@@ -39,17 +39,17 @@ const CardsServices = () => {
     <>
       <PriceTableTraining
         openPop={openPopover}
-        anchorEl={anchorEl}
+        anchor={anchorEl}
         handleClose={handleClosePopover}
       />
       <PriceTableWalk
         openPop={openPopover}
-        anchorEl={anchorEl}
+        anchor={anchorEl}
         handleClose={handleClosePopover}
       />
       <PriceTableTaxi
         openPop={openPopover}
-        anchorEl={anchorEl}
+        anchor={anchorEl}
         handleClose={handleClosePopover}
       />
 
