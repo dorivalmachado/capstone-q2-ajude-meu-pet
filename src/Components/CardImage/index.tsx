@@ -1,6 +1,11 @@
 import { CardImageContainer } from "./styles";
 
-const CardImage = ({ img, desc }) => {
+interface CardImageProps {
+  img: string;
+  desc: string;
+}
+
+const CardImage = ({ img, desc }: CardImageProps) => {
   return <CardImageContainer src={img} alt={desc} />;
 };
 

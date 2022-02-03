@@ -1,7 +1,22 @@
 import React from "react";
 import { RadioStyle } from "./styles";
 
-const RadioInput = ({ label, name, register, value, id, ...rest }) => {
+interface RadioInputProps {
+  label: string;
+  name: string;
+  register: any;
+  value: string;
+  id: string;
+}
+
+const RadioInput = ({
+  label,
+  name,
+  register,
+  value,
+  id,
+  ...rest
+}: RadioInputProps) => {
   return (
     <>
       <RadioStyle

@@ -22,7 +22,22 @@ import { usePets } from "../../Providers/Pets";
 import { useAuth } from "../../Providers/Auth";
 import { useServices } from "../../Providers/Services";
 
-const ModalTraining = ({ open, handleClose }) => {
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+interface ModalWalkProps {
+  open: string;
+  handleClose: () => void;
+}
+
+const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
   const trainingDescription = {
     basico:
       "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",
@@ -35,7 +50,7 @@ const ModalTraining = ({ open, handleClose }) => {
   const [training, setTraining] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [openPopover, setOpenPopover] = useState("");
-  const [myPets, setMyPets] = useState([]);
+  const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
   const handleOpenPopover = (event) => {
     setAnchorEl(event.currentTarget);
