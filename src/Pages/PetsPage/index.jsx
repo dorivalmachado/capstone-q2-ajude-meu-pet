@@ -6,37 +6,45 @@ import CardPets from "../../Components/CardPets";
 import CatBox from "../../Assets/Img/catInBox.gif";
 import Header from "../../Components/Header";
 import MainContainer from "../../Components/MainContainer";
-import React, { useEffect, useState } from "react";
-import ModalAddPet from "../../Components/ModalAddPet";
 import { LightTip } from "../../Helpers/Tooltip";
-import ModalEditPet from "../../Components/ModalEditPet";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../Providers/Auth";
-
-
+import ModalPet from "../../Components/Modals/ModalPet";
 
 const PetsPage = () => {
   const { pets } = usePets();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
-  const [openModal, setOpenModal] = useState('open');
+  const [openModal, setOpenModal] = useState(false);
   const [petId, setPetId] = useState(0);
+  const [isPetAddition, setIsPetAddition] = useState(false);
   const [myPets, setMyPets] = useState([]);
 
   const editPet = (id) => {
-    setOpenModal('edit');
+    setOpenModal(true);
     setPetId(id);
-  }
+    setIsPetAddition(false);
+  };
+
+  const addPet = () => {
+    setOpenModal(true);
+    setIsPetAddition(true);
+  };
 
   useEffect(() => {
-    if(pets.length > 0){
-      setMyPets(pets.filter(pet => pet.userId === user.id))
+    if (pets.length > 0) {
+      setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets])
+  }, [pets]);
 
   return (
     <MainContainer>
-      <ModalAddPet open={openModal} handleClose={() => setOpenModal('')}/>
-      <ModalEditPet open={openModal} handleClose={() => setOpenModal('')} id={petId}/>
+      <ModalPet
+        add={isPetAddition}
+        open={openModal}
+        handleClose={() => setOpenModal(false)}
+        id={petId}
+      />
 
       <Container>
         <aside className="headerMobile">
@@ -50,10 +58,7 @@ const PetsPage = () => {
           <div className="titleBox">
             <h3>Meus Pets</h3>
             <LightTip title="Adicionar Pet">
-              <button
-                id='add'
-                onClick={(e) => setOpenModal(e.currentTarget.id)}
-              >
+              <button id="add" onClick={addPet}>
                 <FaPlus />
               </button>
             </LightTip>

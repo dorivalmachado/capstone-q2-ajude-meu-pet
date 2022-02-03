@@ -17,24 +17,31 @@ export const HiredServices = () => {
 
   const [myServices, setMyServices] = useState([]);
 
-  useEffect(() => {
-    if (pets.length > 0 && services.length > 0) {
-      const formattedService = services.filter(service => service.clientId === user.id).map((service) => {
-        const pet = pets.find((elem) => elem.id === service.petId);
-        const { petType, petName } = pet;
-        const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =
-          service;
-        return {
-          petType,
-          petName,
-          serviceDesiredDate,
-          serviceCategory,
-          serviceConclusion,
-          id,
-        };
-      });
+  const updateServices = () => {
+    if (pets.length !== 0 && services.length !== 0) {
+      const formattedService = services
+        .filter((service) => service.clientId === user.id)
+        .map((service) => {
+          const pet = pets.find((elem) => elem.id === service.petId);
+          const { petType, petName } = pet;
+          const { serviceDesiredDate, serviceCategory, serviceConclusion, id } =
+            service;
+          return {
+            petType,
+            petName,
+            serviceDesiredDate,
+            serviceCategory,
+            serviceConclusion,
+            id,
+            formattedService,
+          };
+        });
       setMyServices(formattedService);
     }
+  };
+
+  useEffect(() => {
+    updateServices();
   }, [pets, services]);
 
   return (

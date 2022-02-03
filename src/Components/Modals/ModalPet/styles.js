@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const Form = styled.form`
   position: relative;
   padding-top: 30px;
@@ -24,8 +22,11 @@ export const Form = styled.form`
     top: 10px;
     right: 20px;
   }
-`
 
-export const RadioDefault = styled.input`
-  display: none;
+  
+`
+export const ErrorMessage = styled.p`
+  color: #d32f2f;
+  font-size: 12px;
+  margin: 0 14px 15px;
 `

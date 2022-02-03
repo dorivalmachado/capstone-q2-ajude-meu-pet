@@ -10,10 +10,7 @@ export const ButtonsContainer = styled.div`
 
   @media (min-width: 500px) {
     flex-direction: row;
-
-    &:nth-child(2n) {
-      margin-right: 10px;
-    }
+    margin-right: 20px;
   }
 `;
 
@@ -21,18 +18,18 @@ export const Form = styled.form`
   position: relative;
   padding-top: 30px;
 
-  svg{
+  svg {
     position: absolute;
     top: 10px;
     right: 20px;
   }
-`
+`;
 
 export const WalkDescription = styled.h3`
   font-size: 24px;
   font-weight: 400;
   margin-bottom: 20px;
-`
+`;
 
 export const ContainerBottom = styled.div`
   height: auto;
@@ -41,13 +38,6 @@ export const ContainerBottom = styled.div`
   justify-content: left;
   gap: 20px;
   flex-direction: column;
-
-  /* @media (min-width: 800px) {
-    .changeToRow {
-      display: flex;
-      flex-direction: row;
-    }
-  } */
 
   .dateTimeContainer {
     display: flex;
@@ -58,7 +48,7 @@ export const ContainerBottom = styled.div`
   }
 
   .dateTimeContainer_box {
-    width: 150px;
+    width: 180px;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -83,14 +73,38 @@ export const ContainerBottom = styled.div`
     max-width: 350px;
     flex: 1;
   }
+  .noPets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 143px;
+    gap: 20px;
+    min-width: 180px;
+
+    img {
+      width: 150px;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+    }
+  }
 
   .petContainer_box {
     width: 100%;
     height: auto;
-    outline: 3px solid var(--cream);
+    border: 3px solid var(--cream);
     display: flex;
     overflow-x: scroll;
     padding: 10px;
+    a {
+      text-decoration: none;
+      color: black;
+    }
   }
 
   .obsContainer {
@@ -101,17 +115,10 @@ export const ContainerBottom = styled.div`
     width: 350px;
     flex: 1;
   }
-
-  .buttonsContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-
-    /* @media (min-width: 300px) {
-      flex-direction: row;
-    } */
-  }
 `;
+
+export const ErrorMessage = styled.p`
+  color: #d32f2f;
+  font-size: 12px;
+  margin: 0 14px 15px;
+`
