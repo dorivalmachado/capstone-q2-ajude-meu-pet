@@ -1,25 +1,25 @@
 import { Popover, Typography } from "@mui/material";
-import { PopoverProps } from "material-ui";
 
-interface PriceTableTrainingProps extends PopoverProps{
+interface PriceTableTrainingProps {
   openPop: string,
-  handleClose: () => void 
+  anchor: HTMLButtonElement | null,
+  handleClose: () => void, 
 }
 
-const PriceTableTraining = ({ openPop, handleClose, ...rest }: PriceTableTrainingProps) => {
+const PriceTableTraining = ({ openPop, anchor, handleClose }: PriceTableTrainingProps) => {
   return (
     <Popover
       open={openPop === "trainingPrice"}
       onClose={handleClose}
+      anchorEl={anchor}
       anchorOrigin={{
-        vertical: "top",
         horizontal: "center",
+        vertical: "top",
       }}
       transformOrigin={{
         vertical: "bottom",
         horizontal: "center",
       }}
-      {...rest}
     >
       <Typography
         sx={{ p: 3 }}
@@ -34,7 +34,7 @@ const PriceTableTraining = ({ openPop, handleClose, ...rest }: PriceTableTrainin
         <br />
         Adestramento do tipo <strong>avançado</strong>, cada aula custa de R$
         200,00 a R$ 400,00, dependendo do profissional que irá realizar o
-        serivço.
+        serviço.
       </Typography>
     </Popover>
   );

@@ -1,6 +1,11 @@
+import { ReactNode } from "react";
 import { Container } from "./styles";
 
-const MainContainer = ({ children }) => {
+interface MainContainerProps {
+  children: ReactNode;
+}
+
+const MainContainer = ({ children }: MainContainerProps) => {
   return <Container>{children}</Container>;
 };
 

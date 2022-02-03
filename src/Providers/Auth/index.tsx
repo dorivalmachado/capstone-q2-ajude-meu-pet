@@ -22,10 +22,7 @@ interface User{
   email: string,
   name: string,
   phone: string,
-  street: string,
-  addressNumber: string,
-  addressComplement: string,
-  city: string,
+  address: string,
   isClient: boolean,
   id: number
 }
@@ -47,10 +44,7 @@ interface UserUpdate{
   password?: string,
   name?: string,
   phone?: string,
-  street?: string,
-  addressNumber?: string,
-  addressComplement?: string,
-  city?: string,
+  address?: string,
   isClient?: boolean
 }
 
@@ -58,11 +52,8 @@ interface UpdateRes {
   email: string,
   name: string,
   phone: string,
-  street: string,
-  addressNumber: string,
-  addressComplement: string,
+  address: string,
   password: string,
-  city: string,
   isClient: boolean,
   id: number
 }
