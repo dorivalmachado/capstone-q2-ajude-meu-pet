@@ -2,7 +2,7 @@ import { act, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import matchMediaPolyfill from "mq-polyfill";
 
-import Home from "../../../Components/Home";
+import Home from "../../Components/Home";
 
 describe("Render the home component", () => {
   beforeAll(() => {

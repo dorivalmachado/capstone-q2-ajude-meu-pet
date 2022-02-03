@@ -1,9 +1,9 @@
 import { act, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Provider from "../../../Providers";
+import Provider from "../../Providers";
 import matchMediaPolyfill from "mq-polyfill";
 import userEvent from "@testing-library/user-event";
-import Header from "../../../Components/Header";
+import Header from "../../Components/Header";
 
 describe("Rendering Header component", () => {
   beforeAll(() => {
@@ -25,11 +25,11 @@ describe("Rendering Header component", () => {
         </Provider>
       </MemoryRouter>
     );
-    expect(screen.getByText("HOME")).toBeInTheDocument();
-    expect(screen.getByText("PASSEIOS")).toBeInTheDocument();
-    expect(screen.getByText("ADESTRAMENTO")).toBeInTheDocument();
-    expect(screen.getByText("TAXI-PET")).toBeInTheDocument();
-    expect(screen.getByText("LOGIN")).toBeInTheDocument();
+
+    expect(screen.getByText("Passeios")).toBeInTheDocument();
+    expect(screen.getByText("Adestramento")).toBeInTheDocument();
+    expect(screen.getByText("Taxi-Pet")).toBeInTheDocument();
+    expect(screen.getByText("Login")).toBeInTheDocument();
   });
 
   it("Should render the Header component in the mobile page version without login", () => {

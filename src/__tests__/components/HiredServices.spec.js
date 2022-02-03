@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { AuthContext } from "../../../Providers/Auth";
-import { PetsContext } from "../../../Providers/Pets";
-import { ServicesContext } from "../../../Providers/Services";
+import { AuthContext } from "../../Providers/Auth";
+import { PetsContext } from "../../Providers/Pets";
+import { ServicesContext } from "../../Providers/Services";
 
-import { HiredServices } from "../../../Components/HiredServices";
+import { HiredServices } from "../../Components/HiredServices";
 
 describe("Render the Hired Services component", () => {
   it("Should render the Hired Services component when user haven't any service", async () => {

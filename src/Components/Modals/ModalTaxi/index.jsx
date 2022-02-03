@@ -60,7 +60,7 @@ const ModalTaxi = ({ open, handleClose }) => {
     if (pets.length > 0) {
       setMyPets(pets.filter((pet) => pet.userId === user.id));
     }
-  }, [pets, user.id]);
+  }, [pets]);
 
   const schema = yup.object().shape({
     serviceDesiredDate: yup
