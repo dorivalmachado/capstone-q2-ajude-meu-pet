@@ -9,6 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import catSleeping from "../../../Assets/Img/catSleeping.gif";
 
 import {
+  Container,
+  Content,
   ButtonsContainer,
   ContainerBottom,
   ContainerTraining,
@@ -130,132 +132,141 @@ const ModalTraining = React.forwardRef((props, ref) => {
         }}
         ref={ref}
       >
-        <Form onSubmit={handleSubmit(handleBooking)}>
-          <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
-          <DialogContent>
-            <PriceTableTraining
-              open={openPopover}
-              anchorEl={anchorEl}
-              handleClose={handleClosePopover}
-            />
-            <ContainerTraining>
-              <TrainingDescription>
-                <h3>Descrição</h3>
-                <p>
-                  {trainingDescription[training] !== undefined &&
-                    trainingDescription[training]}
-                </p>
-              </TrainingDescription>
-              <TrainingType>
-                <h3 className="desktop">Selecione o tipo de adestramento</h3>
-                <h3 className="mobile">Adestramento</h3>
-                <TrainingOptions
-                  {...register("serviceDescription")}
-                  value={training}
-                  onChange={(e) => setTraining(e.target.value)}
-                >
-                  <option disabled defaultValue value="">
-                    {" "}
-                    -- Escolha uma opção --{" "}
-                  </option>
-                  <option value="basico">Básico</option>
-                  <option value="avancado">Avançado</option>
-                  <option value="grupal">Grupal</option>
-                </TrainingOptions>
-                <ErrorMessage>
-                  {!training && errors.serviceDescription
-                    ? errors.serviceDescription?.message
-                    : null}
-                </ErrorMessage>
-              </TrainingType>
-            </ContainerTraining>
+        <Container>
+          <button onClick={closeModal} className="closeButton">
+            <FaRegWindowClose />
+          </button>
 
-            <ContainerBottom>
-              <div className="dateTimeContainer">
-                <div className="dateTimeContainer_box">
-                  <p>Em qual dia?</p>
-                  <Input
-                    sx={{ width: "180px" }}
-                    type="date"
-                    register={register}
-                    name="serviceDesiredDate"
-                    error={!!errors.serviceDesiredDate}
-                    helperText={errors.serviceDesiredDate?.message}
-                  />
-                </div>
-                <div className="dateTimeContainer_box">
-                  <p>Em qual horário?</p>
-                  <Input
-                    sx={{ width: "180px" }}
-                    type="time"
-                    register={register}
-                    name="serviceDesiredTime"
-                    error={!!errors.serviceDesiredTime}
-                    helperText={errors.serviceDesiredTime?.message}
-                  />
-                </div>
-              </div>
-              <div className="changeToRow">
-                <div className="petContainer">
-                  <p>Qual o seu pet?</p>
-                  <div className="petContainer_box">
-                    {myPets.length !== 0 ? (
-                      <>
-                        {myPets.map((pet) => (
-                          <RadioButtonPets
-                            key={pet.id}
-                            name="petId"
-                            register={register}
-                            animalType={pet.petType}
-                            value={pet.id}
-                            id={pet.id}
-                            petName={pet.petName}
-                          />
-                        ))}
-                      </>
-                    ) : (
-                      <div className="noPets">
-                        <img src={catSleeping} alt="cat sleeping" />
-                        <div>
-                          <p>Nenhum pet cadastrado!</p>
-                          <Link to="/pets">Clique aqui</Link> para cadastrar
-                        </div>
-                      </div>
-                    )}
+          <Content>
+            <Form onSubmit={handleSubmit(handleBooking)}>
+              <DialogContent>
+                <PriceTableTraining
+                  open={openPopover}
+                  anchorEl={anchorEl}
+                  handleClose={handleClosePopover}
+                />
+                <ContainerTraining>
+                  <TrainingDescription>
+                    <h3>Descrição</h3>
+                    <p>
+                      {trainingDescription[training] !== undefined &&
+                        trainingDescription[training]}
+                    </p>
+                  </TrainingDescription>
+                  <TrainingType>
+                    <h3 className="desktop">
+                      Selecione o tipo de adestramento
+                    </h3>
+                    <h3 className="mobile">Adestramento</h3>
+                    <TrainingOptions
+                      {...register("serviceDescription")}
+                      value={training}
+                      onChange={(e) => setTraining(e.target.value)}
+                    >
+                      <option disabled defaultValue value="">
+                        {" "}
+                        -- Escolha uma opção --{" "}
+                      </option>
+                      <option value="basico">Básico</option>
+                      <option value="avancado">Avançado</option>
+                      <option value="grupal">Grupal</option>
+                    </TrainingOptions>
+                    <ErrorMessage>
+                      {!training && errors.serviceDescription
+                        ? errors.serviceDescription?.message
+                        : null}
+                    </ErrorMessage>
+                  </TrainingType>
+                </ContainerTraining>
+
+                <ContainerBottom>
+                  <div className="dateTimeContainer">
+                    <div className="dateTimeContainer_box">
+                      <p>Em qual dia?</p>
+                      <Input
+                        sx={{ width: "180px" }}
+                        type="date"
+                        register={register}
+                        name="serviceDesiredDate"
+                        error={!!errors.serviceDesiredDate}
+                        helperText={errors.serviceDesiredDate?.message}
+                      />
+                    </div>
+                    <div className="dateTimeContainer_box">
+                      <p>Em qual horário?</p>
+                      <Input
+                        sx={{ width: "180px" }}
+                        type="time"
+                        register={register}
+                        name="serviceDesiredTime"
+                        error={!!errors.serviceDesiredTime}
+                        helperText={errors.serviceDesiredTime?.message}
+                      />
+                    </div>
                   </div>
-                  <ErrorMessage>
-                    {errors.petId?.message && "Selecione um pet"}
-                  </ErrorMessage>
-                </div>
-                <div className="obsContainer">
-                  <p>Alguma observação?</p>
-                  <TextareaAutosize
-                    maxRows={4}
-                    aria-label="maximum height"
-                    style={{
-                      minWidth: "200px",
-                      width: "100%",
-                      height: "180px",
-                      backgroundColor: "var(--cream)",
-                      borderRadius: "5px",
-                      padding: "10px",
-                    }}
-                    {...register("serviceObs")}
-                  />
-                </div>
-              </div>
-            </ContainerBottom>
-          </DialogContent>
+                  <div className="changeToRow">
+                    <div className="petContainer">
+                      <p>Qual o seu pet?</p>
+                      <div className="petContainer_box">
+                        {myPets.length !== 0 ? (
+                          <>
+                            {myPets.map((pet) => (
+                              <RadioButtonPets
+                                key={pet.id}
+                                name="petId"
+                                register={register}
+                                animalType={pet.petType}
+                                value={pet.id}
+                                id={pet.id}
+                                petName={pet.petName}
+                              />
+                            ))}
+                          </>
+                        ) : (
+                          <div className="noPets">
+                            <img src={catSleeping} alt="cat sleeping" />
+                            <div>
+                              <p>Nenhum pet cadastrado!</p>
+                              <Link to="/pets">Clique aqui</Link> para cadastrar
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <ErrorMessage>
+                        {errors.petId?.message && "Selecione um pet"}
+                      </ErrorMessage>
+                    </div>
+                    <div className="obsContainer">
+                      <p>Alguma observação?</p>
+                      <TextareaAutosize
+                        maxRows={4}
+                        aria-label="maximum height"
+                        style={{
+                          minWidth: "200px",
+                          width: "100%",
+                          height: "180px",
+                          backgroundColor: "var(--cream)",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                        {...register("serviceObs")}
+                      />
+                    </div>
+                  </div>
+                </ContainerBottom>
+              </DialogContent>
 
-          <ButtonsContainer>
-            <Button type="submit" buttonColor="darkBrown">
-              Agendar!
-            </Button>
-            <Button buttonColor="blue " onClick={handleOpenPopover}>
-              Tabela de preços
-            </Button>
-          </ButtonsContainer>
-        </Form>
+              <ButtonsContainer>
+                <Button type="submit" buttonColor="darkBrown">
+                  Agendar!
+                </Button>
+                <Button buttonColor="blue " onClick={handleOpenPopover}>
+                  Tabela de preços
+                </Button>
+              </ButtonsContainer>
+            </Form>
+          </Content>
+        </Container>
       </Dialog>
     </div>
   );

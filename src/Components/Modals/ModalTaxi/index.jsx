@@ -9,6 +9,7 @@ import { FaRegWindowClose } from "react-icons/fa";
 import catSleeping from "../../../Assets/Img/catSleeping.gif";
 
 import {
+  Container,
   ArrivalAddress,
   ButtonsContainer,
   ContainerBottom,
@@ -186,24 +187,28 @@ const ModalTaxi = ({ open, handleClose }) => {
           },
         }}
       >
-        <Form onSubmit={handleSubmit(handleBooking)}>
-          <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
-          <DialogContent>
-            <PriceTableTaxi
-              open={openPopover}
-              anchorEl={anchorEl}
-              handleClose={handleClosePopover}
-            />
-            <ContainerTaxi>
-              <DepartureAddress>
-                <h3>Qual o endereço de origem? </h3>
-                {/* <DepartureAddressButtons isVisible={buttonsVisibility}>
+        <Container>
+          <button onClick={closeModal} className="closeButton">
+            <FaRegWindowClose />
+          </button>
+
+          <Form onSubmit={handleSubmit(handleBooking)}>
+            <DialogContent>
+              <PriceTableTaxi
+                open={openPopover}
+                anchorEl={anchorEl}
+                handleClose={handleClosePopover}
+              />
+              <ContainerTaxi>
+                <DepartureAddress>
+                  <h3>Qual o endereço de origem? </h3>
+                  {/* <DepartureAddressButtons isVisible={buttonsVisibility}>
                   <Button buttonColor='blue' onClick={useMyAddress}>Usar meu endereço</Button>
                   <Button buttonColor='blue' onClick={() => setButtonsVisibility(false)}>Outro endereço</Button>
                 </DepartureAddressButtons> */}
-                {/* <DepartureAddressForm isVisible={buttonsVisibility}> */}
-                <DepartureAddressForm>
-                  {/* <CepContainer>
+                  {/* <DepartureAddressForm isVisible={buttonsVisibility}> */}
+                  <DepartureAddressForm>
+                    {/* <CepContainer>
                     <CssTextField 
                       label='CEP' 
                       onChange={(e) => setDepartureCep(e.target.value)} 
@@ -212,50 +217,50 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input
-                    label="Rua"
-                    register={register}
-                    name="serviceDepartureStreet"
-                    error={!!errors.serviceDepartureStreet}
-                    helperText={errors.serviceDepartureStreet?.message}
-                    value={departureStreetName}
-                    onChange={(e) => setDepartureStreetName(e.target.value)}
-                  />
-                  <Input
-                    label="Número"
-                    register={register}
-                    name="serviceDepartureNumber"
-                    error={!!errors.serviceDepartureNumber}
-                    helperText={errors.serviceDepartureNumber?.message}
-                    value={departureNumberValue}
-                    onChange={(e) => setDepartureNumberValue(e.target.value)}
-                  />
-                  <Input
-                    label="Complemento"
-                    register={register}
-                    name="serviceDepartureComplement"
-                    error={!!errors.serviceDepartureComplement}
-                    helperText={errors.serviceDepartureComplement?.message}
-                    value={departureComplementValue}
-                    onChange={(e) =>
-                      setDepartureComplementValue(e.target.value)
-                    }
-                  />
-                  <Input
-                    label="Cidade"
-                    register={register}
-                    name="serviceDepartureCity"
-                    error={!!errors.serviceDepartureCity}
-                    helperText={errors.serviceDepartureCity?.message}
-                    value={departureCityName}
-                    onChange={(e) => setDepartureCityName(e.target.value)}
-                  />
-                </DepartureAddressForm>
-              </DepartureAddress>
-              <ArrivalAddress>
-                <h3>Qual o endereço de destino? </h3>
-                <div>
-                  {/* <CepContainer>
+                    <Input
+                      label="Rua"
+                      register={register}
+                      name="serviceDepartureStreet"
+                      error={!!errors.serviceDepartureStreet}
+                      helperText={errors.serviceDepartureStreet?.message}
+                      value={departureStreetName}
+                      onChange={(e) => setDepartureStreetName(e.target.value)}
+                    />
+                    <Input
+                      label="Número"
+                      register={register}
+                      name="serviceDepartureNumber"
+                      error={!!errors.serviceDepartureNumber}
+                      helperText={errors.serviceDepartureNumber?.message}
+                      value={departureNumberValue}
+                      onChange={(e) => setDepartureNumberValue(e.target.value)}
+                    />
+                    <Input
+                      label="Complemento"
+                      register={register}
+                      name="serviceDepartureComplement"
+                      error={!!errors.serviceDepartureComplement}
+                      helperText={errors.serviceDepartureComplement?.message}
+                      value={departureComplementValue}
+                      onChange={(e) =>
+                        setDepartureComplementValue(e.target.value)
+                      }
+                    />
+                    <Input
+                      label="Cidade"
+                      register={register}
+                      name="serviceDepartureCity"
+                      error={!!errors.serviceDepartureCity}
+                      helperText={errors.serviceDepartureCity?.message}
+                      value={departureCityName}
+                      onChange={(e) => setDepartureCityName(e.target.value)}
+                    />
+                  </DepartureAddressForm>
+                </DepartureAddress>
+                <ArrivalAddress>
+                  <h3>Qual o endereço de destino? </h3>
+                  <div>
+                    {/* <CepContainer>
                     <CssTextField 
                       label='CEP' 
                       onChange={(e) => setArrivalCep(e.target.value)} 
@@ -264,125 +269,126 @@ const ModalTaxi = ({ open, handleClose }) => {
                       }}
                     />
                   </CepContainer> */}
-                  <Input
-                    label="Rua"
-                    register={register}
-                    name="serviceArrivalStreet"
-                    error={!!errors.serviceArrivalStreet}
-                    helperText={errors.serviceArrivalStreet?.message}
-                    value={arrivalStreetName}
-                    onChange={(e) => setArrivalStreetName(e.target.value)}
-                  />
-                  <Input
-                    label="Número"
-                    register={register}
-                    name="serviceArrivalNumber"
-                    error={!!errors.serviceArrivalNumber}
-                    helperText={errors.serviceArrivalNumber?.message}
-                  />
-                  <Input
-                    label="Complemento"
-                    register={register}
-                    name="serviceArrivalComplement"
-                    error={!!errors.serviceArrivalComplement}
-                    helperText={errors.serviceArrivalComplement?.message}
-                  />
-                  <Input
-                    label="Cidade"
-                    register={register}
-                    name="serviceArrivalCity"
-                    error={!!errors.serviceArrivalCity}
-                    helperText={errors.serviceArrivalCity?.message}
-                    value={arrivalCityName}
-                    onChange={(e) => setArrivalCityName(e.target.value)}
-                  />
-                </div>
-              </ArrivalAddress>
-            </ContainerTaxi>
-
-            <ContainerBottom>
-              <div className="dateTimeContainer">
-                <div className="dateTimeContainer_box">
-                  <p>Em qual dia?</p>
-                  <Input
-                    sx={{ width: "180px" }}
-                    type="date"
-                    register={register}
-                    name="serviceDesiredDate"
-                    error={!!errors.serviceDesiredDate}
-                    helperText={errors.serviceDesiredDate?.message}
-                  />
-                </div>
-                <div className="dateTimeContainer_box">
-                  <p>Em qual horário?</p>
-                  <Input
-                    sx={{ width: "180px" }}
-                    type="time"
-                    register={register}
-                    name="serviceDesiredTime"
-                    error={!!errors.serviceDesiredTime}
-                    helperText={errors.serviceDesiredTime?.message}
-                  />
-                </div>
-              </div>
-              <div className="changeToRow">
-                <div className="petContainer">
-                  <p>Qual o seu pet?</p>
-                  <div className="petContainer_box">
-                    {myPets.length !== 0 ? (
-                      myPets.map((pet) => (
-                        <RadioButtonPets
-                          key={pet.id}
-                          name="petId"
-                          register={register}
-                          animalType={pet.petType}
-                          value={pet.id}
-                          id={pet.id}
-                          petName={pet.petName}
-                        />
-                      ))
-                    ) : (
-                      <div className="noPets">
-                        <img src={catSleeping} alt="cat sleeping" />
-                        <div>
-                          <p>Nenhum pet cadastrado!</p>
-                          <Link to="/pets">Clique aqui</Link> para cadastrar
-                        </div>
-                      </div>
-                    )}
+                    <Input
+                      label="Rua"
+                      register={register}
+                      name="serviceArrivalStreet"
+                      error={!!errors.serviceArrivalStreet}
+                      helperText={errors.serviceArrivalStreet?.message}
+                      value={arrivalStreetName}
+                      onChange={(e) => setArrivalStreetName(e.target.value)}
+                    />
+                    <Input
+                      label="Número"
+                      register={register}
+                      name="serviceArrivalNumber"
+                      error={!!errors.serviceArrivalNumber}
+                      helperText={errors.serviceArrivalNumber?.message}
+                    />
+                    <Input
+                      label="Complemento"
+                      register={register}
+                      name="serviceArrivalComplement"
+                      error={!!errors.serviceArrivalComplement}
+                      helperText={errors.serviceArrivalComplement?.message}
+                    />
+                    <Input
+                      label="Cidade"
+                      register={register}
+                      name="serviceArrivalCity"
+                      error={!!errors.serviceArrivalCity}
+                      helperText={errors.serviceArrivalCity?.message}
+                      value={arrivalCityName}
+                      onChange={(e) => setArrivalCityName(e.target.value)}
+                    />
                   </div>
-                  <ErrorMessage>
-                    {errors.petId?.message && "Selecione um pet"}
-                  </ErrorMessage>
+                </ArrivalAddress>
+              </ContainerTaxi>
+
+              <ContainerBottom>
+                <div className="dateTimeContainer">
+                  <div className="dateTimeContainer_box">
+                    <p>Em qual dia?</p>
+                    <Input
+                      sx={{ width: "180px" }}
+                      type="date"
+                      register={register}
+                      name="serviceDesiredDate"
+                      error={!!errors.serviceDesiredDate}
+                      helperText={errors.serviceDesiredDate?.message}
+                    />
+                  </div>
+                  <div className="dateTimeContainer_box">
+                    <p>Em qual horário?</p>
+                    <Input
+                      sx={{ width: "180px" }}
+                      type="time"
+                      register={register}
+                      name="serviceDesiredTime"
+                      error={!!errors.serviceDesiredTime}
+                      helperText={errors.serviceDesiredTime?.message}
+                    />
+                  </div>
                 </div>
-                <div className="obsContainer">
-                  <p>Alguma observação?</p>
-                  <TextareaAutosize
-                    maxRows={4}
-                    aria-label="maximum height"
-                    style={{
-                      minWidth: "200px",
-                      width: "100%",
-                      height: "180px",
-                      backgroundColor: "var(--cream)",
-                      borderRadius: "5px",
-                      padding: "10px",
-                    }}
-                    {...register("serviceObs")}
-                  />
+                <div className="changeToRow">
+                  <div className="petContainer">
+                    <p>Qual o seu pet?</p>
+                    <div className="petContainer_box">
+                      {myPets.length !== 0 ? (
+                        myPets.map((pet) => (
+                          <RadioButtonPets
+                            key={pet.id}
+                            name="petId"
+                            register={register}
+                            animalType={pet.petType}
+                            value={pet.id}
+                            id={pet.id}
+                            petName={pet.petName}
+                          />
+                        ))
+                      ) : (
+                        <div className="noPets">
+                          <img src={catSleeping} alt="cat sleeping" />
+                          <div>
+                            <p>Nenhum pet cadastrado!</p>
+                            <Link to="/pets">Clique aqui</Link> para cadastrar
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <ErrorMessage>
+                      {errors.petId?.message && "Selecione um pet"}
+                    </ErrorMessage>
+                  </div>
+                  <div className="obsContainer">
+                    <p>Alguma observação?</p>
+                    <TextareaAutosize
+                      maxRows={4}
+                      aria-label="maximum height"
+                      style={{
+                        minWidth: "200px",
+                        width: "100%",
+                        height: "180px",
+                        backgroundColor: "var(--cream)",
+                        borderRadius: "5px",
+                        padding: "10px",
+                      }}
+                      {...register("serviceObs")}
+                    />
+                  </div>
                 </div>
-              </div>
-            </ContainerBottom>
-          </DialogContent>
-          <ButtonsContainer>
-            <Button type="submit" buttonColor="darkBrown">
-              Agendar!
-            </Button>
-            <Button buttonColor="blue " onClick={handleOpenPopover}>
-              Tabela de preços
-            </Button>
-          </ButtonsContainer>
-        </Form>
+              </ContainerBottom>
+            </DialogContent>
+            <ButtonsContainer>
+              <Button type="submit" buttonColor="darkBrown">
+                Agendar!
+              </Button>
+              <Button buttonColor="blue " onClick={handleOpenPopover}>
+                Tabela de preços
+              </Button>
+            </ButtonsContainer>
+          </Form>
+        </Container>
       </Dialog>
     </div>
   );
