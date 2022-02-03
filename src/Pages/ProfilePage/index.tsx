@@ -1,10 +1,10 @@
 import { Container, ContainerContent } from "./styles";
 import { HeaderLogged } from "../../Components/HeaderLogged";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 import { useState } from "react";
-import Header from "../../Components/Header/index.tsx";
-import Button from "../../Components/Button/index.tsx";
-import MainContainer from "../../Components/MainContainer/index.tsx";
+import Header from "../../Components/Header";
+import Button from "../../Components/Button";
+import MainContainer from "../../Components/MainContainer";
 import Profile from "../../Components/Profile";
 
 const ProfilePage = () => {

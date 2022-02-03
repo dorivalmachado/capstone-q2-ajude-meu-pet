@@ -14,15 +14,15 @@ import {
   FiUser,
 } from "react-icons/fi";
 
-import Button from "../../Components/Button/index.tsx";
-import Input from "../../Components/Input/index.tsx";
+import Button from "../../Components/Button";
+import Input from "../../Components/Input";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 import dog from "../../Assets/Img/flirtingDog.gif";
 
 const RegisterPage = () => {
@@ -209,7 +209,7 @@ const RegisterPage = () => {
                       color: "var(--black50)",
                       "&.Mui-checked": {
                         color: "var(--black50)",
-                      }
+                      },
                     }}
                   />
                 }

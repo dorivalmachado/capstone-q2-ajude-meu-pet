@@ -5,16 +5,16 @@ import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth/index.tsx";
-import LogoImg from "../../Assets/Img/logo.svg";
+import { useAuth } from "../../Providers/Auth";
+import LogoImg from "../../Assets/Img/logo.png";
 
 export const HeaderLogged = () => {
   const { logout } = useAuth();
-  
+
   return (
     <Container>
       <div className="content">
-        <img src={LogoImg} alt='logo' />
+        <img src={LogoImg} alt="logo" />
         <Menu>
           <div className="menuTop">
             <div>

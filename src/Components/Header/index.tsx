@@ -1,4 +1,4 @@
-import { Container, Imagem, Title, DrawerContent } from "./styles.ts";
+import { Container, Imagem, Title, DrawerContent } from "./styles";
 import { Drawer } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoSignIn, GoSignOut, GoPencil } from "react-icons/go";
@@ -6,7 +6,7 @@ import { LightTip } from "../../Helpers/Tooltip";
 import { Link } from "react-router-dom";
 import { MdPets, MdPerson } from "react-icons/md";
 import { SiDatadog } from "react-icons/si";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 import { useEffect, useState } from "react";
 import logo from "../../Assets/Img/logo.png";
 
@@ -14,17 +14,12 @@ interface HeaderProps {
   isLogged: boolean;
 }
 
-interface ToggleDrawerData {
-  event: any;
-  status: boolean;
-}
-
 const Header = ({ isLogged = false }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { logout } = useAuth();
 
-  const toggleDrawer = (event, status): ToggleDrawerData => {
+  const toggleDrawer = (event: any, status: boolean) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")

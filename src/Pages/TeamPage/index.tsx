@@ -14,10 +14,10 @@ import {
   Content,
   SubText,
   TitleText,
-} from "./styles.ts";
+} from "./styles";
 import logo from "../../Assets/Img/logo.png";
 import { Link } from "react-router-dom";
-import Footer from "../../Components/Footer/index.tsx";
+import Footer from "../../Components/Footer";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { useEffect, useState } from "react";

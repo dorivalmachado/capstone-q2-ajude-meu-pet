@@ -3,9 +3,9 @@ import { Container, Content, Form, Subtitle } from "./styles";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Providers/Auth/index.tsx";
-import Button from "../Button/index.tsx";
-import Input from "../Input/index.tsx";
+import { useAuth } from "../../Providers/Auth";
+import Button from "../Button";
+import Input from "../Input";
 import { Dialog, InputAdornment } from "@mui/material";
 import {
   FiEye,
@@ -65,7 +65,7 @@ const Profile = ({ open, onClose }) => {
       .replace(/(\d{5})(\d)/, "$1-$2")
       .replace(/(-\d{4})(\d+?)$/, "$1");
   };
-  
+
   return (
     <Dialog
       open={open}

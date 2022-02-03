@@ -1,4 +1,4 @@
-import { Container } from "./styles.ts";
+import { Container } from "./styles";
 
 const MainContainer = ({ children }) => {
   return <Container>{children}</Container>;

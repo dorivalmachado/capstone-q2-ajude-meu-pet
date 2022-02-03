@@ -1,13 +1,11 @@
 import React from "react";
 import { Container } from "./styles";
-import { TextField } from "@mui/material";
-import { FieldValues, UseFormRegister } from "react-hook-form";
-// import { TextFieldProps } from "material-ui";
+import { BaseTextFieldProps, TextField } from "@mui/material";
+import { UseFormRegister } from "react-hook-form";
 
-// interface InputProps extends TextFieldProps {
-interface InputProps {
+interface InputProps extends BaseTextFieldProps {
   error?: boolean;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<any>;
   name: string;
   type?: string;
 }
@@ -16,7 +14,7 @@ const Input = ({
   type = "text",
   name,
   register,
-  error=false,
+  error = false,
   ...rest
 }: InputProps) => {
   const textFieldStyle = {
@@ -28,9 +26,6 @@ const Input = ({
     },
     "& .MuiOutlinedInput-root": {
       background: "white",
-      "& fieldset": {
-        //   borderColor: "black",
-      },
       "&:hover fieldset": {
         borderColor: "var(--yellow80)",
       },

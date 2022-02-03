@@ -1,18 +1,54 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { api } from "../../Services/api";
 import toast from "react-hot-toast";
-import { useAuth } from "../Auth/index.tsx";
+import { useAuth } from "../Auth";
 
-export const PetsContext = createContext();
+interface PetsProviderProps {
+  children: ReactNode;
+}
 
-export const PetsProvider = ({ children }) => {
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+interface PetsReq {
+  petName?: string;
+  petType?: string;
+  petGender?: string;
+  petSize?: string;
+  petBirthDate?: string;
+  userId?: number;
+}
+
+interface PetsData {
+  petCreate: (obj: PetsReq) => void;
+  petUpdate: (obj: PetsReq, petId: number) => void;
+  petDelete: (petId: number) => void;
+  pets: Pets[];
+}
+
+export const PetsContext = createContext<PetsData>({} as PetsData);
+
+export const PetsProvider = ({ children }: PetsProviderProps) => {
   const { token, user } = useAuth();
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState<Pets[]>([] as Pets[]);
 
   const getPets = () => {
     token !== undefined &&
       api
-        .get(`/pets`, {
+        .get<Pets[]>(`/pets`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -29,9 +65,9 @@ export const PetsProvider = ({ children }) => {
     getPets();
   }, [token]);
 
-  const petCreate = (obj) => {
+  const petCreate = (obj: PetsReq) => {
     api
-      .post(
+      .post<Pets>(
         "/pets/",
         { ...obj, userId: user.id },
         {
@@ -48,10 +84,10 @@ export const PetsProvider = ({ children }) => {
         toast.error("Erro ao registrar o pet!");
       });
   };
-  const petUpdate = (obj, petId) => {
+  const petUpdate = (obj: PetsReq, petId: number) => {
     const token = localStorage.getItem("@ajude-meu-pet:token") || "";
     api
-      .patch(`/pets/${petId}/`, obj, {
+      .patch<Pets>(`/pets/${petId}/`, obj, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +100,7 @@ export const PetsProvider = ({ children }) => {
         toast.error("Erro ao atualizar o pet!");
       });
   };
-  const petDelete = (petId) => {
+  const petDelete = (petId: number) => {
     api
       .delete(`/pets/${petId}/`, {
         headers: {

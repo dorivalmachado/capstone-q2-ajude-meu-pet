@@ -5,12 +5,18 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../Providers/Auth/index.tsx";
+import { useAuth } from "../../Providers/Auth";
 import { Link } from "react-router-dom";
 import { FiEyeOff, FiEye, FiLock, FiUser } from "react-icons/fi";
-import Button from "../../Components/Button/index.tsx";
+import Button from "../../Components/Button";
 import DogImage from "../../Assets/Img/corgiRunning.gif";
-import Input from "../../Components/Input/index.tsx";
+import Input from "../../Components/Input";
+
+interface UserLogin{
+  email: string; 
+  password: string;
+}
+
 
 export const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -28,11 +34,11 @@ export const Login = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({
+  } = useForm<UserLogin>({
     resolver: yupResolver(schema),
   });
 
-  const handleSignIn = (data) => {
+  const handleSignIn = (data: UserLogin) => {
     login(data);
   };
 

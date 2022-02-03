@@ -7,6 +7,25 @@ import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { LightTip } from "../../Helpers/Tooltip";
 
+interface Pets {
+  petName: string;
+  petType: string;
+  petGender: string;
+  petSize: string;
+  petBirthDate: string;
+  userId: number;
+  id: number;
+}
+
+interface CardPetsProps {
+  name: string;
+  size: string;
+  animalType: string;
+  petBirthDate: string;
+  gender: string;
+  editPet: () => void;
+}
+
 const CardPets = ({
   name,
   size,
@@ -14,7 +33,7 @@ const CardPets = ({
   petBirthDate,
   gender,
   editPet,
-}) => {
+}: CardPetsProps) => {
   const handleImage = () => {
     return animalType === "gato"
       ? CatImage
@@ -36,9 +55,9 @@ const CardPets = ({
     const formatDate = Intl.DateTimeFormat(["pt-br"]).format(now);
     const todayDate = formatDate.split("/");
     const arrayPetDate = petBirthDate.split("/");
-    let year = todayDate[2] - arrayPetDate[2];
-    let month = todayDate[1] - arrayPetDate[1];
-    let day = todayDate[0] - arrayPetDate[0];
+    let year = Number(todayDate[2]) - Number(arrayPetDate[2]);
+    let month = Number(todayDate[1]) - Number(arrayPetDate[1]);
+    let day = Number(todayDate[0]) - Number(arrayPetDate[0]);
 
     if (month < 0) return year - 1;
     if (month === 0 && day < 0) return year - 1;

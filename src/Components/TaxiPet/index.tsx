@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Imagem from "../Imagem";
-import { Container, Paragraph, Subtitle, Text } from "./styles.ts";
+import { Container, Paragraph, Subtitle, Text } from "./styles";
 import LogoPetTaxi from "../../Assets/Img/LogoPetTaxi.jpg";
 
 const TaxiPet = () => {

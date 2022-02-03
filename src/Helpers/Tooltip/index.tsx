@@ -1,7 +1,7 @@
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Tooltip, { tooltipClasses, TooltipProps } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 
-const LightTooltip = styled(({ className, ...props }) => (
+const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
@@ -12,6 +12,11 @@ const LightTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-export const LightTip = ({ title, children }) => (
+interface LightTipProps {
+  title: string;
+  children: any;
+}
+
+export const LightTip = ({ title, children }: LightTipProps) => (
   <LightTooltip title={title}>{children}</LightTooltip>
 );
