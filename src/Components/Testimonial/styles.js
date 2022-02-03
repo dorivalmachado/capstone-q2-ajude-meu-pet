@@ -84,7 +84,7 @@ export const Card = styled.div`
 export const Subtitle = styled.h2`
   color: var(--caramel50);
   font-family: var(--title-font);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 1px;
   margin: 40px 0 20px;
   text-align: center;
@@ -92,16 +92,11 @@ export const Subtitle = styled.h2`
 
   @media (min-width: 768px) {
     color: var(--black50);
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 100;
     margin: 0;
     text-shadow: 1px 1px var(--grey20);
   }
-`;
-
-export const Paragraph = styled.p`
-  font-size: 18px;
-  margin-bottom: 20px;
 `;
 
 export const Imagem = styled.img`
@@ -120,7 +115,7 @@ export const Text = styled.p`
   border-radius: 10%;
   color: var(--white);
   display: flex;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   justify-content: center;
   line-height: normal;
@@ -129,5 +124,5 @@ export const Text = styled.p`
   text-align: center;
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 17px;
 `;

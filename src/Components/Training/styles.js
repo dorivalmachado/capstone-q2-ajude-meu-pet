@@ -67,14 +67,14 @@ export const Text = styled.div`
 export const Subtitle = styled.h2`
   color: var(--caramel50);
   font-family: var(--title-font);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 1px;
   text-align: center;
   text-shadow: 1px 1px var(--grey70);
 
   @media (min-width: 768px) {
     color: var(--black50);
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 100;
     margin-bottom: 50px;
     text-shadow: 1px 1px var(--grey20);
@@ -84,14 +84,14 @@ export const Subtitle = styled.h2`
 export const Paragraph = styled.p`
   align-self: center;
   color: var(--black50);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   line-height: normal;
   margin-bottom: 20px;
   text-align: center;
 
   @media (min-width: 768px) {
-    font-size: 20px;
+    font-size: 18px;
     text-align: justify;
   }
 `;
