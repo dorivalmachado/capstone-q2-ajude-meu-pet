@@ -70,11 +70,11 @@ export const FormContainer = styled.div`
     font-weight: normal;
   }
 
-  .cDUxdC{
+  .cDUxdC {
     margin-bottom: 15px;
   }
 
-  .css-ahj2mt-MuiTypography-root{
+  .css-ahj2mt-MuiTypography-root {
     font-size: 15px;
   }
 
@@ -129,6 +129,3 @@ export const FormContainer = styled.div`
   }
 `;
 
-export const Teste = styled.div`
-  display: flex;
-`;
