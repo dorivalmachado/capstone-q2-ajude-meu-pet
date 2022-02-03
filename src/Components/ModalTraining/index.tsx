@@ -38,21 +38,29 @@ interface ModalWalkProps {
 }
 
 const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
-  const trainingDescription = {
-    basico:
-      "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",
-    avancado:
-      "Treinamento oferecido para cães de trabalho e para esportes. Dentro do adestramento no pet shop, há algumas atividades, como saltar e buscar objetos, por exemplo.",
-    grupal:
-      "Para os donos que veem a necessidade de seu animal ter contato com outros pets, essa é a opção ideal. Nele, são ensinados comandos de obediência que podem ser usados fora de casa, assim como adequar o comportamento em passeios e em momentos de socialização com pessoas ou outros animais.",
+  const trainingDescription = [
+    "",
+    "O adestramento básico ensina ao pet conceitos de obediência simples. Alguns exemplos são: senta, deita, fica, junto, dar a pata, entender o não, aqui e meia volta.",
+    "Treinamento oferecido para cães de trabalho e para esportes. Dentro do adestramento no pet shop, há algumas atividades, como saltar e buscar objetos, por exemplo.",
+    "Para os donos que veem a necessidade de seu animal ter contato com outros pets, essa é a opção ideal. Nele, são ensinados comandos de obediência que podem ser usados fora de casa, assim como adequar o comportamento em passeios e em momentos de socialização com pessoas ou outros animais.",
+  ];
+
+  const handleChange = (e: any) => {
+    if (e.target.value === "basico") {
+      setTraining(1);
+    } else if (e.target.value === "avancado") {
+      setTraining(2);
+    } else {
+      setTraining(3);
+    }
   };
 
-  const [training, setTraining] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [training, setTraining] = useState(0);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPopover, setOpenPopover] = useState("");
   const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
-  const handleOpenPopover = (event) => {
+  const handleOpenPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setOpenPopover("trainingPrice");
   };
@@ -89,7 +97,7 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
     resolver: yupResolver(schema),
   });
 
-  const handleBooking = (data) => {
+  const handleBooking = (data: any) => {
     closeModal();
     data.petId = Number(data.petId);
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
@@ -97,10 +105,11 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
     );
     const requisitionBody = {
       serviceCategory: "adestramento",
-      serviceDepartureStreet: user.street,
-      serviceDepartureNumber: user.addressNumber,
-      serviceDepartureComplement: user.addressComplement,
-      serviceDepartureCity: user.city,
+
+      serviceDepartureStreet: "",
+      serviceDepartureNumber: "",
+      serviceDepartureComplement: "",
+      serviceDepartureCity: "",
       serviceArrivalStreet: "",
       serviceArrivalNumber: "",
       serviceArrivalComplement: "",
@@ -114,7 +123,7 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
 
   const closeModal = () => {
     handleClose();
-    setTraining("");
+    setTraining(0);
     reset();
   };
 
@@ -134,17 +143,14 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
           <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
           <DialogContent>
             <PriceTableTraining
-              open={openPopover}
-              anchorEl={anchorEl}
+              openPop={openPopover}
+              anchor={anchorEl}
               handleClose={handleClosePopover}
             />
             <ContainerTraining>
               <TrainingDescription>
                 <h3>Descrição</h3>
-                <p>
-                  {trainingDescription[training] !== undefined &&
-                    trainingDescription[training]}
-                </p>
+                <p>{trainingDescription[training]}</p>
               </TrainingDescription>
               <TrainingType>
                 <h3 className="desktop">Selecione o tipo de adestramento</h3>
@@ -152,11 +158,10 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
                 <TrainingOptions
                   {...register("serviceDescription")}
                   value={training}
-                  onChange={(e) => setTraining(e.target.value)}
+                  onChange={handleChange}
                 >
-                  <option disabled defaultValue value="">
-                    {" "}
-                    -- Escolha uma opção --{" "}
+                  <option disabled value="">
+                    -- Escolha uma opção --
                   </option>
                   <option value="basico">Básico</option>
                   <option value="avancado">Avançado</option>
@@ -195,7 +200,7 @@ const ModalTraining = ({ open, handleClose }: ModalWalkProps) => {
                         register={register}
                         animalType={pet.petType}
                         value={pet.id}
-                        id={pet.id}
+                        id={pet.id.toString()}
                         petName={pet.petName}
                       />
                     ))}

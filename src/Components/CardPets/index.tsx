@@ -7,15 +7,15 @@ import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { LightTip } from "../../Helpers/Tooltip";
 
-interface Pets {
-  petName: string;
-  petType: string;
-  petGender: string;
-  petSize: string;
-  petBirthDate: string;
-  userId: number;
-  id: number;
-}
+// interface Pets {
+//   petName: string;
+//   petType: string;
+//   petGender: string;
+//   petSize: string;
+//   petBirthDate: string;
+//   userId: number;
+//   id: number;
+// }
 
 interface CardPetsProps {
   name: string;

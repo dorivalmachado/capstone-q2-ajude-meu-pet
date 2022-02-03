@@ -1,6 +1,12 @@
 import { CardTextContainer, CardTextMobileTitle, Main } from "./styles";
 
-const CardText = ({ alternate, children, title = "" }) => {
+interface CardTextProps {
+  alternate: string;
+  children: any;
+  title: string;
+}
+
+const CardText = ({ alternate, children, title = "" }: CardTextProps) => {
   return (
     <CardTextContainer alternate={alternate}>
       <Main alternate={alternate}>

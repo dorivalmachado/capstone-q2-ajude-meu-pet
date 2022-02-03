@@ -1,6 +1,11 @@
 import { Container } from "./styles";
 
-const Imagem = ({ src, alt }) => {
+interface ImagemProps {
+  src: string;
+  alt: string;
+}
+
+const Imagem = ({ src, alt }: ImagemProps) => {
   return (
     <>
       <Container src={src} alt={alt}></Container>
