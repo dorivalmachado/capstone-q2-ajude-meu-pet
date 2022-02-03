@@ -12,7 +12,6 @@ const Footer = () => {
         </div>
 
         <div className="linkBox">
-          <Link to="/companyInfo">Saiba mais</Link>
           <Link to="/team">Sobre nós</Link>
         </div>
       </LeftBox>

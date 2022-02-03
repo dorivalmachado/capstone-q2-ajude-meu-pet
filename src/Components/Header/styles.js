@@ -118,3 +118,6 @@ export const Imagem = styled.img`
     margin-left: 2vw;
   }
 `;
+
+
+
