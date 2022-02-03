@@ -8,6 +8,7 @@ interface InputProps extends BaseTextFieldProps {
   register: UseFormRegister<any>;
   name: string;
   type?: string;
+  onChange?: (e: any) => void;
 }
 
 const Input = ({

@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import { FaRegWindowClose } from "react-icons/fa";
 
-interface ProfileProps{
+interface ProfileProps {
   open: boolean;
   onClose: () => void;
 }

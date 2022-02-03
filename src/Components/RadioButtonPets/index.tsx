@@ -5,7 +5,7 @@ import DogImage from "../../Assets/Img/dog.png";
 import PawImage from "../../Assets/Img/pawprints.png";
 
 interface RadioButtonPetsProps {
-  label: string;
+  label?: string;
   name: string;
   register: (name: string) => void;
   animalType: string;

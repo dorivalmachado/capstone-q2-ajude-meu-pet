@@ -53,11 +53,11 @@ const ModalTaxi = ({ open, handleClose }: ModalTaxiProps) => {
   const [departureStreetName, setDepartureStreetName] = useState("");
   const [departureNumberValue, setDepartureNumberValue] = useState("");
   const [departureComplementValue, setDepartureComplementValue] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPopover, setOpenPopover] = useState("");
   const [myPets, setMyPets] = useState<Pets[]>([] as Pets[]);
 
-  const handleOpenPopover = (event) => {
+  const handleOpenPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setOpenPopover("taxiPrice");
   };
@@ -101,7 +101,7 @@ const ModalTaxi = ({ open, handleClose }: ModalTaxiProps) => {
     resolver: yupResolver(schema),
   });
 
-  const handleBooking = (data) => {
+  const handleBooking = (data: any) => {
     closeModal();
     data.petId = Number(data.petId);
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
@@ -197,8 +197,8 @@ const ModalTaxi = ({ open, handleClose }: ModalTaxiProps) => {
           <FaRegWindowClose size={25} color="#999999" onClick={closeModal} />
           <DialogContent>
             <PriceTableTaxi
-              open={openPopover}
-              anchorEl={anchorEl}
+              openPop={openPopover}
+              anchor={anchorEl}
               handleClose={handleClosePopover}
             />
             <ContainerTaxi>
@@ -321,7 +321,7 @@ const ModalTaxi = ({ open, handleClose }: ModalTaxiProps) => {
                         register={register}
                         animalType={pet.petType}
                         value={pet.id}
-                        id={pet.id}
+                        id={pet.id.toString()}
                         petName={pet.petName}
                       />
                     ))}

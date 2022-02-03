@@ -39,7 +39,7 @@ interface DrawerContentProps {
 }
 
 export const DrawerContent = styled.div<DrawerContentProps>`
-  height: ${(props) => (props.isLogged ? "150px" : "100px")};
+  height: ${(props: boolean) => (props ? "150px" : "100px")};
   margin-left: 20px;
 
   a,
