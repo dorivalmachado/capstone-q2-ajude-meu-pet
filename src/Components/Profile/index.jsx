@@ -55,7 +55,8 @@ const Profile = ({ open, onClose }) => {
   });
 
   const handleChange = (data) => {
-    updateUser({ ...data, userId: user.id, isClient: true });
+    updateUser({ ...data, isClient: true });
+    onClose();
   };
 
   const maskPhone = (value) => {

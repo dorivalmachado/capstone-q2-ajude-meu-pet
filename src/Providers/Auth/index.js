@@ -75,6 +75,7 @@ export const AuthProvider = ({ children }) => {
           "@ajude-meu-pet:user",
           JSON.stringify(response.data)
         );
+        setData({ token, user: response.data });
       })
       .catch((_) => {
         toast.error("Nome de usuário já existente");

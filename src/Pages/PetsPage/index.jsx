@@ -1,4 +1,5 @@
 import { Container, ContainerContent, PetsBox, NoCards } from "./styles";
+import { motion } from "framer-motion";
 import { FaPlus } from "react-icons/fa";
 import { HeaderLogged } from "../../Components/HeaderLogged";
 import { usePets } from "../../Providers/Pets";
@@ -38,56 +39,64 @@ const PetsPage = () => {
   }, [pets]);
 
   return (
-    <MainContainer>
-      <ModalPet
-        add={isPetAddition}
-        open={openModal}
-        handleClose={() => setOpenModal(false)}
-        id={petId}
-      />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      exit={{ opacity: 0 }}
+    >
 
-      <Container>
-        <aside className="headerMobile">
-          <Header isLogged={true} />
-        </aside>
-        <aside className="headerDesktop">
-          <HeaderLogged />
-        </aside>
+      <MainContainer>
+        <ModalPet
+          add={isPetAddition}
+          open={openModal}
+          handleClose={() => setOpenModal(false)}
+          id={petId}
+          />
 
-        <ContainerContent>
-          <div className="titleBox">
-            <h3>Meus Pets</h3>
-            <LightTip title="Adicionar Pet">
-              <button id="add" onClick={addPet}>
-                <FaPlus />
-              </button>
-            </LightTip>
-          </div>
+        <Container>
+          <aside className="headerMobile">
+            <Header isLogged={true} />
+          </aside>
+          <aside className="headerDesktop">
+            <HeaderLogged />
+          </aside>
 
-          {myPets.length > 0 ? (
-            <PetsBox>
-              {myPets.map((pet) => (
-                <CardPets
+          <ContainerContent>
+            <div className="titleBox">
+              <h3>Meus Pets</h3>
+              <LightTip title="Adicionar Pet">
+                <button id="add" onClick={addPet}>
+                  <FaPlus />
+                </button>
+              </LightTip>
+            </div>
+
+            {myPets.length > 0 ? (
+              <PetsBox>
+                {myPets.map((pet) => (
+                  <CardPets
                   key={pet.id}
                   name={pet.petName}
-                  breed={pet.petBreed}
-                  size={pet.petSize}
-                  animalType={pet.petType}
-                  petBirthDate={pet.petBirthDate}
-                  gender={pet.petGender}
-                  editPet={() => editPet(pet.id)}
-                />
-              ))}
-            </PetsBox>
-          ) : (
-            <NoCards>
-              <h2>Nenhum pet cadastrado ainda.</h2>
-              <img src={CatBox} alt="Cat inside box" />
-            </NoCards>
-          )}
-        </ContainerContent>
-      </Container>
-    </MainContainer>
+                    breed={pet.petBreed}
+                    size={pet.petSize}
+                    animalType={pet.petType}
+                    petBirthDate={pet.petBirthDate}
+                    gender={pet.petGender}
+                    editPet={() => editPet(pet.id)}
+                    />
+                    ))}
+              </PetsBox>
+            ) : (
+              <NoCards>
+                <h2>Nenhum pet cadastrado ainda.</h2>
+                <img src={CatBox} alt="Cat inside box" />
+              </NoCards>
+            )}
+          </ContainerContent>
+        </Container>
+      </MainContainer>
+    </motion.div>
   );
 };
 

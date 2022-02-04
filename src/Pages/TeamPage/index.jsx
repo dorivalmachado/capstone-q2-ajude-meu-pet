@@ -16,6 +16,7 @@ import {
   TitleText,
   TeamFoot,
 } from "./styles";
+import { motion } from "framer-motion";
 import Logo from "../../Assets/Img/Logo.webp";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer";
@@ -58,7 +59,13 @@ export const TeamPage = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      exit={{ opacity: 0 }}
+    >
+
       {width < 768 ? (
         <div>
           <Container>
@@ -291,6 +298,7 @@ export const TeamPage = () => {
           <Footer />
         </div>
       )}
-    </>
+    
+    </motion.div>
   );
 };
