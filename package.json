@@ -16,7 +16,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.25.0",
     "axios-mock-adapter": "^1.20.0",
-    "cypress": "^9.3.1",
+    "cypress": "^9.4.1",
     "framer-motion": "4.1.17",
     "jwt-decode": "^3.1.2",
     "material-ui-phone-number": "^3.0.0",
@@ -43,7 +43,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -59,7 +60,8 @@
     ]
   },
   "devDependencies": {
-    "cz-conventional-changelog": "3.3.0"
+    "cz-conventional-changelog": "3.3.0",
+    "eslint-plugin-cypress": "^2.12.1"
   },
   "config": {
     "commitizen": {
