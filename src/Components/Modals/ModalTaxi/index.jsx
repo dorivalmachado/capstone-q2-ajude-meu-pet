@@ -99,6 +99,7 @@ const ModalTaxi = ({ open, handleClose }) => {
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(formatDate.replaceAll("-", "/"))
     );
+    data.petId = Number(data.petId)
 
     const requisitionBody = {
       ...data,
