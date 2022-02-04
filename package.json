@@ -60,7 +60,8 @@
     ]
   },
   "devDependencies": {
-    "cz-conventional-changelog": "3.3.0"
+    "cz-conventional-changelog": "3.3.0",
+    "eslint-plugin-cypress": "^2.12.1"
   },
   "config": {
     "commitizen": {
