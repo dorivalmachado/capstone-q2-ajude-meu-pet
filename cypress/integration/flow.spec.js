@@ -274,7 +274,7 @@ context('Register', () => {
   it('tries to logout', () => {
     cy.viewport(1440, 900)
     
-    cy.get('.sc-efQSVx > svg').click()
+    cy.get('.sc-bBHHxi > svg').click()
 
     cy.contains('Ajude Meu Pet')
   })
