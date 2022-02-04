@@ -76,6 +76,7 @@ const ModalWalk = ({ open, handleClose }) => {
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(formatDate.replaceAll("-", "/"))
     );
+    data.petId = Number(data.petId)
 
     const requisitionBody = {
       serviceCategory: "passeio",
@@ -165,7 +166,7 @@ const ModalWalk = ({ open, handleClose }) => {
                             register={register}
                             animalType={pet.petType}
                             value={pet.id}
-                            id={pet.id}
+                            id={(pet.id)}
                             petName={pet.petName}
                           />
                         ))

@@ -95,6 +95,7 @@ const ModalTraining = React.forwardRef((props, ref) => {
     data.serviceDesiredDate = Intl.DateTimeFormat(["pt-br"]).format(
       new Date(formatDate.replaceAll("-", "/"))
     );
+    data.petId = Number(data.petId)
 
     const requisitionBody = {
       serviceCategory: "adestramento",
