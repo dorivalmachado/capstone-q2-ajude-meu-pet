@@ -11,15 +11,18 @@ export const Container = styled.div`
     justify-content: space-between;
 
     div:nth-child(3n + 1) > .inner {
-      background-color: var(--blue50);
+      border: 2px dashed var(--white);
+      background-color: var(--blue150);
     }
 
     div:nth-child(3n + 2) > .inner {
-      background-color: #fff5db;
+      border: 2px dashed var(--white);
+      background-color: var(--caramel25);
     }
 
     div:nth-child(3n + 3) > .inner {
-      background-color: var(--caramel25);
+      border: 2px dashed var(--white);
+      background-color: var(--orange);
     }
   }
 
@@ -61,24 +64,44 @@ export const CardFront = styled.div`
   position: absolute;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  font-size: 24px;
+
+  h2 {
+    color: var(--white);
+    font-family: var(--title-font);
+    font-size: 22px;
+    font-weight: lighter;
+    text-shadow: 1px 1px var(--black50);
+  }
 `;
 
 export const CardBack = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  transform: rotateY(180deg);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  padding: 18px;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-between;
+  padding: 18px;
+  position: absolute;
+  transform: rotateY(180deg);
+  width: 100%;
+  
+  .cardText {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    line-height: normal;
+    justify-content: center;
+  }
 
   p {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
-    font-size: 18px;
+    text-align: center;
+    text-shadow: 0.5px 0.5px var(--black100);
   }
 `;
 

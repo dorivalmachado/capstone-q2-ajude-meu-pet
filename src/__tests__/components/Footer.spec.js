@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Footer from "../../../Components/Footer";
+import Footer from "../../Components/Footer";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Rendering Footer component", () => {

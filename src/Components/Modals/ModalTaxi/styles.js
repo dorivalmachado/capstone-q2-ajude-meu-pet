@@ -1,6 +1,28 @@
 import { TextField } from "@mui/material";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  padding: 20px;
+
+  .closeButton {
+    align-self: end;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      color: var(--grey70);
+      font-size: 25px;
+    }
+
+    svg:hover {
+      color: var(--grey80);
+    }
+  }
+`;
+
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -11,20 +33,10 @@ export const ButtonsContainer = styled.div`
 
   @media (min-width: 500px) {
     flex-direction: row;
-    margin-right: 20px;
   }
 `;
 
-export const Form = styled.form`
-  position: relative;
-  padding-top: 30px;
-
-  svg {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-  }
-`;
+export const Form = styled.form``;
 
 export const ContainerTaxi = styled.div`
   display: flex;
@@ -33,7 +45,8 @@ export const ContainerTaxi = styled.div`
   max-width: 910px;
 
   h3 {
-    font-size: 24px;
+    font-size: 17px;
+    font-family: var(--title-font);
     font-weight: 400;
     margin-bottom: 15px;
   }
@@ -154,6 +167,7 @@ export const ContainerBottom = styled.div`
     img {
       width: 150px;
     }
+
     div {
       display: flex;
       flex-direction: column;
@@ -165,10 +179,12 @@ export const ContainerBottom = styled.div`
   .petContainer_box {
     width: 100%;
     height: auto;
-    border: 3px solid var(--cream);
+    border-radius: 10px;
+    border: 3px dashed var(--cream);
     display: flex;
     overflow-x: scroll;
     padding: 10px;
+
     a {
       text-decoration: none;
       color: black;
@@ -189,4 +205,4 @@ export const ErrorMessage = styled.p`
   color: #d32f2f;
   font-size: 12px;
   margin: 0 14px 15px;
-`
+`;

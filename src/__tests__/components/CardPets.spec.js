@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import CardPets from "../../../Components/CardPets";
+import CardPets from "../../Components/CardPets";
 
 describe("Rendering CardImage component", () => {
   it("Should render the CardPets component in the page", () => {

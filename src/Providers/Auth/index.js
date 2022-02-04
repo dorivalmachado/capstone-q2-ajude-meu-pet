@@ -1,7 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../../Services/api";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -16,6 +17,19 @@ export const AuthProvider = ({ children }) => {
 
     return {};
   });
+
+  const isExpired = () => {
+    if (!!data.token) {
+      let decoded = jwtDecode(data.token).exp < Date.now() / 1000;
+      if (decoded) {
+        setData({});
+        localStorage.clear();
+        history.push("/");
+      }
+    }
+  };
+
+  useEffect(() => isExpired(), []);
 
   const history = useHistory();
 
@@ -83,6 +97,7 @@ export const AuthProvider = ({ children }) => {
         login,
         updateUser,
         logout,
+        isExpired,
         user: data.user,
         token: data.token,
       }}

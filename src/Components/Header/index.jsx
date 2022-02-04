@@ -113,7 +113,6 @@ const Header = ({ isLogged = false }) => {
             <Title>Ajude Meu Pet</Title>
             <Imagem src={Logo} alt="Logo" />
           </div>
-          <a href="#home">Home</a>
           <a href="#passeio">Passeios</a>
           <a href="#adestramento">Adestramento</a>
           <a href="#taxi">Taxi-Pet</a>

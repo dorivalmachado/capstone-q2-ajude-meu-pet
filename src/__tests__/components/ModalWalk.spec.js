@@ -1,13 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import Provider from "../../../Providers";
-import ModalWalk from "../../../Components/ModalWalk";
+import Provider from "../../Providers";
+import ModalWalk from "../../Components/Modals/ModalWalk";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Render the ModalWalk component", () => {
   it("Should render the ModalWalk component in the page", () => {
     render(
-      <Provider>
-        <ModalWalk open={"walk"} />
-      </Provider>
+      <MemoryRouter>
+        <Provider>
+          <ModalWalk open={"walk"} />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(

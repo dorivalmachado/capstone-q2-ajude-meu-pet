@@ -17,11 +17,11 @@ export const ServicesPage = () => {
         </div>
         <Box>
           <div className="title">
-            <p>Selecione os serviços</p>
+            <h2>Selecione os serviços</h2>
           </div>
           <CardServices />
           <div className="title">
-            <p>Serviços em andamento</p>
+            <h2>Serviços em andamento</h2>
           </div>
           <HiredServices />
         </Box>

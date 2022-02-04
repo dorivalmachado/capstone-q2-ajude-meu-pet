@@ -35,14 +35,14 @@ export const HiredServices = () => {
             id,
           };
         });
+
       setMyServices(formattedService);
     }
   }, [pets, services]);
-
   return (
     <Container>
       {myServices.length === 0 ? (
-        <p>
+        <p className="message">
           Nenhum serviço contratado ainda, clique nos cards acima e contrate
           hoje mesmo!
         </p>

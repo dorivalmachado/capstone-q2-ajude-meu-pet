@@ -16,7 +16,7 @@ export const Container = styled.div`
     flex-direction: row;
     height: 100vh;
     justify-content: space-around;
-    min-height: 750px;
+    min-height: 600px;
 
     img {
       display: flex;
@@ -49,16 +49,18 @@ export const FormContainer = styled.div`
   color: var(--black50);
   display: flex;
   flex-direction: column;
+  height: 80%;
   justify-content: space-evenly;
   margin: 15px;
-  width: 90%;
-  min-height: 750px;
+  max-height: 700px;
   max-width: 470px;
+  min-height: 600px;
+  width: 90%;
 
   h1 {
     color: var(--black50);
     font-family: var(--title-font);
-    font-size: 32px;
+    font-size: 30px;
     letter-spacing: 1px;
     padding: 0;
     text-align: center;
@@ -70,11 +72,11 @@ export const FormContainer = styled.div`
     font-weight: normal;
   }
 
-  .cDUxdC{
+  .cDUxdC {
     margin-bottom: 15px;
   }
 
-  .css-ahj2mt-MuiTypography-root{
+  .css-ahj2mt-MuiTypography-root {
     font-size: 15px;
   }
 
@@ -93,7 +95,7 @@ export const FormContainer = styled.div`
 
     .css-1wc848c-MuiFormHelperText-root.Mui-error {
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 12px;
     }
 

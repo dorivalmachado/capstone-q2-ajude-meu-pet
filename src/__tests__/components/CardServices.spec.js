@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import CardServices from "../../../Components/CardsServices";
-import Provider from "../../../Providers";
+import CardServices from "../../Components/CardsServices";
+import Provider from "../../Providers";
 
 describe("Rendering Services Card in the page", () => {
   it("Should render the CardPets component in the page", () => {
