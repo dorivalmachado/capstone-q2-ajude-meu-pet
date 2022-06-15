@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Capstone Q2 - Ajude meu pet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Qual o problema a ser solucionado?
 
-## Available Scripts
+Ter um animal de estimação é muita responsabilidade, mas nem sempre há tempo de cuidar de todas as necessidades dos pets no dia a dia corrido. Ou seu bichinho é indisciplinado e adora destruir sua casa comendo seus sapatos, sofás, fazendo seus negócios onde não devia, não sabe se comportar com outras pessoas, ou animais. Ou simplesmente só precisa de alguém para levar e trazer ele de um compromisso importante, como o veterinário. 
 
-In the project directory, you can run:
 
-### `yarn start`
+## Qual a solução que a aplicação traz?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Uma aplicação web para conectar pessoas que precisam de alguma ajuda com seu pet com aquelas que têm habilidade, treinamento e disposição. Nela o usuário se cadastra, cadastra seus pets, e seleciona uma das categorias de serviço oferecidas: treinamento (adestramento), passeio ou transporte. 
+Ao escolher o serviço, deve selecionar o pet, o tipo, a data desejada para o mesmo e se quiser pode inserir informações adicionais. Esse pedido vai para a página do prestador de serviços que escolhe os serviços disponíveis. É direcionado a conectar pessoas que precisam de serviços básicos para seu pet e pessoas que têm disponibilidade para atendê-los. 
+  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Quais as features da aplicação que foram planejadas?
 
-### `yarn test`
+Endpoints da Api:
+/users
+/pets
+/services
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features do Front:
+Landing Page, Login, Register, Dashboard, cadastro, edição e exclusão de pets, e solicitação de serviços.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Quais as bibliotecas que serão utilizadas pela equipe?
+Material UI
+Styled Components
+Axios
+json-server
+json-server-auth
+React-hook-form
+Yup
+Hookform/resolvers
+React-router-dom@5
+Jwt-decode
+Hot Toast
+React Icons
+Cypress
+JavaScript
+React
+Context Api
+Commitizen
+Framer motion
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Figma:
+https://www.figma.com/file/iGyCoUx6H9SY4QSr7gY4Qe/Capstone---Ajude-meu-pet?node-id=0%3A1 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+GitHub do App:
+https://github.com/dorivalmachado/capstone-q2-ajude-meu-pet
 
-### `yarn eject`
+GitHub da API:
+https://github.com/dorivalmachado/json-server-ajude-meu-pet
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Vercel:
+https://capstone-q2-ajude-meu-pet-zeta.vercel.app/ 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
