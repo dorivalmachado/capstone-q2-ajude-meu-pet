@@ -23,24 +23,7 @@ Landing Page, Login, Register, Dashboard, cadastro, edição e exclusão de pets
 
 
 ## Quais as bibliotecas que serão utilizadas pela equipe?
-Material UI
-Styled Components
-Axios
-json-server
-json-server-auth
-React-hook-form
-Yup
-Hookform/resolvers
-React-router-dom@5
-Jwt-decode
-Hot Toast
-React Icons
-Cypress
-JavaScript
-React
-Context Api
-Commitizen
-Framer motion
+Material UI, Styled Components, Axios, json-server, json-server-auth, React-hook-form, Yup, Hookform/resolvers, React-router-dom@5, Jwt-decode, Hot Toast, React Icons, Cypress, JavaScript, React, Context Api, Commitizen, Framer motion
 
 Figma:
 https://www.figma.com/file/iGyCoUx6H9SY4QSr7gY4Qe/Capstone---Ajude-meu-pet?node-id=0%3A1 
